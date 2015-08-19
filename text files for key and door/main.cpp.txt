@@ -1,0 +1,27 @@
+char g_door = 254;
+COORD gdoor;
+bool g_key = false;
+
+void level1()
+{
+	mazestore(m1);
+	while(!g_quit)
+	{
+		mazemapping();
+		UI();
+		movement();
+		quitgame1();
+	}
+}
+
+void level2()
+{
+	mazestore(m2);
+	while(!g_quit)
+	{
+		mazemapping();
+		UI();
+		movement();
+		quitgame2();
+	}
+}
