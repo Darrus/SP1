@@ -1,5 +1,9 @@
-#include "header.h"
+#ifndef MAZEGENERATOR_H
+#define MAZEGENERATOR_H
+#include <iostream>
 
-void maze(string map);
-void mazemapping(int Height,int Length);
+void mazestore(std::string map);
+void mazemapping();
 void UI();
+
+#endif

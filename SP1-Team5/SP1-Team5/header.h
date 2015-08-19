@@ -1,3 +1,6 @@
+#ifndef HEADER_H
+#define HEADER_H
+
 #include <iostream>
 #include <fstream>
 #include <Windows.h>
@@ -8,3 +11,5 @@ using std::endl;
 using std::ifstream;
 using std::ios;
 using std::string;
+
+#endif
