@@ -12,7 +12,7 @@ void clock_start()
 }
 void clock_end()
 {
-	seconds = (clock() - start ) / (int) CLOCKS_PER_SEC + 800 ;
+	seconds = (clock() - start ) / (int) CLOCKS_PER_SEC ;
 	while(seconds >= 60)
 	{
 		seconds -=60;
