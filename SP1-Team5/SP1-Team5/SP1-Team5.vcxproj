@@ -74,14 +74,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clock.cpp" />
     <ClCompile Include="functions.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clock.h" />
     <ClInclude Include="functions.h" />
-    <ClInclude Include="main.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="player.h" />

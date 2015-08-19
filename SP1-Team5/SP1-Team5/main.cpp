@@ -1,33 +1,28 @@
 #include "header.h"
 #include "MazeGenerator.h"
-#include "main.h"
 #include "functions.h"
 #include "player.h"
+#include "clock.h"
+#include "game.h"
 
-string m1 = "m1OriginalCreation.txt";
-string m2 = "m2ModifiedWintermaulMaze.txt";
 bool g_quit = false;
 COORD g_player;
 char g_size[25][60];
+bool g_clear1 = false;
+bool g_clear2 = false;
+bool g_reset = false;
 
 void main()
 {
-	level1();
-	cout << "A" << endl;
-}
-
-void level1()
-{
-	mazestore(m2);
 	while(!g_quit)
 	{
-		mazemapping();
-		UI();
-		movement();
+		if(g_clear1 == false)
+		{
+			level1();
+		}
+		else
+		{
+			level2();
+		}
 	}
-}
-
-void level2()
-{
-
 }

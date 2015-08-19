@@ -7,7 +7,6 @@ char wall = 219;
 char door = 254;
 int h = 0;
 
-COORD cursor;
 int play = 0;
 
 void UI()
@@ -43,6 +42,8 @@ void UI()
 
 void mazestore(string map)
 {
+	h = 0;
+	play = 0;
 	ifstream fin;
 	fin.open(map,ios::in);
 	while(!fin.eof())
@@ -50,6 +51,7 @@ void mazestore(string map)
 		fin.getline(g_size[h],60);
 		++h;
 	}
+	fin.close();
 }
 
 void mazemapping()
@@ -95,7 +97,7 @@ void mazemapping()
 					break;
 				case '?':cout << "?";
 					break;
-				case '\n':cout << endl;
+				case '\n': cout << endl;
 					break;
 			}	
 		}
