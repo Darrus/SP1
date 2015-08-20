@@ -18,25 +18,25 @@ void movement()
 	switch(ch)
 	{
 	case 72:
-		if(g_player.Y > 0 && g_size[g_player.Y-1][g_player.X] == '0' || g_size[g_player.Y-1][g_player.X] == 'x')
+		if(g_player.Y > 0 && g_size[g_player.Y-1][g_player.X] == '0' || g_size[g_player.Y-1][g_player.X] == 'x' || g_size[g_player.Y-1][g_player.X] == '!')
 		{
 			g_player.Y--;
 		}
 		break;
 	case 80:
-		if(g_player.Y < 24 && g_size[g_player.Y+1][g_player.X] == '0' || g_size[g_player.Y+1][g_player.X] == 'x')
+		if(g_player.Y < 24 && g_size[g_player.Y+1][g_player.X] == '0' || g_size[g_player.Y+1][g_player.X] == 'x' || g_size[g_player.Y+1][g_player.X] == '!')
 		{
 			g_player.Y++;
 		}
 		break;
 	case 77:
-		if(g_player.X < 79 && g_size[g_player.Y][g_player.X+1] == '0' || g_size[g_player.Y][g_player.X+1] == 'x')
+		if(g_player.X < 79 && g_size[g_player.Y][g_player.X+1] == '0' || g_size[g_player.Y][g_player.X+1] == 'x' || g_size[g_player.Y][g_player.X+1] == '!')
 		{
 			g_player.X++;
 		}
 		break;
 	case 75:
-		if(g_player.X > 0 && g_size[g_player.Y][g_player.X-1] == '0' || g_size[g_player.Y][g_player.X-1] == 'x')
+		if(g_player.X > 0 && g_size[g_player.Y][g_player.X-1] == '0' || g_size[g_player.Y][g_player.X-1] == 'x' || g_size[g_player.Y][g_player.X-1] == '!')
 		{
 			g_player.X--;
 		}
@@ -58,6 +58,9 @@ void detect()
 	switch(g_size[g_player.Y][g_player.X])
 	{
 	case 'x': g_size[g_player.Y][g_player.X] = '3';
+		break; 
+	case '!': g_size[g_player.Y][g_player.X] = '0';
+		g_key = true;
 		break;
 	}
 }

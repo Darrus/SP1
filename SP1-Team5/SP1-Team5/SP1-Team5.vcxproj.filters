@@ -54,4 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="m1OriginalCreation.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="m2ModifiedWintermaulMaze.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

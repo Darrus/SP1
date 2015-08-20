@@ -11,6 +11,7 @@ char g_size[25][60];
 bool g_clear1 = false;
 bool g_clear2 = false;
 bool g_reset = false;
+bool g_key = false;
 
 void main()
 {
