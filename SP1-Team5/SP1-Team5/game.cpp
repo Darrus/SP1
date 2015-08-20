@@ -12,16 +12,23 @@ void level1()
 {
 	mazestore(m1);
 	clock_start();
-	while(!g_quit && !g_reset)
+	while(!g_quit && !g_clear)
 	{
 		mazemapping();
 		UI();
 		movement();
+		Sleep(10);
 	}
 	clock_end();
-	if(g_reset == true)
+	if(!g_quit)
 	{
-		reset();
+		cout << "Press spacebar to continue";
+		switch(getch())
+		{
+		case ' ': 
+			reset();
+			break;
+		}
 	}
 }
 
@@ -41,14 +48,12 @@ void level2()
 void reset()
 {
 	gotoXY(0,0);
-	cout << string(1920,' ');
-	if(g_clear1 == false)
+	cout << string(2000,' ');
+	g_key = false;
+	if(g_clear == false)
 	{
-		g_reset = false;
 		level1();
 	}
 	else
-	{
 		level2();
-	}
 }

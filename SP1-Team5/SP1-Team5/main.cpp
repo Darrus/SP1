@@ -8,22 +8,11 @@
 bool g_quit = false;
 COORD g_player;
 char g_size[25][60];
-bool g_clear1 = false;
-bool g_clear2 = false;
-bool g_reset = false;
+bool g_clear = false;
 bool g_key = false;
 
 void main()
 {
-	while(!g_quit)
-	{
-		if(g_clear1 == false)
-		{
-			level1();
-		}
-		else
-		{
-			level2();
-		}
-	}
+	level1();
+	level2();
 }

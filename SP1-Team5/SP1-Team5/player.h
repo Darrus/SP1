@@ -3,6 +3,6 @@
 
 void movement();
 void player();
-void detect();
+void detect(int Y,int X);
 
 #endif

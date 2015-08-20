@@ -7,9 +7,7 @@
 void player()
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),g_player);
-	detect();
 	cout << (char)1;
-	gotoXY(g_player.X,g_player.Y);
 }
 
 void movement()
@@ -18,49 +16,52 @@ void movement()
 	switch(ch)
 	{
 	case 72:
-		if(g_player.Y > 0 && g_size[g_player.Y-1][g_player.X] == '0' || g_size[g_player.Y-1][g_player.X] == 'x' || g_size[g_player.Y-1][g_player.X] == '!')
-		{
-			g_player.Y--;
-		}
+		detect(g_player.Y-1,g_player.X); //Top movement
 		break;
 	case 80:
-		if(g_player.Y < 24 && g_size[g_player.Y+1][g_player.X] == '0' || g_size[g_player.Y+1][g_player.X] == 'x' || g_size[g_player.Y+1][g_player.X] == '!')
-		{
-			g_player.Y++;
-		}
+		detect(g_player.Y+1,g_player.X); //Down movement
 		break;
 	case 77:
-		if(g_player.X < 79 && g_size[g_player.Y][g_player.X+1] == '0' || g_size[g_player.Y][g_player.X+1] == 'x' || g_size[g_player.Y][g_player.X+1] == '!')
-		{
-			g_player.X++;
-		}
+		detect(g_player.Y,g_player.X+1); //Right movement
 		break;
 	case 75:
-		if(g_player.X > 0 && g_size[g_player.Y][g_player.X-1] == '0' || g_size[g_player.Y][g_player.X-1] == 'x' || g_size[g_player.Y][g_player.X-1] == '!')
-		{
-			g_player.X--;
-		}
+		detect(g_player.Y,g_player.X-1); //Left movement
 		break;
 	case 27:
 		g_quit = true;
 		break;
 	case 'r':
 	case 'R':
-		g_reset = true;
+		reset();
 		break;
 	default: movement();
 		break;
 	}
 }
 
-void detect()
+void detect(int Y,int X)
 {
-	switch(g_size[g_player.Y][g_player.X])
+	switch(g_size[Y][X])
 	{
-	case 'x': g_size[g_player.Y][g_player.X] = '3';
+	case '0': 
+		g_player.Y = Y;
+		g_player.X = X;
+		break;
+	case 'x': 
+		g_size[Y][X] = '3';
+		g_player.Y = Y;
+		g_player.X = X;
 		break; 
-	case '!': g_size[g_player.Y][g_player.X] = '0';
+	case '!': 
+		g_size[Y][X] = '0';
+		g_player.Y = Y;
+		g_player.X = X;
 		g_key = true;
+		break;
+	case '4': 
+		g_clear = true;
+		g_player.Y = Y;
+		g_player.X = X;
 		break;
 	}
 }

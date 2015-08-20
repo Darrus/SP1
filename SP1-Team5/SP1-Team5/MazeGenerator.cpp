@@ -75,7 +75,8 @@ void mazemapping()
 					break;
 				case '2':if(g_key == true)
 						{
-							g_size[a][b] = '0';
+							g_size[a][b] = '4';
+							cout << ' ';
 						}
 						else
 						{
@@ -85,6 +86,8 @@ void mazemapping()
 				case 'x': cout << '0';
 					break;
 				case '3': cout << 'O';
+					break;
+				case '4': cout << "T";
 					break;
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;

@@ -20,9 +20,9 @@ void clock_end()
 	}
 	if (minutes == 0 && seconds <60)
 	{
-		gotoXY (54,15);
+		gotoXY (56,17);
 		cout <<"Time taken: "; 
-		gotoXY (54,16);
+		gotoXY (56,18);
 		cout << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}
