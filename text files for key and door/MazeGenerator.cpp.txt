@@ -62,29 +62,33 @@ void mazemapping()
 
 void UI()
 {
-	gotoXY(52,4);
 	setcolor(0x2F);
-	cout << "Use the arrow keys to move";
-	gotoXY(54,5);
+	gotoXY(54,2);
 	cout << "Find the key to ";
-	gotoXY(54,6);
+	gotoXY(54,3);
 	cout << "unlock the door!";
-	gotoXY(54, 8);
+	gotoXY(52,5);
+	cout << "-Use the arrow keys to move";
+	gotoXY(52,6);
+	cout << "-Press R to reset";
+	gotoXY(52,7);
+	cout << "-Press Esc to exit";
+	gotoXY(54, 9);
 	setcolor(0x0A);
 	cout << "Player = Green " << (char)1  << endl;
-	gotoXY(54, 9);
-	setcolor(0x0C);
-	cout << "FOE = Red ^v<>" << endl;
 	gotoXY(54, 10);
 	setcolor(0x0C);
-	cout << "Unstable Floors = Red 0" << endl;
+	cout << "FOE = Red ^v<>" << endl;
 	gotoXY(54, 11);
 	setcolor(0x0C);
-	cout << "Broken Floors = Red O" << endl;
+	cout << "Unstable Floors = Red 0" << endl;
 	gotoXY(54, 12);
+	setcolor(0x0C);
+	cout << "Broken Floors = Red O" << endl;
+	gotoXY(54, 13);
 	setcolor(0x0E);
 	cout << "Keys = Yellow *" << endl;
-	gotoXY(54, 13);
+	gotoXY(54, 14);
 	setcolor(0x0F);
 	cout << "Door = White " << door << endl;
 	setcolor(7);
