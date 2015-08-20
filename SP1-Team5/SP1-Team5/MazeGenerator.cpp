@@ -3,10 +3,10 @@
 #include "functions.h"
 #include "player.h"
 
+char g_size[25][60];
 char wall = 219;
 char door = 254;
 int h = 0;
-
 int play = 0;
 
 void UI()

@@ -4,7 +4,6 @@
 void gotoXY(COORD c)
 {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
-
 }
 
 void gotoXY(int x, int y) {

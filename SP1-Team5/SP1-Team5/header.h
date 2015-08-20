@@ -8,6 +8,8 @@
 #include <ctime>
 #include <cstdio>
 #include <string>
+#include <vector>
+
 
 using std::cout;
 using std::endl;
@@ -16,5 +18,8 @@ using std::ios;
 using std::string;
 using std::clock_t;
 using std::clock;
+using std::vector;
+
+
 
 #endif

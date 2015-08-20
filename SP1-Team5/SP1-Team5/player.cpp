@@ -4,6 +4,10 @@
 #include "MazeGenerator.h"
 #include "game.h"
 
+bool g_key = false;
+bool g_quit = false;
+COORD g_player;
+
 void player()
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),g_player);

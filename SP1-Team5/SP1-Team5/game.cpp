@@ -5,6 +5,7 @@
 #include "player.h"
 #include "functions.h"
 
+bool g_clear = false;
 string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";
 
@@ -17,18 +18,12 @@ void level1()
 		mazemapping();
 		UI();
 		movement();
-		Sleep(10);
 	}
 	clock_end();
 	if(!g_quit)
 	{
 		cout << "Press spacebar to continue";
-		switch(getch())
-		{
-		case ' ': 
-			reset();
-			break;
-		}
+		cont();
 	}
 }
 
@@ -56,4 +51,18 @@ void reset()
 	}
 	else
 		level2();
+}
+
+void cont()
+{
+	char in = _getch();
+	switch(in)
+	{
+	case ' ':
+		reset();
+		break;
+	default:
+		cont();
+		break;
+	}
 }
