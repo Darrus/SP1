@@ -36,3 +36,9 @@ Updated colours
 
 # Darrus
 Merged colours
+
+# Darrus
+Fixed Vertical and Horizontal AI movement
+
+# lyx97
+Custom Maze Generator
