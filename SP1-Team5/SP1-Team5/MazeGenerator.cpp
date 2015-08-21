@@ -83,11 +83,11 @@ void mazemapping()
 							setcolor(0x0f);cout << door;setcolor(7);
 						}
 					break;
-				case 'x': cout << '0';
+				case 'x':setcolor(0x0C);cout << '0';setcolor(7);
 					break;
-				case '3': cout << 'O';
+				case '3':setcolor(0x0C);cout << 'O';setcolor(7);
 					break;
-				case '4': cout << "T";
+				case '4':setcolor(14);cout << "T";
 					break;
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
@@ -109,7 +109,7 @@ void mazemapping()
 					break;
 				case '?':cout << "?";
 					break;
-				case '\n': cout << endl;
+				case '\n':cout << endl;
 					break;
 			}	
 		}

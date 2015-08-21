@@ -11,6 +11,7 @@ COORD g_player;
 void player()
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),g_player);
+	setcolor(0x0A);
 	cout << (char)1;
 }
 
