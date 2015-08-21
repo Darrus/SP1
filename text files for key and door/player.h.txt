@@ -1,2 +1,0 @@
-void quitgame1();
-void quitgame2();

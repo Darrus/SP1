@@ -75,6 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clock.cpp" />
+    <ClCompile Include="FOE_Movement.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
@@ -83,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clock.h" />
+    <ClInclude Include="FOE_Movement.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="MazeGenerator.h" />

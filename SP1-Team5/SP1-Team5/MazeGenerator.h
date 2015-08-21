@@ -1,11 +1,12 @@
 #ifndef MAZEGENERATOR_H
 #define MAZEGENERATOR_H
-#include <iostream>
+#include "header.h"
 
-void mazestore(std::string map);
+void mazestore(string map);
 void mazemapping();
 void UI();
 
-extern char g_size[25][60];
+extern vector <string> g_size;
+extern int counter;
 
 #endif

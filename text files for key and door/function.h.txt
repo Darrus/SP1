@@ -1,3 +1,0 @@
-extern char g_door;
-extern COORD gdoor;
-extern bool g_key;

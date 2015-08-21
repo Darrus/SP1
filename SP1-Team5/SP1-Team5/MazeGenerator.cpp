@@ -2,12 +2,23 @@
 #include "header.h"
 #include "functions.h"
 #include "player.h"
+#include "FOE_Movement.h"
 
-char g_size[25][60];
 char wall = 219;
 char door = 254;
 int h = 0;
 int play = 0;
+int counter;
+vector <string> g_size;
+
+struct pos
+{
+	COORD hori;
+	COORD vert;
+	COORD roun;
+};
+
+vector <pos> enemy;
 
 void UI()
 {
@@ -48,11 +59,14 @@ void mazestore(string map)
 {
 	h = 0;
 	play = 0;
+	g_size.clear(); 
 	ifstream fin;
+	string temp;
 	fin.open(map,ios::in);
 	while(!fin.eof())
 	{	
-		fin.getline(g_size[h],60);
+		getline(fin,temp);
+		g_size.push_back(temp);
 		++h;
 	}
 	fin.close();
@@ -63,10 +77,23 @@ void mazemapping()
 	gotoXY(0,0);
 	int a = 0;
 	int b = 5;
-	for(int a = 0; a < h; ++a)
+	counter = 0;
+	for(size_t a = 0; a < g_size.size(); ++a)
 	{
-		for(int b = 0; b < 60; ++b)
+		for(size_t b = 0; b < g_size[a].length(); ++b)
 		{
+			if(g_size[a][b] == 'H')
+			{
+				counter++;
+			}
+			else if(g_size[a][b] == 'V')
+			{
+				counter++;
+			}
+			else if(g_size[a][b] == 'O')
+			{
+				counter++;
+			}
 			switch(g_size[a][b])
 			{
 				case '0':cout << " "; 
@@ -83,19 +110,19 @@ void mazemapping()
 							setcolor(0x0f);cout << door;setcolor(7);
 						}
 					break;
-				case 'x':setcolor(0x0C);cout << '0';setcolor(7);
+				case 'x': cout << '0';
 					break;
-				case '3':setcolor(0x0C);cout << 'O';setcolor(7);
+				case '3': cout << 'O';
 					break;
-				case '4':setcolor(14);cout << "T";
+				case '4': cout << "!";
 					break;
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
-				case 'H':setcolor(12);cout << "H";setcolor(7); 
+				case 'H':setcolor(12);cout << counter;setcolor(7);
 					break;
-				case 'V':setcolor(12);cout << "V";setcolor(7);
+				case 'V':setcolor(12);cout << counter;setcolor(7);
 					break;
-				case 'O':setcolor(12);cout << "O";setcolor(7);
+				case 'O':setcolor(12);cout << counter;setcolor(7);
 					break;
 				case 'S':
 						cout << ' ';
@@ -107,9 +134,13 @@ void mazemapping()
 							play++;
 						}
 					break;
+				case '>': cout << '>';
+					break;
+				case '<': cout << '<';
+						break;
 				case '?':cout << "?";
 					break;
-				case '\n':cout << endl;
+				case '\n': cout << endl;
 					break;
 			}	
 		}

@@ -2,6 +2,7 @@
 #include "player.h"
 #include "functions.h"
 #include "MazeGenerator.h"
+#include "clock.h"
 #include "game.h"
 
 bool g_key = false;
@@ -34,6 +35,7 @@ void movement()
 		break;
 	case 27:
 		g_quit = true;
+		clock_end();
 		break;
 	case 'r':
 	case 'R':
