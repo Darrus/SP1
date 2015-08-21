@@ -4,21 +4,24 @@
 #include "player.h"
 #include "FOE_Movement.h"
 
+extern bool g_key;
+extern COORD g_player;
+
 char wall = 219;
 char door = 254;
 int h = 0;
 int play = 0;
-int counter;
+
+
 vector <string> g_size;
 
-struct pos
-{
-	COORD hori;
-	COORD vert;
-	COORD roun;
-};
+count counter;
 
-vector <pos> enemy;
+vector <pos> hori;
+vector <pos> vert;
+vector <pos> roun;
+
+pos holder;
 
 void UI()
 {
@@ -77,23 +80,12 @@ void mazemapping()
 	gotoXY(0,0);
 	int a = 0;
 	int b = 5;
-	counter = 0;
+	counter.H = 0;
+	counter.V = 0;
 	for(size_t a = 0; a < g_size.size(); ++a)
 	{
 		for(size_t b = 0; b < g_size[a].length(); ++b)
 		{
-			if(g_size[a][b] == 'H')
-			{
-				counter++;
-			}
-			else if(g_size[a][b] == 'V')
-			{
-				counter++;
-			}
-			else if(g_size[a][b] == 'O')
-			{
-				counter++;
-			}
 			switch(g_size[a][b])
 			{
 				case '0':cout << " "; 
@@ -118,11 +110,32 @@ void mazemapping()
 					break;
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
-				case 'H':setcolor(12);cout << counter;setcolor(7);
+				case 'H': 
+					holder.X = b;
+					holder.Y = a;
+					hori.push_back(holder);
+					counter.H++;
+					setcolor(12);
+					cout << 'H';
+					setcolor(7);
 					break;
-				case 'V':setcolor(12);cout << counter;setcolor(7);
+				case 'V':
+					holder.X = b;
+					holder.Y = a;
+					vert.push_back(holder);
+					counter.V++;
+					setcolor(12);
+					cout << 'V';
+					setcolor(7);
 					break;
-				case 'O':setcolor(12);cout << counter;setcolor(7);
+				case 'O':
+					//holder.X = b;
+					//holder.Y = a;
+					//roun.push_back(holder);
+					//counter.O++;
+					setcolor(12);
+					cout << 'O';
+					setcolor(7);
 					break;
 				case 'S':
 						cout << ' ';
@@ -134,10 +147,42 @@ void mazemapping()
 							play++;
 						}
 					break;
-				case '>': cout << '>';
+				case '>': 
+					holder.X = b;
+					holder.Y = a;
+					hori.push_back(holder);
+					counter.H++;
+					setcolor(12);
+					cout << '>';
+					setcolor(7);
 					break;
-				case '<': cout << '<';
-						break;
+				case '<': 
+					holder.X = b;
+					holder.Y = a;
+					hori.push_back(holder);
+					counter.H++;
+					setcolor(12);
+					cout << '<';
+					setcolor(7);
+					break;
+				case '^':
+					holder.X = b;
+					holder.Y = a;
+					vert.push_back(holder);
+					counter.V++;
+					setcolor(12);
+					cout << '^';
+					setcolor(7);
+					break;
+				case 'v':
+					holder.X = b;
+					holder.Y = a;
+					vert.push_back(holder);
+					counter.V++;
+					setcolor(12);
+					cout << 'v';
+					setcolor(7);
+					break;
 				case '?':cout << "?";
 					break;
 				case '\n': cout << endl;
@@ -146,5 +191,6 @@ void mazemapping()
 		}
 		cout << endl;
 	}
+	gotoXY(0,23);
 	player();
 }

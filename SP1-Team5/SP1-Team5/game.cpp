@@ -5,6 +5,10 @@
 #include "player.h"
 #include "functions.h"
 
+extern bool g_quit;
+extern bool g_key;
+
+
 bool g_clear = false;
 string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";

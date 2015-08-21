@@ -6,7 +6,21 @@ void mazestore(string map);
 void mazemapping();
 void UI();
 
-extern vector <string> g_size;
-extern int counter;
+struct pos
+{
+	int X;
+	int Y;
+	bool right;
+	bool left;
+	bool down;
+	bool up;
+};
+
+struct count
+{
+	int H;
+	int V;
+	int O;
+};
 
 #endif

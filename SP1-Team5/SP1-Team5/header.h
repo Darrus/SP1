@@ -12,8 +12,10 @@
 
 
 using std::cout;
+using std::cin;
 using std::endl;
 using std::ifstream;
+using std::ofstream;
 using std::ios;
 using std::string;
 using std::clock_t;

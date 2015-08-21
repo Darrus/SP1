@@ -6,7 +6,14 @@
 #include "clock.h"
 #include "FOE_Movement.h"
 
+extern vector <string> g_size;
+extern vector <pos> hori;
+extern vector <pos> vert;
+extern COORD g_player;
+extern bool g_quit;
+
 int step = 0;
+
 bool up;
 bool down;
 bool left;
@@ -15,6 +22,7 @@ bool Oup = false;
 bool Odown = false;
 bool Oleft = false;
 bool Oright = false;
+
 
 //Circular moving FOE
 //void FOEO()
@@ -150,63 +158,86 @@ bool Oright = false;
 //}
 
 //Horizontal moving FOE
-void FOEH(int Y,int X)
+void FOEH(int c)
 {
-	if (g_size[Y][X+1] == '0' && g_size[Y][X-1] == '1')
+	for(int a = 0; a < c; ++a)
 	{
-		right = true;
-		left = false;
-	}
-	else if(g_size[Y][X-1] == '0' && g_size[Y][X+1] == '1')
-	{
-		left = true;
-		right = false;
-	}
-	if (g_size[Y][X+1] == '0' && right == true)
-	{
-		//move right
-		X++;
-		gotoXY(X,Y);
-		g_size[Y][X] = '>';
-		g_size[Y][X-1] = '0';
-	}
-	else if (g_size[Y][X-1] == '0' && left == true)
-	{
-		//move left
-		X--;
-		gotoXY(X,Y);
-		g_size[Y][X] = '<';
-		g_size[Y][X+1] = '0';
+		
+		if (g_size[hori[a].Y][hori[a].X+1] == '0' && (g_size[hori[a].Y][hori[a].X-1] == '1' || g_size[hori[a].Y][hori[a].X-1] == 'x'))
+		{
+			hori[a].right = true;
+			hori[a].left = false;
+		}
+		else if(g_size[hori[a].Y][hori[a].X-1] == '0' && (g_size[hori[a].Y][hori[a].X+1] == '1' || g_size[hori[a].Y][hori[a].X+1] == 'x'))
+		{
+			hori[a].left = true;
+			hori[a].right = false;
+		}
+		if (g_size[hori[a].Y][hori[a].X+1] == '0' && hori[a].right == true)
+		{
+			//move right
+			hori[a].X++;
+			gotoXY(hori[a].X,hori[a].Y);
+			g_size[hori[a].Y][hori[a].X] = '>';
+			g_size[hori[a].Y][hori[a].X-1] = '0';
+			/*if(hori[a].Y == g_player.Y && hori[a].X+1 == g_player.X)
+			{
+				g_quit = true;
+			}*/
+		}
+		else if (g_size[hori[a].Y][hori[a].X-1] == '0' && hori[a].left == true)
+		{
+			//move left
+			hori[a].X--;
+			gotoXY(hori[a].X,hori[a].Y);
+			g_size[hori[a].Y][hori[a].X] = '<';
+			g_size[hori[a].Y][hori[a].X+1] = '0';
+			/*if(hori[a].Y == g_player.Y && hori[a].X-1 == g_player.X)
+			{
+				g_quit = true;
+			}*/
+		}
 	}
 }
 
 //Vertical moving FOE
-//void FOEV()
-//{
-//	if (g_size[g_FOEV.Y-1][g_FOEV.X] == '0' && g_size[g_FOEV.Y+1][g_FOEV.X] == '1')
-//	{
-//		up = true;
-//		down = false;
-//	}
-//	else if(g_size[g_FOEV.Y+1][g_FOEV.X] == '0' && g_size[g_FOEV.Y-1][g_FOEV.X] == '1')
-//	{
-//		down = true;
-//		up = false;
-//	}
-//	if (g_size[g_FOEV.Y-1][g_FOEV.X] == '0' && up == true)
-//	{
-//		//move up
-//		g_FOEV.Y--;
-//		gotoXY(g_FOEV.X,g_FOEV.Y);
-//		g_size[g_FOEV.Y][g_FOEV.X] = '^';
-//		g_size[g_FOEV.Y+1][g_FOEV.X] = '0';
-//	}
-//	else if (g_size[g_FOEV.Y+1][g_FOEV.X] == '0' && down == true)
-//	{
-//		//move down
-//		g_FOEV.Y++;
-//		gotoXY(g_FOEV.X,g_FOEV.Y);
-//		g_size[g_FOEV.Y][g_FOEV.X] = 'v';
-//		g_size[g_FOEV.Y-1][g_FOEV.X] = '0';
-//	}
-//}
+void FOEV(int c)
+{
+	for(int a = 0; a < c; ++a)
+	{
+		if (g_size[vert[a].Y-1][vert[a].X] == '0' && g_size[vert[a].Y+1][vert[a].X] == '1')
+		{
+			vert[a].up = true;
+			vert[a].down = false;
+		}
+		else if(g_size[vert[a].Y+1][vert[a].X] == '0' && g_size[vert[a].Y-1][vert[a].X] == '1')
+		{
+			vert[a].down = true;
+			vert[a].up = false;
+		}
+		if (g_size[vert[a].Y-1][vert[a].X] == '0' && vert[a].up == true)
+		{
+			//move up
+			vert[a].Y--;
+			gotoXY(vert[a].X,vert[a].Y);
+			g_size[vert[a].Y][vert[a].X] = '^';
+			g_size[vert[a].Y+1][vert[a].X] = '0';
+			if(vert[a].Y-1 == g_player.Y && vert[a].X == g_player.X)
+			{
+				g_quit = true;
+			}
+		}
+		else if (g_size[vert[a].Y+1][vert[a].X] == '0' && vert[a].down == true)
+		{
+			//move down
+			vert[a].Y++;
+			gotoXY(vert[a].X,vert[a].Y);
+			g_size[vert[a].Y][vert[a].X] = 'v';
+			g_size[vert[a].Y-1][vert[a].X] = '0';
+			if(vert[a].Y+1 == g_player.Y && vert[a].X == g_player.X)
+			{
+				g_quit = true;
+			}
+		}
+	}
+}
