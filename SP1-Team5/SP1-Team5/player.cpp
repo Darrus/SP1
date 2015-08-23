@@ -19,7 +19,6 @@ void player()
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),g_player);
 	setcolor(0x0A);
 	cout << (char)1;
-	death();
 }
 
 void movement()
@@ -93,15 +92,15 @@ void detect(int Y,int X)
 		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
+		/*FOEH(counter.H);
+		FOEV(counter.V);*/
 		break;
 	case '>':
 		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
+		/*FOEH(counter.H);
+		FOEV(counter.V);*/
 		break;
 	case '4': 
 		g_clear = true;

@@ -14,10 +14,6 @@ extern bool g_quit;
 
 int step = 0;
 
-bool up;
-bool down;
-bool left;
-bool right;
 bool Oup = false;
 bool Odown = false;
 bool Oleft = false;
@@ -182,7 +178,7 @@ void FOEH(int c)
 			g_size[hori[a].Y][hori[a].X-1] = '0';
 			/*if(hori[a].Y == g_player.Y && hori[a].X+1 == g_player.X)
 			{
-				g_quit = true;
+				g_death = true;
 			}*/
 		}
 		else if (g_size[hori[a].Y][hori[a].X-1] == '0' && hori[a].left == true)
@@ -194,7 +190,7 @@ void FOEH(int c)
 			g_size[hori[a].Y][hori[a].X+1] = '0';
 			/*if(hori[a].Y == g_player.Y && hori[a].X-1 == g_player.X)
 			{
-				g_quit = true;
+				g_death = true;
 			}*/
 		}
 	}
@@ -222,10 +218,10 @@ void FOEV(int c)
 			gotoXY(vert[a].X,vert[a].Y);
 			g_size[vert[a].Y][vert[a].X] = '^';
 			g_size[vert[a].Y+1][vert[a].X] = '0';
-			if(vert[a].Y-1 == g_player.Y && vert[a].X == g_player.X)
+			/*if(vert[a].Y-1 == g_player.Y && vert[a].X == g_player.X)
 			{
 				g_quit = true;
-			}
+			}*/
 		}
 		else if (g_size[vert[a].Y+1][vert[a].X] == '0' && vert[a].down == true)
 		{
@@ -234,10 +230,10 @@ void FOEV(int c)
 			gotoXY(vert[a].X,vert[a].Y);
 			g_size[vert[a].Y][vert[a].X] = 'v';
 			g_size[vert[a].Y-1][vert[a].X] = '0';
-			if(vert[a].Y+1 == g_player.Y && vert[a].X == g_player.X)
-			{
-				g_quit = true;
-			}
+			//if(vert[a].Y+1 == g_player.Y && vert[a].X == g_player.X)
+			//{
+			//	g_quit = true;
+			//}
 		}
 	}
 }

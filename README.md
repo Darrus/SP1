@@ -42,3 +42,6 @@ Fixed Vertical and Horizontal AI movement
 
 # lyx97
 Custom Maze Generator
+
+# Darrus
+Working AI detection, Removed death() function

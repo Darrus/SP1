@@ -6,6 +6,7 @@
 
 extern bool g_key;
 extern COORD g_player;
+extern bool g_quit;
 
 char wall = 219;
 char door = 254;
@@ -55,7 +56,7 @@ void UI()
 	setcolor(0x0F);
 	cout << "Door = White " << door << endl;
 	setcolor(7);
-	gotoXY(0,24);
+	gotoXY(0,23);
 }
 
 void mazestore(string map)
@@ -110,24 +111,6 @@ void mazemapping()
 					break;
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
-				case 'H': 
-					holder.X = b;
-					holder.Y = a;
-					hori.push_back(holder);
-					counter.H++;
-					setcolor(12);
-					cout << 'H';
-					setcolor(7);
-					break;
-				case 'V':
-					holder.X = b;
-					holder.Y = a;
-					vert.push_back(holder);
-					counter.V++;
-					setcolor(12);
-					cout << 'V';
-					setcolor(7);
-					break;
 				case 'O':
 					//holder.X = b;
 					//holder.Y = a;
@@ -155,6 +138,10 @@ void mazemapping()
 					setcolor(12);
 					cout << '>';
 					setcolor(7);
+					if(a+1 == g_player.Y && b+1 == g_player.X)
+					{
+						g_quit = true;
+					}
 					break;
 				case '<': 
 					holder.X = b;
@@ -164,6 +151,10 @@ void mazemapping()
 					setcolor(12);
 					cout << '<';
 					setcolor(7);
+					if(a == g_player.Y && b-1 == g_player.X)
+					{
+						g_quit = true;
+					}
 					break;
 				case '^':
 					holder.X = b;
@@ -173,6 +164,10 @@ void mazemapping()
 					setcolor(12);
 					cout << '^';
 					setcolor(7);
+					if(a-1 == g_player.Y && b == g_player.X)
+					{
+						g_quit = true;
+					}
 					break;
 				case 'v':
 					holder.X = b;
@@ -182,6 +177,10 @@ void mazemapping()
 					setcolor(12);
 					cout << 'v';
 					setcolor(7);
+					if(a+1 == g_player.Y && b == g_player.X)
+					{
+						g_quit = true;
+					}
 					break;
 				case '?':cout << "?";
 					break;

@@ -7,7 +7,9 @@
 
 extern bool g_quit;
 extern bool g_key;
-
+extern vector <pos> hori;
+extern vector <pos> vert;
+extern vector <pos> roun;
 
 bool g_clear = false;
 string m1 = "m1OriginalCreation.txt";
@@ -49,6 +51,8 @@ void reset()
 	gotoXY(0,0);
 	cout << string(2000,' ');
 	g_key = false;
+	hori.clear();
+	vert.clear();
 	if(g_clear == false)
 	{
 		level1();
