@@ -89,18 +89,34 @@ void detect(int Y,int X)
 		g_key = true;
 		break;
 	case '<':
-		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
-		/*FOEH(counter.H);
-		FOEV(counter.V);*/
+		FOEH(counter.H);
+		FOEV(counter.V);
 		break;
 	case '>':
-		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
-		/*FOEH(counter.H);
-		FOEV(counter.V);*/
+		FOEH(counter.H);
+		FOEV(counter.V);
+		break;
+	case '^':
+		g_player.Y = Y;
+		g_player.X = X;
+		FOEH(counter.H);
+		FOEV(counter.V);
+		break;
+	case 'v':
+		g_player.Y = Y;
+		g_player.X = X;
+		FOEH(counter.H);
+		FOEV(counter.V);
+		break;
+	case '?':
+		g_player.Y = Y;
+		g_player.X = X;
+		FOEH(counter.H);
+		FOEV(counter.V);
 		break;
 	case '4': 
 		g_clear = true;

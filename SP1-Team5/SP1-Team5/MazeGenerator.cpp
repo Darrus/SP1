@@ -182,7 +182,7 @@ void mazemapping()
 						g_quit = true;
 					}
 					break;
-				case '?':cout << "?";
+				case '?':cout << " ";
 					break;
 				case '\n': cout << endl;
 					break;
