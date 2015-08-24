@@ -36,6 +36,9 @@
     <ClCompile Include="FOE_Movement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="highscore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -59,12 +62,24 @@
     <ClInclude Include="FOE_Movement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\STFU PLZ\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="highscore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="m1OriginalCreation.txt">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="m2ModifiedWintermaulMaze.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="highscore2.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="highscore1.txt">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

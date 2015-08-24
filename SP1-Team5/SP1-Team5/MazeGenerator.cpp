@@ -4,6 +4,7 @@
 #include "player.h"
 #include "FOE_Movement.h"
 
+//Declarations of variables
 extern bool g_key;
 extern COORD g_player;
 extern bool g_quit;
@@ -12,7 +13,6 @@ char wall = 219;
 char door = 254;
 int h = 0;
 int play = 0;
-
 
 vector <string> g_size;
 
@@ -24,8 +24,10 @@ vector <pos> roun;
 
 pos holder;
 
+//Prints out the UI on the right
 void UI()
 {
+	//Hard-coded every thing on the UI
 	setcolor(0x2F);
 	gotoXY(54,2);
 	cout << "Find the key to ";
@@ -59,6 +61,7 @@ void UI()
 	gotoXY(0,23);
 }
 
+//Converts the text map into a string
 void mazestore(string map)
 {
 	h = 0;
@@ -66,35 +69,46 @@ void mazestore(string map)
 	g_size.clear(); 
 	ifstream fin;
 	string temp;
+	//Gets the text map
 	fin.open(map,ios::in);
 	while(!fin.eof())
-	{	
+	{
 		getline(fin,temp);
+		//Converts into string
 		g_size.push_back(temp);
 		++h;
 	}
 	fin.close();
 }
 
+//Generates the map based on text map
 void mazemapping()
 {
+	//Declaration of variables
 	gotoXY(0,0);
 	int a = 0;
 	int b = 5;
 	counter.H = 0;
 	counter.V = 0;
+	//Reads the columns
 	for(size_t a = 0; a < g_size.size(); ++a)
 	{
+		//Reads the rows
 		for(size_t b = 0; b < g_size[a].length(); ++b)
 		{
+			//Switch case based on what is on the map
 			switch(g_size[a][b])
 			{
+				//0 is converted into space
 				case '0':cout << " "; 
 					break;
+				//1 is converted into walls
 				case '1':setcolor(0x0f);cout << wall;setcolor(7);
 					break;
+				//2 is converted into door
 				case '2':if(g_key == true)
 						{
+							//Opens the door if the player have a key
 							g_size[a][b] = '4';
 							cout << ' ';
 						}
@@ -103,12 +117,14 @@ void mazemapping()
 							setcolor(0x0f);cout << door;setcolor(7);
 						}
 					break;
+				//Broken Floor system
 				case 'x': cout << '0';
 					break;
 				case '3': cout << 'O';
 					break;
 				case '4': cout << "!";
 					break;
+				//Key
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
 				case 'O':
@@ -120,6 +136,7 @@ void mazemapping()
 					cout << 'O';
 					setcolor(7);
 					break;
+				//Player spawn
 				case 'S':
 						cout << ' ';
 						g_size[a][b] = '0';
@@ -130,6 +147,7 @@ void mazemapping()
 							play++;
 						}
 					break;
+				//FOE right movement
 				case '>': 
 					holder.X = b;
 					holder.Y = a;
@@ -143,6 +161,7 @@ void mazemapping()
 						g_quit = true;
 					}
 					break;
+				//FOE left movement
 				case '<': 
 					holder.X = b;
 					holder.Y = a;
@@ -156,6 +175,7 @@ void mazemapping()
 						g_quit = true;
 					}
 					break;
+				//FOE upwards movement
 				case '^':
 					holder.X = b;
 					holder.Y = a;
@@ -169,6 +189,7 @@ void mazemapping()
 						g_quit = true;
 					}
 					break;
+				//FOE downwards movement
 				case 'v':
 					holder.X = b;
 					holder.Y = a;
@@ -182,6 +203,7 @@ void mazemapping()
 						g_quit = true;
 					}
 					break;
+				//Invisible wall for FOE
 				case '?':cout << " ";
 					break;
 				case '\n': cout << endl;

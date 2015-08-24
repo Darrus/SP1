@@ -78,20 +78,25 @@
     <ClCompile Include="FOE_Movement.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="highscore.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\STFU PLZ\main.h" />
     <ClInclude Include="clock.h" />
     <ClInclude Include="FOE_Movement.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="highscore.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="highscore1.txt" />
+    <None Include="highscore2.txt" />
     <None Include="m1OriginalCreation.txt" />
     <None Include="m2ModifiedWintermaulMaze.txt" />
   </ItemGroup>

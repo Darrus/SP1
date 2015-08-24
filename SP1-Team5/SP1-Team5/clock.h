@@ -1,7 +1,9 @@
 #ifndef CLOCK_H
 #define CLOCK_H
 
+extern int seconds;
+extern int minutes;
 void clock_start();
-void clock_end();
+int clock_end();
 
 #endif 
