@@ -17,7 +17,7 @@ string m2 = "m2ModifiedWintermaulMaze.txt";
 
 void level1()
 {
-	mazestore(m2);
+	mazestore(m1);
 	clock_start();
 	while(!g_quit && !g_clear)
 	{

@@ -138,7 +138,7 @@ void mazemapping()
 					setcolor(12);
 					cout << '>';
 					setcolor(7);
-					if(a+1 == g_player.Y && b+1 == g_player.X)
+					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
 						g_quit = true;
 					}
@@ -151,7 +151,7 @@ void mazemapping()
 					setcolor(12);
 					cout << '<';
 					setcolor(7);
-					if(a == g_player.Y && b-1 == g_player.X)
+					if((a == g_player.Y && b-1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
 						g_quit = true;
 					}
@@ -164,7 +164,7 @@ void mazemapping()
 					setcolor(12);
 					cout << '^';
 					setcolor(7);
-					if(a-1 == g_player.Y && b == g_player.X)
+					if((a-1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
 						g_quit = true;
 					}
@@ -177,7 +177,7 @@ void mazemapping()
 					setcolor(12);
 					cout << 'v';
 					setcolor(7);
-					if(a+1 == g_player.Y && b == g_player.X)
+					if((a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
 						g_quit = true;
 					}
