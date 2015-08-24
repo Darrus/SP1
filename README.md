@@ -45,3 +45,6 @@ Custom Maze Generator
 
 # Darrus
 Working AI detection, Removed death() function
+
+# lyx97
+Added refresh
