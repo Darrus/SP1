@@ -6,6 +6,7 @@ void level2();
 void custom();
 void reset();
 void cont();
+void setConsoleSize(unsigned short ushX, unsigned short ushY);
 
 extern bool g_clear;
 

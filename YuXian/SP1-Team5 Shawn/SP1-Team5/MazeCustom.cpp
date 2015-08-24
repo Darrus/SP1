@@ -4,6 +4,9 @@
 #include "player.h"
 #include "MazeCustom.h"
 
+char col[23] = {0};
+char row[49] = {0};
+
 void placewall(int Y, int X)
 {
 	g_size[Y][X] = '1';
@@ -24,15 +27,31 @@ void delplace (int Y, int X)
 	g_size[Y][X] = '0';
 }
 
-void cincustom() 
+void refresh()
 {
-	string filename;
-	ofstream cin ("custom.txt");
-	while(!cin.eof())
-	{	
-		cin.getline(g_size[test],60);
+	ofstream cinfile;
+	cinfile.open("custom.txt");
+	for (int i = 1; i < sizeof(col); ++i) 
+	{
+		col[i] = '0';
+		cinfile << col[i];
+		for (int j = 1; j < sizeof(row); ++j)
+		{
+			row[j] = '0';
+			cinfile << row[j];
+		}
+		cinfile << '1' << endl;
 	}
-	cin.close();
+	for (int line = 0; line <= sizeof(row); ++line)
+	{
+		cinfile << '1';
+	}
+	cinfile.close();
+}
+
+void save() 
+{
+	
 }
 
 void custommovement()
@@ -47,13 +66,13 @@ void custommovement()
 		}
 		break;
 	case 80:
-		if(g_player.Y+1 < 23)
+		if(g_player.Y+1 < 22)
 		{
 			g_player.Y++; // going down
 		} 
 		break; 
 	case 77:
-		if(g_player.X+1 < 50)
+		if(g_player.X+1 < 49)
 		{
 			g_player.X++; // going right
 		}
@@ -84,7 +103,7 @@ void custommovement()
 		placekey(g_player.Y, g_player.X);
 		break;
 	case 'm':
-		cincustom();
+		refresh();
 	}
 }
 
