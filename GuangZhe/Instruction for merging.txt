@@ -1,7 +1,0 @@
-Delete from old folder:
-clock.cpp
-clock.h
-main.cpp
-main.h
-
-Drag all the functions and text file (except this) to the SP-1 codes :)
