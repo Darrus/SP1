@@ -48,3 +48,6 @@ Working AI detection, Removed death() function
 
 # lyx97
 Added refresh
+
+# lyx97
+Able to change to customing mode to normal mode and back
