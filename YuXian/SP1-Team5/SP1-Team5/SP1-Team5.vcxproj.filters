@@ -27,13 +27,19 @@
     <ClCompile Include="player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FOE_Movement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="highscore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MazeCustom.cpp">
@@ -62,6 +68,12 @@
     <ClInclude Include="FOE_Movement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="highscore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="MazeCustom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -73,10 +85,16 @@
     <None Include="m2ModifiedWintermaulMaze.txt">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="custom2.txt">
+    <None Include="highscore2.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="highscore1.txt">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="custom1.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="custom2.txt">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="custom3.txt">

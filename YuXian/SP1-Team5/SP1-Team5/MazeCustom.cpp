@@ -8,6 +8,7 @@ extern vector <string> g_size;
 extern COORD g_player;
 extern bool g_quit;
 extern bool g_switch;
+extern bool playing;
 
 char col[23] = {0};
 char row[49] = {0};
@@ -71,7 +72,7 @@ void save1()
 		{
 			save << g_size[i][j];
 		}
-		save << endl;
+		save << '1' << endl;
 	}
 	save.close();
 }
@@ -143,9 +144,9 @@ void save3()
 {
 	ofstream save;
 	save.open("custom3.txt");
-	for(size_t i = 0; i < g_size.size(); ++i)
+	for(int i = 0; i < g_size.size(); ++i)
 	{
-		for(size_t j = 0; j < g_size[i].size(); ++j)
+		for(int j = 0; j < g_size[i].size(); ++j)
 		{
 			save << g_size[i][j];
 		}
@@ -157,30 +158,64 @@ void save3()
 void custommovement1()
 {
 	int ch = _getch();
+
+	if(playing == true)
+	{
+		g_switch = true;
+	}
+
 	switch (ch)
 	{
 	case 72:
 		if(g_player.Y-1 >= 0)
 		{
-			g_player.Y--; // going up
+			if(g_switch == true)
+			{
+				detect(g_player.Y-1,g_player.X);
+			}
+			else
+			{
+				g_player.Y--; // going up
+			}
 		}
 		break;
 	case 80:
 		if(g_player.Y+1 < 22)
 		{
-			g_player.Y++; // going down
+			if(g_switch == true)
+			{
+				detect(g_player.Y+1,g_player.X);
+			}
+			else
+			{
+				g_player.Y++; // going down
+			}
 		} 
 		break; 
 	case 77:
 		if(g_player.X+1 < 49)
 		{
-			g_player.X++; // going right
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X+1);
+			}
+			else
+			{
+				g_player.X++; // going right
+			}
 		}
 		break;
 	case 75:
 		if(g_player.X-1 >= 0)
 		{
-			g_player.X--; // going left
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X-1);
+			}
+			else
+			{
+				g_player.X--; // going left
+			}
 		}
 		break;
 	case 27:
@@ -215,7 +250,15 @@ void custommovement1()
 		break;
 	case 'z':
 	case 'Z':
-		g_switch = true; // switch between customing and normal mode
+		// switch between customising and normal mode
+		if(playing == false && g_switch == false)
+		{
+			g_switch = true;
+		}
+		else if(playing == false && g_switch == true)
+		{
+			g_switch = false;
+		}
 		break;
 	}
 }
@@ -281,7 +324,7 @@ void custommovement2()
 		break;
 	case 'z':
 	case 'Z':
-		g_switch = true; // switch between customing and normal mode
+		g_switch = true; // switch between customising and normal mode
 		break;
 	}
 }
@@ -347,7 +390,7 @@ void custommovement3()
 		break;
 	case 'z':
 	case 'Z':
-		g_switch = true; // switch between customing and normal mode
+		g_switch = true; // switch between customising and normal mode
 		break;
 	}
 }

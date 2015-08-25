@@ -1,7 +1,9 @@
-#include "header.h"
-#include "game.h"
+#include "GameMenu.h"
 
+
+
+//Links everything together and runs the game
 void main()
 {
-	custom1();
-}   
+	gamemenu();
+}

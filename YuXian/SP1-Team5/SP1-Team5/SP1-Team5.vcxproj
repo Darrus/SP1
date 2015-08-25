@@ -78,6 +78,8 @@
     <ClCompile Include="FOE_Movement.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
+    <ClCompile Include="highscore.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MazeCustom.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
@@ -88,6 +90,8 @@
     <ClInclude Include="FOE_Movement.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="highscore.h" />
     <ClInclude Include="MazeCustom.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="header.h" />
@@ -97,6 +101,8 @@
     <None Include="custom1.txt" />
     <None Include="custom2.txt" />
     <None Include="custom3.txt" />
+    <None Include="highscore1.txt" />
+    <None Include="highscore2.txt" />
     <None Include="m1OriginalCreation.txt" />
     <None Include="m2ModifiedWintermaulMaze.txt" />
   </ItemGroup>
