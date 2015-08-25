@@ -59,7 +59,7 @@ void custom()
 		}
 		else if (g_switch == true)
 		{
-		UI();
+		customUI1();
 		movement();
 		}
 	}

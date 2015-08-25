@@ -7,6 +7,7 @@ void placekey(int Y, int X);
 void delplace(int Y, int X);
 void custommovement();
 void customUI();
+void customUI1();
 void refresh();
 
 #endif

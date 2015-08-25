@@ -149,8 +149,41 @@ void customUI()
 	cout << "Press B to save the map";
 	gotoXY(52, 7);
 	cout << "Press Q remove blocks";
-	gotoXY(52, 9);
+	gotoXY(52,8);
+	cout << "Press Z to switch modes";
+	gotoXY(52, 10);
+	cout << "Press Esc to exit";
+	gotoXY(52, 12);
+	cout << "Custom mode";
+	gotoXY(52, 14);
+	cout << "Note: Normal mode makes";
+	gotoXY(52, 15);
+	cout << "use of normal controls.";
+	setcolor(7);
+	gotoXY(0,24);
+}
+
+void customUI1()
+{
+	setcolor(0x2F);
+	gotoXY(52,2);
+	cout << "Press W to place down walls";
+	gotoXY(52,3);
+	cout << "Press E to place down keys";
+	gotoXY(52,4);
+	cout << "Press D to place down doors";
+	gotoXY(52,5);
+	cout << "Press N to reset the map";
+	gotoXY(52,6);
+	cout << "Press B to save the map";
+	gotoXY(52, 7);
+	cout << "Press Q remove blocks";
+	gotoXY(52,8);
+	cout << "Press Z to switch modes";
+	gotoXY(52, 10);
 	cout << "Press Esc to exit"  << endl;
+	gotoXY(52, 12);
+	cout << "Normal mode"  << endl;
 	setcolor(7);
 	gotoXY(0,24);
 }
