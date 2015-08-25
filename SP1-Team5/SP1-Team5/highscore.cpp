@@ -7,6 +7,7 @@
 extern bool lvl1;
 extern bool lvl2;
 
+
 //Stores highscore 
 void store(int min, int sec)
 {
@@ -19,21 +20,21 @@ void store(int min, int sec)
 	//convert time taken to your highscore
 	if ( m < 10)
 	{
-		highscore[1] = m;
+		*(highscore+1) = m;
 	}
 	else if (m >= 10)
 	{
-		highscore[1] = m % 10;
-		highscore[0] = m - highscore[1];
+		*(highscore+1) = m % 10;
+		*highscore = m - *(highscore+1);
 	}
 	if (s < 10)
 	{
-		highscore[3] = s;
+		*(highscore+3) = s;
 	}
 	else if ( s >= 10)
 	{
-		highscore[3] = s % 10;
-		highscore[2] = s - highscore[3];
+		*(highscore+3) = s % 10;
+		*(highscore+2) = s - *(highscore+3);
 	}
 	
 	//value of what highscore u achieved
@@ -57,7 +58,6 @@ void store(int min, int sec)
 		cout << highscoreC << endl;
 		coutfile.close();
 	}
-
 
 	//value of the best highscore from textfile
 	int highminC = ((highscoreC[0]-48)*10) + (highscoreC[1]-48);
@@ -84,23 +84,23 @@ void store(int min, int sec)
 	//convert highminC and highsecC to highscoreC 
 	if (highminC < 10)
 	{
-		highscoreC[0] = '0';
-		highscoreC[1] = highminC+48;
+		*highscoreC = '0';
+		*(highscore+1) = highminC+48;
 	}
 	else if (highminC >= 10)
 	{
-		highscoreC[1] = highminC % 10;
-		highscoreC[0] = (highminC - highscoreC[1])+48;
+		*(highscore+1) = highminC % 10;
+		*highscoreC = (highminC - highscoreC[1])+48;
 	}
 	if (highsecC < 10)
 	{
-		highscoreC[2] = '0';
-		highscoreC[3] = highsecC+48;
+		*(highscore+2) = '0';
+		*(highscore+3) = highsecC+48;
 	}
 	else if ( s >= 10)
 	{
-		highscoreC[3] = highsecC % 10;
-		highscoreC[2] = (highsecC - highscoreC[3])+48;
+		*(highscore+3) = highsecC % 10;
+		*(highscore+2) = (highsecC - highscoreC[3])+48;
 	}
 
 	//stores best highscore in texfile
@@ -130,6 +130,7 @@ void store(int min, int sec)
 	gotoXY (52,21);
 	cout << highscoreC[0] << highscoreC[1] <<" minutes " << highscoreC[2] << highscoreC[3] << " seconds";
 	gotoXY (0,24);
+
 }
 
 //Shows highscore

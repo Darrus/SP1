@@ -81,6 +81,7 @@
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="highscore.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MazeCustom.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
@@ -91,11 +92,13 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="highscore.h" />
+    <ClInclude Include="MazeCustom.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="custom.txt" />
     <None Include="highscore1.txt" />
     <None Include="highscore2.txt" />
     <None Include="m1OriginalCreation.txt" />

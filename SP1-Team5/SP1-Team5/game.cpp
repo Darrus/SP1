@@ -6,6 +6,8 @@
 #include "functions.h"
 #include "highscore.h"
 #include "clock.h"
+#include "MazeCustom.h"
+#include "GameMenu.h"
 
 extern bool g_quit;
 extern bool g_key;
@@ -13,11 +15,13 @@ extern vector <pos> hori;
 extern vector <pos> vert;
 extern vector <pos> roun;
 
+bool g_switch = false;
 bool g_clear = false;
 bool lvl1 = false;
 bool lvl2 = false;
 string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";
+string customs = "custom.txt";
 
 void level1()
 {
@@ -60,6 +64,26 @@ void level2()
 		//Calls the highscore function
 		store(minutes,seconds);
 		lvl2 = false;
+		cont();
+	}
+}
+
+void custom()
+{
+	mazestore(customs);
+	while(!g_quit)
+	{
+		mazemapping();
+		if (g_switch == false)
+		{
+			customUI();
+			custommovement();
+		}
+		else if (g_switch == true)
+		{
+			customUI1();
+			movement();
+		}
 	}
 }
 
@@ -73,8 +97,10 @@ void reset()
 	vert.clear();
 	if(lvl1 == true)
 		level1();
-	else
+	else if(lvl2 == true)
 		level2();
+	else
+		custom();
 }
 
 void cont()
@@ -83,7 +109,13 @@ void cont()
 	switch(in)
 	{
 	case ' ':
-		reset();
+		gotoXY(0,0);
+		cout << string(2000,' ');
+		g_key = false;
+		g_clear = false;
+		hori.clear();
+		vert.clear();
+		play();
 		break;
 	default:
 		cont();

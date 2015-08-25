@@ -21,7 +21,7 @@ void gamemenu()
 			break;
 		case Create:
 			cls();
-			cout <<"ERROR WAITING FOR SHAWN TO COMPLETE HIS THINGY"<< endl;
+			//custom();
 			break;
 		case Quit:
 			choice = MAX;
@@ -95,7 +95,7 @@ void play()
 }
 
 //Gets input from user for main menu options
-void input(state& s)
+void input(state & s)
 {
 	//Converts input to enum state
 	int num = 0;
