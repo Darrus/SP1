@@ -73,7 +73,13 @@
     <None Include="m2ModifiedWintermaulMaze.txt">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="custom.txt">
+    <None Include="custom2.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="custom1.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="custom3.txt">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

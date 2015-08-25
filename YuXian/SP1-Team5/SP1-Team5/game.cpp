@@ -13,7 +13,9 @@ bool g_switch = false;
 bool g_clear = false;
 string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";
-string customs = "custom.txt";
+string customs1 = "custom1.txt";
+string customs2 = "custom2.txt";
+string customs3 = "custom3.txt";
 
 void level1()
 {
@@ -46,16 +48,16 @@ void level2()
 	clock_end();
 }
 
-void custom()
+void custom1()
 {
-	mazestore(customs);
+	mazestore(customs1);
 	while(!g_quit)
 	{
 		mazemapping();
 		if (g_switch == false)
 		{
 		customUI();
-		custommovement();
+		custommovement1();
 		}
 		else if (g_switch == true)
 		{
@@ -64,6 +66,45 @@ void custom()
 		}
 	}
 }
+
+void custom2()
+{	
+	mazestore(customs2);
+	while(!g_quit)
+	{
+		mazemapping();
+		if (g_switch == false)
+		{
+		customUI();
+		custommovement2();
+		}
+		else if (g_switch == true)
+		{
+		customUI1();
+		movement();
+		}
+	}
+}
+
+void custom3()
+{	
+	mazestore(customs3);
+	while(!g_quit)
+	{
+		mazemapping();
+		if (g_switch == false)
+		{
+		customUI();
+		custommovement3();
+		}
+		else if (g_switch == true)
+		{
+		customUI1();
+		movement();
+		}
+	}
+}
+
 
 void reset()
 {

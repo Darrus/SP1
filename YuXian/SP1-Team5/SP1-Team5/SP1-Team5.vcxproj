@@ -94,7 +94,9 @@
     <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="custom.txt" />
+    <None Include="custom1.txt" />
+    <None Include="custom2.txt" />
+    <None Include="custom3.txt" />
     <None Include="m1OriginalCreation.txt" />
     <None Include="m2ModifiedWintermaulMaze.txt" />
   </ItemGroup>

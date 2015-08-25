@@ -51,3 +51,9 @@ Added refresh
 
 # lyx97
 Able to change to customing mode to normal mode and back
+
+# lyx97
+Updated UI for customised mode
+
+# lyx97
+More available save for customising maps (3 in total)
