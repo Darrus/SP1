@@ -1,6 +1,5 @@
 #include "header.h"
 #include "MazeGenerator.h"
-#include "main.h"
 #include "functions.h"
 #include "player.h"
 #include "clock.h"

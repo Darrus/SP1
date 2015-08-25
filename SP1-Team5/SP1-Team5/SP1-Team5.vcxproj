@@ -78,17 +78,18 @@
     <ClCompile Include="FOE_Movement.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="highscore.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\STFU PLZ\main.h" />
     <ClInclude Include="clock.h" />
     <ClInclude Include="FOE_Movement.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="GameMenu.h" />
     <ClInclude Include="highscore.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="header.h" />

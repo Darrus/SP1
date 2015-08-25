@@ -30,12 +30,13 @@ void level1()
 		UI();
 		movement();
 	}
-	lvl1 = false;
 	clock_end();
-	//Calls the highscore function
-	store(minutes,seconds);
+	showscore();
 	if(!g_quit)
 	{
+		//Calls the highscore function
+		store(minutes,seconds);
+		lvl1 = false;
 		cout << "Press spacebar to continue";
 		cont();
 	}
@@ -52,10 +53,14 @@ void level2()
 		UI();
 		movement();
 	}
-	lvl2 = false;
 	clock_end();
-	//Calls the highscore function
-	store2(minutes,seconds);
+	showscore();
+	if (!g_quit)
+	{
+		//Calls the highscore function
+		store(minutes,seconds);
+		lvl2 = false;
+	}
 }
 
 void reset()
