@@ -131,15 +131,6 @@ void input(state& s)
 	s = static_cast<state>(num);
 }
 
-//Clears the screen 
-void cls()
-{
-	//Fills the entire screen with blank spaces, effectively clearing the screen
-	gotoXY(0,0);
-	cout << string(2000,' ');
-	gotoXY(0,0);
-}
-
 //Prints out the level select menu
 void levelmenu()
 {

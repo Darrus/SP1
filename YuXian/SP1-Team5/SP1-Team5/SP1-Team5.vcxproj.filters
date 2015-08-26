@@ -85,12 +85,6 @@
     <None Include="m2ModifiedWintermaulMaze.txt">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="highscore2.txt">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="highscore1.txt">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="custom1.txt">
       <Filter>Resource Files</Filter>
     </None>
@@ -98,6 +92,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="custom3.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="highscore2.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="highscore1.txt">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

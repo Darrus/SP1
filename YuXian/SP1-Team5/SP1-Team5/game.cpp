@@ -10,6 +10,7 @@
 
 extern bool g_quit;
 extern bool g_key;
+extern bool playing;
 extern vector <pos> hori;
 extern vector <pos> vert;
 extern vector <pos> roun;
@@ -75,13 +76,17 @@ void custom1()
 	{
 		mazemapping();
 		custommovement1();
-		if (g_switch == false)
+		if (playing == true)
 		{
-		customUI(); 
+			UI();
+		}
+		else if (g_switch == false)
+		{
+			customUI(); 
 		}
 		else if (g_switch == true)
 		{
-		customUI1();
+			customUI1();
 		}
 	}
 }
@@ -92,15 +97,18 @@ void custom2()
 	while(!g_quit)
 	{
 		mazemapping();
-		if (g_switch == false)
-		{
-		customUI();
 		custommovement2();
+		if (playing == true)
+		{
+			UI();
+		}
+		else if (g_switch == false)
+		{
+			customUI(); 
 		}
 		else if (g_switch == true)
 		{
-		customUI1();
-		movement();
+			customUI1();
 		}
 	}
 }
@@ -111,15 +119,18 @@ void custom3()
 	while(!g_quit)
 	{
 		mazemapping();
-		if (g_switch == false)
-		{
-		customUI();
 		custommovement3();
+		if (playing == true)
+		{
+			UI();
+		}
+		else if (g_switch == false)
+		{
+			customUI(); 
 		}
 		else if (g_switch == true)
 		{
-		customUI1();
-		movement();
+			customUI1();
 		}
 	}
 }

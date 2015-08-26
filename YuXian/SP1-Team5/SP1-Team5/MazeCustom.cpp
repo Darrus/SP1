@@ -43,18 +43,18 @@ void refresh1()
 {
 	ofstream refresh;
 	refresh.open("custom1.txt");
-	for (int i = 1; i < sizeof(col); ++i) 
+	for (size_t i = 1; i < sizeof(col); ++i) 
 	{
 		col[i] = '0';
 		refresh << col[i];
-		for (int j = 1; j < sizeof(row); ++j)
+		for (size_t j = 1; j < sizeof(row); ++j)
 		{
 			row[j] = '0';
 			refresh << row[j];
 		}
 		refresh << '1' << endl;
 	}
-	for (int line = 0; line <= sizeof(row); ++line)
+	for (size_t line = 0; line <= sizeof(row); ++line)
 	{
 		refresh << '1';
 	}
@@ -66,13 +66,13 @@ void save1()
 {
 	ofstream save;
 	save.open("custom1.txt");
-	for(size_t i = 0; i < g_size.size(); ++i)
+	for(size_t i = 0; i < g_size.size()-1; ++i)
 	{
 		for(size_t j = 0; j < g_size[i].size(); ++j)
 		{
 			save << g_size[i][j];
 		}
-		save << '1' << endl;
+		save << endl;
 	}
 	save.close();
 }
@@ -82,18 +82,18 @@ void refresh2()
 {
 	ofstream refresh;
 	refresh.open("custom2.txt");
-	for (int i = 1; i < sizeof(col); ++i) 
+	for (size_t i = 1; i < sizeof(col); ++i) 
 	{
 		col[i] = '0';
 		refresh << col[i];
-		for (int j = 1; j < sizeof(row); ++j)
+		for (size_t j = 1; j < sizeof(row); ++j)
 		{
 			row[j] = '0';
 			refresh << row[j];
 		}
 		refresh << '1' << endl;
 	}
-	for (int line = 0; line <= sizeof(row); ++line)
+	for (size_t line = 0; line <= sizeof(row); ++line)
 	{
 		refresh << '1';
 	}
@@ -105,7 +105,7 @@ void save2()
 {
 	ofstream save;
 	save.open("custom2.txt");
-	for(size_t i = 0; i < g_size.size(); ++i)
+	for(size_t i = 0; i < g_size.size()-1; ++i)
 	{
 		for(size_t j = 0; j < g_size[i].size(); ++j)
 		{
@@ -121,18 +121,18 @@ void refresh3()
 {
 	ofstream refresh;
 	refresh.open("custom3.txt");
-	for (int i = 1; i < sizeof(col); ++i) 
+	for (size_t i = 1; i < sizeof(col); ++i) 
 	{
 		col[i] = '0';
 		refresh << col[i];
-		for (int j = 1; j < sizeof(row); ++j)
+		for (size_t j = 1; j < sizeof(row); ++j)
 		{
 			row[j] = '0';
 			refresh << row[j];
 		}
 		refresh << '1' << endl;
 	}
-	for (int line = 0; line <= sizeof(row); ++line)
+	for (size_t line = 0; line <= sizeof(row); ++line)
 	{
 		refresh << '1';
 	}
@@ -144,9 +144,9 @@ void save3()
 {
 	ofstream save;
 	save.open("custom3.txt");
-	for(int i = 0; i < g_size.size(); ++i)
+	for(size_t i = 0; i < g_size.size()-1; ++i)
 	{
-		for(int j = 0; j < g_size[i].size(); ++j)
+		for(size_t j = 0; j < g_size[i].size(); ++j)
 		{
 			save << g_size[i][j];
 		}
@@ -155,6 +155,7 @@ void save3()
 	save.close();
 }
 
+// movement for custom map 1
 void custommovement1()
 {
 	int ch = _getch();
@@ -263,33 +264,68 @@ void custommovement1()
 	}
 }
 
+// movement for custom map 2
 void custommovement2()
 {
 	int ch = _getch();
+
+	if(playing == true)
+	{
+		g_switch = true;
+	}
+
 	switch (ch)
 	{
 	case 72:
 		if(g_player.Y-1 >= 0)
 		{
-			g_player.Y--; // going up
+			if(g_switch == true)
+			{
+				detect(g_player.Y-1,g_player.X);
+			}
+			else
+			{
+				g_player.Y--; // going up
+			}
 		}
 		break;
 	case 80:
 		if(g_player.Y+1 < 22)
 		{
-			g_player.Y++; // going down
+			if(g_switch == true)
+			{
+				detect(g_player.Y+1,g_player.X);
+			}
+			else
+			{
+				g_player.Y++; // going down
+			}
 		} 
 		break; 
 	case 77:
 		if(g_player.X+1 < 49)
 		{
-			g_player.X++; // going right
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X+1);
+			}
+			else
+			{
+				g_player.X++; // going right
+			}
 		}
 		break;
 	case 75:
 		if(g_player.X-1 >= 0)
 		{
-			g_player.X--; // going left
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X-1);
+			}
+			else
+			{
+				g_player.X--; // going left
+			}
 		}
 		break;
 	case 27:
@@ -324,38 +360,81 @@ void custommovement2()
 		break;
 	case 'z':
 	case 'Z':
-		g_switch = true; // switch between customising and normal mode
+		// switch between customising and normal mode
+		if(playing == false && g_switch == false)
+		{
+			g_switch = true;
+		}
+		else if(playing == false && g_switch == true)
+		{
+			g_switch = false;
+		}
 		break;
 	}
 }
 
+// movement for custom map 3
 void custommovement3()
 {
 	int ch = _getch();
+
+	if(playing == true)
+	{
+		g_switch = true;
+	}
+
 	switch (ch)
 	{
 	case 72:
 		if(g_player.Y-1 >= 0)
 		{
-			g_player.Y--; // going up
+			if(g_switch == true)
+			{
+				detect(g_player.Y-1,g_player.X);
+			}
+			else
+			{
+				g_player.Y--; // going up
+			}
 		}
 		break;
 	case 80:
 		if(g_player.Y+1 < 22)
 		{
-			g_player.Y++; // going down
+			if(g_switch == true)
+			{
+				detect(g_player.Y+1,g_player.X);
+			}
+			else
+			{
+				g_player.Y++; // going down
+			}
 		} 
 		break; 
 	case 77:
 		if(g_player.X+1 < 49)
 		{
-			g_player.X++; // going right
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X+1);
+			}
+			else
+			{
+				g_player.X++; // going right
+			}
 		}
 		break;
 	case 75:
 		if(g_player.X-1 >= 0)
 		{
-			g_player.X--; // going left
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X-1);
+			}
+			else
+			{
+				g_player.X--; // going left
+			}
 		}
 		break;
 	case 27:
@@ -390,7 +469,15 @@ void custommovement3()
 		break;
 	case 'z':
 	case 'Z':
-		g_switch = true; // switch between customising and normal mode
+		// switch between customising and normal mode
+		if(playing == false && g_switch == false)
+		{
+			g_switch = true;
+		}
+		else if(playing == false && g_switch == true)
+		{
+			g_switch = false;
+		}
 		break;
 	}
 }

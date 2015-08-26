@@ -65,7 +65,7 @@ void movement()
 		break;
 	case 'z':
 	case 'Z':
-			g_switch = false;
+		g_switch = false;
 		break;
 	default: movement();
 		break;
