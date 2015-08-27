@@ -6,7 +6,7 @@ enum state
 	Play = 1,
 	Create,
 	Quit,
-	MAX,
+	MAX_STATE,
 };
 
 enum level
@@ -14,6 +14,8 @@ enum level
 	One = 1,
 	Two,
 	Custom,
+	Back,
+	MAX_LEVEL,
 };
 
 enum customenum
@@ -21,7 +23,8 @@ enum customenum
 	Save1 = 1,
 	Save2,
 	Save3,
-	END,
+	Back1,
+	MAX_CUSTOM,
 };
 
 void gamemenu();

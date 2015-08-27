@@ -98,7 +98,7 @@
     <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\SP1-Team5\SP1-Team5\custom1.txt" />
+    <None Include="custom1.txt" />
     <None Include="custom2.txt" />
     <None Include="custom3.txt" />
     <None Include="highscore1.txt" />

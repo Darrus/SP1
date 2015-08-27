@@ -5,15 +5,13 @@
 #include "clock.h"
 #include "game.h"
 #include "FOE_Movement.h"
-#include "GameMenu.h"
 
 extern count counter;
 extern bool g_clear;
 extern vector <string> g_size;
 extern bool lvl1;
 extern bool lvl2;
-extern bool g_switch;
-extern bool playing;
+extern bool c1;
 
 bool g_key = false;
 bool g_quit = false;
@@ -62,10 +60,6 @@ void movement()
 	case 'r':
 	case 'R':
 		reset();
-		break;
-	case 'z':
-	case 'Z':
-		g_switch = false;
 		break;
 	default: movement();
 		break;
@@ -131,6 +125,8 @@ void detect(int Y,int X)
 		if(lvl1 == true)
 			g_clear = true;
 		else if(lvl2 == true)
+			g_clear = true;
+		else if(c1 == true)
 			g_clear = true;
 		g_player.Y = Y;
 		g_player.X = X;

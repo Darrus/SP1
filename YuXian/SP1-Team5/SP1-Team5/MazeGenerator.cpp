@@ -8,6 +8,7 @@
 extern bool g_key;
 extern COORD g_player;
 extern bool g_quit;
+extern bool g_playing;
 
 char wall = 219;
 char door = 254;
@@ -158,7 +159,10 @@ void mazemapping()
 					setcolor(7);
 					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						g_quit = true;
+						if (g_playing == true)
+						{
+							g_quit = true;
+						}
 					}
 					break;
 				//FOE left movement
@@ -172,7 +176,10 @@ void mazemapping()
 					setcolor(7);
 					if((a == g_player.Y && b-1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						g_quit = true;
+						if (g_playing == true)
+						{
+							g_quit = true;
+						}
 					}
 					break;
 				//FOE upwards movement
@@ -186,7 +193,10 @@ void mazemapping()
 					setcolor(7);
 					if((a-1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						g_quit = true;
+						if (g_playing == true)
+						{
+							g_quit = true;
+						}
 					}
 					break;
 				//FOE downwards movement
@@ -200,7 +210,10 @@ void mazemapping()
 					setcolor(7);
 					if((a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						g_quit = true;
+						if (g_playing == true)
+						{
+							g_quit = true;
+						}
 					}
 					break;
 				//Invisible wall for FOE

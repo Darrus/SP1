@@ -7,7 +7,7 @@ state choice = Play;
 level number = One;
 customenum no = Save1;
 
-bool playing = false;
+bool g_playing = false;
 
 void gamemenu()
 {
@@ -27,13 +27,13 @@ void gamemenu()
 			custom();
 			break;
 		case Quit:
-			choice = MAX;
+			choice = MAX_STATE;
 			quit();
 			break;
 		default:
 			//If players entered a non specified number, the program will end
 			error();
-			choice = MAX;
+			choice = MAX_STATE;
 	}
 }
 
@@ -71,7 +71,7 @@ void menu()
 //Function for case Play
 void play()
 {
-	playing = true;
+	g_playing = true;
 	cls();
 	title();
 	levelmenu();
@@ -91,11 +91,15 @@ void play()
 			cls();
 			custom();
 			break;
+		case Back:
+			cls();
+			gamemenu();
+			break;
 		default:
 			error();
-			choice = MAX;
+			choice = MAX_STATE;
 			break;
-	}
+	} 
 }
 
 void custom()
@@ -118,6 +122,9 @@ void custom()
 		cls();
 		custom3();
 		break;
+	case Back1:
+		cls();
+		gamemenu();
 	}
 }
 
@@ -143,6 +150,8 @@ void levelmenu()
 	gotoXY(10,11);
 	cout << "[3] Custom Level";
 	gotoXY(10,12);
+	cout << "[4] Back";
+	gotoXY(10,13);
 }
 
 void custommenu()
@@ -155,6 +164,8 @@ void custommenu()
 	gotoXY(10,11);
 	cout << "[3] Save 3";
 	gotoXY(10,12);
+	cout << "[4] Back";
+	gotoXY(10,13);
 }
 
 //Gets input from user for level select
@@ -162,7 +173,7 @@ void levelselect(level& l)
 {
 	//Converts input to enum state
 	int n = 0;
-	cout << "Please enter your choice (1, 2 or 3 ONLY): ";
+	cout << "Please enter your choice (1, 2, 3 or 4 ONLY): ";
 	cin >> n;
 	l = static_cast<level>(n);
 }
@@ -172,7 +183,7 @@ void customselect (customenum& i)
 {
 	// converting
 	int j = 0;
-	cout << "Which save do you want? (1, 2 or 3 ONLY): ";
+	cout << "Which save do you want? (1, 2, 3 or 4 ONLY): ";
 	cin >> j;
 	i = static_cast<customenum>(j);
 }
