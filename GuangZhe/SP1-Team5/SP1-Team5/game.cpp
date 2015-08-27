@@ -43,7 +43,7 @@ void level1()
 		//Calls the highscore function
 		store(minutes,seconds);
 		lvl1 = false;
-		cout << "Press spacebar to continue";
+		cout << "Press spacebar to return to level select menu";
 		cont();
 	}
 }
@@ -82,7 +82,14 @@ void level3()
 		movement();
 	}
 	clock_end();
-	lvl3 = false;
+	showscore();
+	if (!g_quit)
+	{
+		//Calls the highscore function
+		store(minutes,seconds);
+		lvl3 = false;
+		cont();
+	}
 }
 
 void custom()

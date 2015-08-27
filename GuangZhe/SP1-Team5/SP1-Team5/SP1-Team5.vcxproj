@@ -101,6 +101,7 @@
     <None Include="custom.txt" />
     <None Include="highscore1.txt" />
     <None Include="highscore2.txt" />
+    <None Include="highscore3.txt" />
     <None Include="m1OriginalCreation.txt" />
     <None Include="m2ModifiedWintermaulMaze.txt" />
     <None Include="m3Final.txt" />

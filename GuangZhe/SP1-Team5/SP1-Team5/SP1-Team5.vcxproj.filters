@@ -97,5 +97,8 @@
     <None Include="m3Final.txt">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="highscore3.txt">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
