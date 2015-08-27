@@ -5,9 +5,12 @@ void placewall(int Y, int X);
 void placedoor(int Y, int X);
 void placekey(int Y, int X);
 void delplace(int Y, int X);
-void custommovement();
+void placetrap (int Y, int X);
+void custommovement1();
+void custommovement2();
+void custommovement3();
 void customUI();
 void customUI1();
-void refresh();
+void refresh1();
 
 #endif

@@ -85,9 +85,6 @@
     <None Include="m2ModifiedWintermaulMaze.txt">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="custom1.txt">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="custom2.txt">
       <Filter>Resource Files</Filter>
     </None>
@@ -98,6 +95,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="highscore1.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\SP1-Team5\SP1-Team5\custom1.txt">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -16,6 +16,14 @@ enum level
 	Custom,
 };
 
+enum customenum
+{
+	Save1 = 1,
+	Save2,
+	Save3,
+	END,
+};
+
 void gamemenu();
 void title();
 void menu();
@@ -26,5 +34,8 @@ void levelmenu();
 void levelselect(level& l);
 void error();
 void quit();
+void custom();
+void custommenu();
+void customselect(customenum& i);
 
 #endif

@@ -23,6 +23,11 @@ void placedoor (int Y, int X)
 	g_size[Y][X] = '2';
 }
 
+void placetrap (int Y, int X)
+{
+	g_size[Y][X] = 'x';
+}
+
 void placekey (int Y, int X)
 {
 	g_size[Y][X] = '!';
@@ -34,10 +39,12 @@ void delplace (int Y, int X)
 }
 
 // refreshing the text file back to default
-void refresh()
+void refresh1()
 {
 	ofstream refresh;
 	refresh.open("custom.txt");
+	int i = 0;
+	int j = 0;
 	for (int i = 1; i < sizeof(col); ++i) 
 	{
 		col[i] = '0';
@@ -53,15 +60,16 @@ void refresh()
 	{
 		refresh << '1';
 	}
+	refresh << g_size[i] << endl;
 	refresh.close();
 }
 
 // saving the edited txt file
-void save() 
+void save1() 
 {
 	ofstream save;
-	save.open("custom.txt");
-	for(size_t i = 0; i < g_size.size(); ++i)
+	save.open("custom1.txt");
+	for(size_t i = 0; i < g_size.size()-1; ++i)
 	{
 		for(size_t j = 0; j < g_size[i].size(); ++j)
 		{
@@ -72,8 +80,92 @@ void save()
 	save.close();
 }
 
-void custommovement()
+// refreshing the text file back to default (second custom)
+void refresh2()
 {
+	ofstream refresh;
+	refresh.open("custom2.txt");
+	for (size_t i = 1; i < sizeof(col); ++i) 
+	{
+		col[i] = '0';
+		refresh << col[i];
+		for (size_t j = 1; j < sizeof(row); ++j)
+		{
+			row[j] = '0';
+			refresh << row[j];
+		}
+		refresh << '1' << endl;
+	}
+	for (size_t line = 0; line <= sizeof(row); ++line)
+	{
+		refresh << '1';
+	}
+	refresh.close();
+}
+
+// saving the edited text file (second custom)
+void save2() 
+{
+	ofstream save;
+	save.open("custom2.txt");
+	for(size_t i = 0; i < g_size.size()-1; ++i)
+	{
+		for(size_t j = 0; j < g_size[i].size(); ++j)
+		{
+			save << g_size[i][j];
+		}
+		save << endl;
+	}
+	save.close();
+}
+
+// refreshing the text file back to default (third custom)
+void refresh3()
+{
+	ofstream refresh;
+	refresh.open("custom3.txt");
+	for (size_t i = 1; i < sizeof(col); ++i) 
+	{
+		col[i] = '0';
+		refresh << col[i];
+		for (size_t j = 1; j < sizeof(row); ++j)
+		{
+			row[j] = '0';
+			refresh << row[j];
+		}
+		refresh << '1' << endl;
+	}
+	for (size_t line = 0; line <= sizeof(row); ++line)
+	{
+		refresh << '1';
+	}
+	refresh.close();
+}
+
+// saving the edited text file (third custom)
+void save3() 
+{
+	ofstream save;
+	save.open("custom3.txt");
+	for(size_t i = 0; i < g_size.size()-1; ++i)
+	{
+		for(size_t j = 0; j < g_size[i].size(); ++j)
+		{
+			save << g_size[i][j];
+		}
+		save << endl;
+	}
+	save.close();
+}
+
+// movement for custom map 1
+void custommovement1()
+{
+	if(g_playing == true)
+	{
+		g_switch = true;
+	}
+
 	int ch = _getch();
 	switch (ch)
 	{
@@ -150,11 +242,11 @@ void custommovement()
 		break;
 	case 'N':
 	case 'n':
-		refresh();
+		refresh1();
 		break;
 	case 'b':
 	case 'B':
-		save();
+		save1();
 		break;
 	case 'z':
 	case 'Z':
@@ -167,6 +259,222 @@ void custommovement()
 			g_switch = false;
 		}
 		break;
+		break;
+	}
+}
+
+// movement for custom map 2
+void custommovement2()
+{
+	if(g_playing == true)
+	{
+		g_switch = true;
+	}
+
+	int ch = _getch();
+	switch (ch)
+	{
+	case 72:
+		if(g_player.Y-1 >= 0)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y-1,g_player.X);
+			}
+			else
+			{
+				g_player.Y--; // going up
+			}
+		}
+		break;
+	case 80:
+		if(g_player.Y+1 < 22)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y+1,g_player.X);
+			}
+			else
+			{
+				g_player.Y++; // going down
+			}
+		} 
+		break; 
+	case 77:
+		if(g_player.X+1 < 49)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X+1);
+			}
+			else
+			{
+				g_player.X++; // going right
+			}
+		}
+		break;
+	case 75:
+		if(g_player.X-1 >= 0)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X-1);
+			}
+			else
+			{
+				g_player.X--; // going left
+			}
+		}
+		break;
+	case 27:
+		g_quit = true;
+		break;
+	case 'q':
+	case 'Q':
+		delplace(g_player.Y, g_player.X); // deleting the block on the player
+		break;
+	case 'W':
+	case 'w':
+		placewall(g_player.Y, g_player.X); // placing a wall on the player's location
+		break;
+	case 'd':
+	case 'D':
+		placedoor(g_player.Y, g_player.X); // placing a door on the player's location
+		break;
+	case 'E':
+	case 'e':
+		placekey(g_player.Y, g_player.X); // placing a key on the player's location
+		break;
+	case 'r':
+	case 'R':
+		placetrap(g_player.Y, g_player.X); // placing a trap on the player's location
+	case 'N':
+	case 'n':
+		refresh2(); // refreshing the map back to default
+		break;
+	case 'b':
+	case 'B':
+		save2(); // saving the customised map
+		break;
+	case 'z':
+	case 'Z':
+		// switch between customising and normal mode
+		if(g_playing == false && g_switch == false)
+		{
+			g_switch = true;
+		}
+		else if(g_playing == false && g_switch == true)
+		{
+			g_switch = false;
+		}
+		break;
+	}
+}
+
+// movement for custom map 3
+void custommovement3()
+{
+	if(g_playing == true)
+	{
+		g_switch = true;
+	}
+
+	int ch = _getch();
+	switch (ch)
+	{
+	case 72:
+		if(g_player.Y-1 >= 0)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y-1,g_player.X);
+			}
+			else
+			{
+				g_player.Y--; // going up
+			}
+		}
+		break;
+	case 80:
+		if(g_player.Y+1 < 22)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y+1,g_player.X);
+			}
+			else
+			{
+				g_player.Y++; // going down
+			}
+		} 
+		break; 
+	case 77:
+		if(g_player.X+1 < 49)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X+1);
+			}
+			else
+			{
+				g_player.X++; // going right
+			}
+		}
+		break;
+	case 75:
+		if(g_player.X-1 >= 0)
+		{
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X-1);
+			}
+			else
+			{
+				g_player.X--; // going left
+			}
+		}
+		break;
+	case 27:
+		g_quit = true;
+		break;
+	case 'q':
+	case 'Q':
+		delplace(g_player.Y, g_player.X); // deleting the block on the player
+		break;
+	case 'W':
+	case 'w':
+		placewall(g_player.Y, g_player.X); // placing a wall on the player's location
+		break;
+	case 'd':
+	case 'D':
+		placedoor(g_player.Y, g_player.X); // placing a door on the player's location
+		break;
+	case 'E':
+	case 'e':
+		placekey(g_player.Y, g_player.X); // placing a key on the player's location
+		break;
+	case 'r':
+	case 'R':
+		placetrap(g_player.Y, g_player.X); // placing a trap on the player's location
+	case 'N':
+	case 'n':
+		refresh3(); // refreshing the map back to default
+		break;
+	case 'b':
+	case 'B':
+		save3(); // saving the customised map
+		break;
+	case 'z':
+	case 'Z':
+		// switch between customising and normal mode
+		if(g_playing == false && g_switch == false)
+		{
+			g_switch = true;
+		}
+		else if(g_playing == false && g_switch == true)
+		{
+			g_switch = false;
+		}
 		break;
 	}
 }

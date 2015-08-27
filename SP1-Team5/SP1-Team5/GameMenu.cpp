@@ -6,6 +6,7 @@
 state choice = Play;
 level number = One;
 bool g_playing = false;
+customenum no = Save1;
 
 void gamemenu()
 {
@@ -96,6 +97,7 @@ void play()
 	}
 }
 
+
 //Gets input from user for main menu options
 void input(state & s)
 {
@@ -157,4 +159,48 @@ void quit()
 	gotoXY(10,13);
 	cout <<"Thanks for playing the game!";
 	gotoXY(10,14);
+}
+
+void custom()
+{
+	cls();
+	title();
+	custommenu();
+	customselect(no);
+	switch (no)
+	{
+	case Save1:
+		cls();
+		custom1();
+		break;
+	case Save2:
+		cls();
+		custom2();
+		break;
+	case Save3:
+		cls();
+		custom3();
+		break;
+	}
+}
+
+void custommenu()
+{
+	cout << "SAVE SELECT";
+	gotoXY(10,9);
+	cout << "[1] Save 1";
+	gotoXY(10,10);
+	cout << "[2] Save 2";
+	gotoXY(10,11);
+	cout << "[3] Save 3";
+	gotoXY(10,12);
+}
+
+void customselect (customenum& i)
+{
+	// converting
+	int j = 0;
+	cout << "Which save do you want? (1, 2 or 3 ONLY): ";
+	cin >> j;
+	i = static_cast<customenum>(j);
 }

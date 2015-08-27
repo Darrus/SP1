@@ -95,7 +95,7 @@ void play()
 			error();
 			choice = MAX;
 			break;
-	} 
+	}
 }
 
 void custom()
