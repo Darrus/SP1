@@ -26,25 +26,25 @@ int clock_end()
 	}
 	if (minutes == 0 && seconds <60)
 	{
-		gotoXY (54,15);
+		gotoXY (54,17);
 		cout <<"Time taken: "; 
-		gotoXY (54,16);
+		gotoXY (54,18);
 		cout << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}
 	else if (minutes > 0 && minutes <= 1)
 	{
-		gotoXY (54,15);
+		gotoXY (54,17);
 		cout <<"Time taken: "; 
-		gotoXY (54,16);
+		gotoXY (54,18);
 		cout << minutes << " minute " << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}
 	else if (minutes > 1)
 	{
-		gotoXY (54,15);
+		gotoXY (54,17);
 		cout <<"Time taken: "; 
-		gotoXY (54,16);
+		gotoXY (54,18);
 		cout << minutes << " minutes " << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}

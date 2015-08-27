@@ -68,9 +68,44 @@ void movement()
 
 void detect(int Y,int X)
 {
+	//Detection for FOE movements
+	/*switch(g_size[Y][X])
+	{
+	case 'M':
+		FOEH(counter.H);
+		FOEV(counter.V);
+		FOEH(counter.H);
+		FOEV(counter.V);
+		break;
+	case '1':
+		break;
+	default:
+		FOEH(counter.H);
+		FOEV(counter.V);
+		break;
+	}*/
+	//Detection for Player movements
+	switch(g_size[Y][X])
+	{
+	case 'M':
+		FOEH(counter.H);
+		FOEV(counter.V);
+		break;
+	case '1':
+		break;
+	default:
+		FOEH(counter.H);
+		FOEV(counter.V);
+		break;
+	}
+
 	switch(g_size[Y][X])
 	{
 	case '0': 
+		g_player.Y = Y;
+		g_player.X = X;
+		break;
+	case 'M':
 		g_player.Y = Y;
 		g_player.X = X;
 		FOEH(counter.H);
@@ -80,53 +115,37 @@ void detect(int Y,int X)
 		g_size[Y][X] = '3';
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break; 
 	case '!': 
 		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		g_key = true;
 		break;
 	case '<':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '>':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '^':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case 'v':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '?':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '4': 
 		if(lvl1 == true)
 			g_clear = true;
 		else if(lvl2 == true)
-			g_clear = true;
-		else if(c1 == true)
 			g_clear = true;
 		g_player.Y = Y;
 		g_player.X = X;

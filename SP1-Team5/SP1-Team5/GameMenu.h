@@ -13,6 +13,7 @@ enum level
 {
 	One = 1,
 	Two,
+	Three,
 	Custom,
 };
 

@@ -20,11 +20,13 @@ bool g_switch = false;
 bool g_clear = false;
 bool lvl1 = false;
 bool lvl2 = false;
+bool lvl3 = false;
 bool c1 = false;
 bool c2 = false;
 bool c3 = false;
 string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";
+string m3 = "m3Copy.txt";
 
 string customs = "custom1.txt";
 string customs2 = "custom2.txt";
@@ -71,6 +73,28 @@ void level2()
 		//Calls the highscore function
 		store(minutes,seconds);
 		lvl2 = false;
+		cont();
+	}
+}
+
+void level3()
+{
+	lvl3 = true;
+	mazestore(m3);
+	clock_start();
+	while(!g_quit && !g_clear)
+	{
+		mazemapping();
+		UI();
+		movement();
+	}
+	clock_end();
+	showscore();
+	if (!g_quit)
+	{
+		//Calls the highscore function
+		store(minutes,seconds);
+		lvl3 = false;
 		cont();
 	}
 }

@@ -14,6 +14,7 @@ struct pos
 	bool left;
 	bool down;
 	bool up;
+	bool mud;
 };
 
 struct count

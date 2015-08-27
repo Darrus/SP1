@@ -99,10 +99,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="custom1.txt" />
+    <None Include="custom2.txt" />
+    <None Include="custom3.txt" />
     <None Include="highscore1.txt" />
     <None Include="highscore2.txt" />
+    <None Include="highscore3.txt" />
     <None Include="m1OriginalCreation.txt" />
     <None Include="m2ModifiedWintermaulMaze.txt" />
+    <None Include="m3Copy.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

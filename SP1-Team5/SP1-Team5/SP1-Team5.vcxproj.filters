@@ -94,5 +94,17 @@
     <None Include="custom1.txt">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="highscore3.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="m3Copy.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="custom2.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="custom3.txt">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

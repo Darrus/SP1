@@ -124,6 +124,12 @@ void mazemapping()
 					break;
 				case '4': cout << "!";
 					break;
+				//Muddy Floor
+				case 'M':
+					setcolor(4);
+					cout << wall;
+					setcolor(7);
+					break;
 				//Key
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;

@@ -6,6 +6,7 @@
 
 extern bool lvl1;
 extern bool lvl2;
+extern bool lvl3;
 
 
 //Stores highscore 
@@ -44,6 +45,7 @@ void store(int min, int sec)
 	//getting data from textfile
 	if(lvl1 == true)
 	{
+		//For level 1
 		ifstream coutfile;
 		coutfile.open("highscore1.txt");
 		coutfile.getline(highscoreC,5);
@@ -52,8 +54,18 @@ void store(int min, int sec)
 	}
 	else if(lvl2 == true)
 	{
+		//For level 2
 		ifstream coutfile;
 		coutfile.open("highscore2.txt");
+		coutfile.getline(highscoreC,5);
+		cout << highscoreC << endl;
+		coutfile.close();
+	}
+	else if(lvl3 == true)
+	{
+		//For level 3
+		ifstream coutfile;
+		coutfile.open("highscore3.txt");
 		coutfile.getline(highscoreC,5);
 		cout << highscoreC << endl;
 		coutfile.close();
@@ -106,6 +118,7 @@ void store(int min, int sec)
 	//stores best highscore in texfile
 	if(lvl1 == true)
 	{
+		//For level 1
 		ofstream cinfile;
 		cinfile.open("highscore1.txt");
 		for(i = 0; i < sizeof(highscoreC); ++i)
@@ -116,8 +129,20 @@ void store(int min, int sec)
 	}
 	else if (lvl2 == true)
 	{
+		//For level 2
 		ofstream cinfile;
 		cinfile.open("highscore2.txt");
+		for(i = 0; i < sizeof(highscoreC); ++i)
+		{
+			cinfile << highscoreC[i];
+		}
+		cinfile.close();
+	}
+	else if (lvl3 == true)
+	{
+		//For level 3
+		ofstream cinfile;
+		cinfile.open("highscore3.txt");
 		for(i = 0; i < sizeof(highscoreC); ++i)
 		{
 			cinfile << highscoreC[i];
@@ -140,6 +165,7 @@ void showscore()
 	if(lvl1 == true)
 	{
 		//getting data from textfile
+		//For level 1
 		ifstream coutfile;
 		coutfile.open("highscore1.txt");
 		coutfile.getline(highscoreC,5);
@@ -155,8 +181,25 @@ void showscore()
 	else if (lvl2 == true)
 	{
 		//getting data from textfile
+		//For level 2
 		ifstream coutfile;
 		coutfile.open("highscore2.txt");
+		coutfile.getline(highscoreC,5);
+		cout << highscoreC << endl;
+		coutfile.close();
+		//prints out the current best highscore
+		gotoXY (52,20);
+		cout << "Best Highscore: ";
+		gotoXY (52,21);
+		cout << highscoreC[0] << highscoreC[1] <<" minutes " << highscoreC[2] << highscoreC[3] << " seconds";
+		gotoXY (0,24);
+	}
+	else if (lvl3 == true)
+	{
+		//getting data from textfile
+		//For level 3
+		ifstream coutfile;
+		coutfile.open("highscore3.txt");
 		coutfile.getline(highscoreC,5);
 		cout << highscoreC << endl;
 		coutfile.close();

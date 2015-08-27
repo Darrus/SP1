@@ -168,21 +168,37 @@ void FOEH(int c)
 			hori[a].left = true;
 			hori[a].right = false;
 		}
-		if (g_size[hori[a].Y][hori[a].X+1] == '0' && hori[a].right == true)
+		if ((g_size[hori[a].Y][hori[a].X+1] == '0' || g_size[hori[a].Y][hori[a].X+1] == 'M') && hori[a].right == true)
 		{
 			//move right
 			hori[a].X++;
 			gotoXY(hori[a].X,hori[a].Y);
+			if(hori[a].mud == true)
+			{
+				g_size[hori[a].Y][hori[a].X-1] = 'M';
+				hori[a].mud = false;
+			}
+			else
+				g_size[hori[a].Y][hori[a].X-1] = '0';
+			if(g_size[hori[a].Y][hori[a].X] == 'M')
+				hori[a].mud = true;
 			g_size[hori[a].Y][hori[a].X] = '>';
-			g_size[hori[a].Y][hori[a].X-1] = '0';
 		}
-		else if (g_size[hori[a].Y][hori[a].X-1] == '0' && hori[a].left == true)
+		else if ((g_size[hori[a].Y][hori[a].X-1] == '0' || g_size[hori[a].Y][hori[a].X-1] == 'M') && hori[a].left == true)
 		{
 			//move left
 			hori[a].X--;
 			gotoXY(hori[a].X,hori[a].Y);
+			if(hori[a].mud == true)
+			{
+				g_size[hori[a].Y][hori[a].X+1] = 'M';
+				hori[a].mud = false;
+			}
+			else
+				g_size[hori[a].Y][hori[a].X+1] = '0';
+			if(g_size[hori[a].Y][hori[a].X] == 'M')
+				hori[a].mud = true;
 			g_size[hori[a].Y][hori[a].X] = '<';
-			g_size[hori[a].Y][hori[a].X+1] = '0';
 		}
 	}
 }

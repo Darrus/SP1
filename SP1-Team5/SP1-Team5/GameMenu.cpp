@@ -86,6 +86,10 @@ void play()
 			cls();
 			level2();
 			break;
+		case Three:
+			cls();
+			level3();
+			break;
 		case Custom:
 			cls();
 			custom();
@@ -127,8 +131,10 @@ void levelmenu()
 	gotoXY(10,10);
 	cout << "[2] Level 2";
 	gotoXY(10,11);
-	cout << "[3] Custom Level";
+	cout << "[3] Level 3";
 	gotoXY(10,12);
+	cout << "[4] Custom Level";
+	gotoXY(10,13);
 }
 
 //Gets input from user for level select
