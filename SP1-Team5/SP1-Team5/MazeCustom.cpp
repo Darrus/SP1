@@ -8,6 +8,7 @@ extern vector <string> g_size;
 extern COORD g_player;
 extern bool g_quit;
 extern bool g_switch;
+extern bool g_playing;
 
 char col[23] = {0};
 char row[49] = {0};
@@ -79,25 +80,53 @@ void custommovement()
 	case 72:
 		if(g_player.Y-1 >= 0)
 		{
-			g_player.Y--; // going up
+			if(g_switch == true)
+			{
+				detect(g_player.Y-1,g_player.X);
+			}
+			else
+			{
+				g_player.Y--; // going up
+			}
 		}
 		break;
 	case 80:
 		if(g_player.Y+1 < 22)
 		{
-			g_player.Y++; // going down
+			if(g_switch == true)
+			{
+				detect(g_player.Y+1,g_player.X);
+			}
+			else
+			{
+				g_player.Y++; // going down
+			}
 		} 
 		break; 
 	case 77:
 		if(g_player.X+1 < 49)
 		{
-			g_player.X++; // going right
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X+1);
+			}
+			else
+			{
+				g_player.X++; // going right
+			}
 		}
 		break;
 	case 75:
 		if(g_player.X-1 >= 0)
 		{
-			g_player.X--; // going left
+			if(g_switch == true)
+			{
+				detect(g_player.Y,g_player.X-1);
+			}
+			else
+			{
+				g_player.X--; // going left
+			}
 		}
 		break;
 	case 27:
@@ -129,7 +158,15 @@ void custommovement()
 		break;
 	case 'z':
 	case 'Z':
-		g_switch = true;
+		if(g_playing == false && g_switch == false)
+		{
+			g_switch = true;
+		}
+		else if(g_playing == false && g_switch == true)
+		{
+			g_switch = false;
+		}
+		break;
 		break;
 	}
 }

@@ -5,6 +5,7 @@
 
 state choice = Play;
 level number = One;
+bool g_playing = false;
 
 void gamemenu()
 {
@@ -21,7 +22,7 @@ void gamemenu()
 			break;
 		case Create:
 			cls();
-			//custom();
+			custom();
 			break;
 		case Quit:
 			choice = MAX;
@@ -68,6 +69,7 @@ void menu()
 //Function for case Play
 void play()
 {
+	g_playing = true;
 	cls();
 	title();
 	levelmenu();
@@ -85,7 +87,7 @@ void play()
 			break;
 		case Custom:
 			cls();
-			cout << "Errr waiting for custom map" << endl;
+			custom();
 			break;
 		default:
 			error();
