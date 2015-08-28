@@ -35,6 +35,7 @@ void gamemenu()
 			//If players entered a non specified number, the program will end
 			error();
 			choice = MAX;
+			break;
 	}
 }
 
@@ -154,10 +155,11 @@ void error()
 {
 	//Hard-coded to print out the error message right under the input
 	gotoXY(10,15);
-	cout << "Oops! Seems like you did not follow the instruction.";
+	cout << "Error! Seems like you did not follow the instruction.";
 	gotoXY(10,16);
 	cout << "The game will now close!";
 	gotoXY(10,17);
+	errorsound();
 }
 
 //Prints out a message when player quits the game

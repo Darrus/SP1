@@ -3,10 +3,12 @@
 #include "functions.h"
 #include "highscore.h"
 #include "game.h"
+#include "sounds.h"
 
 extern bool lvl1;
 extern bool lvl2;
 extern bool lvl3;
+bool newscore = false;
 
 
 //Stores highscore 
@@ -78,18 +80,26 @@ void store(int min, int sec)
 	//replace highscore
 	if(highmin < highminC)
 	{
+		newhighscore();
 		highminC = highmin;
 		highsecC = highsec;
 		gotoXY(0,23);
 		cout << "You have achieved a new highscore!";
+		newscore = true;
 	}
 	else if(highmin == highminC)
 	{
 		if(highsec < highsecC)
 		{
+			newhighscore();
 			highsecC = highsec;
 			gotoXY(0,23);
 			cout << "You have achieved a new highscore!";
+			newscore = true;
+		}
+		else if (highsec == highsecC)
+		{
+			newscore = false;
 		}
 	}
 	

@@ -11,9 +11,9 @@ void door1()
 	}
 }
 
-void door2()
+void gate()
 {
-
+	PlaySound(TEXT("gate"),NULL,SND_FILENAME|SND_ASYNC);
 }
 
 void brokenfloor()
@@ -36,7 +36,22 @@ void back()
 	PlaySound(TEXT("back"), NULL, SND_FILENAME|SND_ASYNC);
 }
 
+void errorsound()
+{
+	PlaySound(TEXT("error"), NULL, SND_FILENAME);
+}
+
 void death()
 {
 	PlaySound(TEXT("death"), NULL, SND_FILENAME|SND_ASYNC);
+}
+
+void win()
+{
+	PlaySound(TEXT("win"), NULL, SND_FILENAME);
+}
+
+void newhighscore()
+{
+	PlaySound(TEXT("newhighscore"), NULL, SND_FILENAME|SND_ASYNC);
 }

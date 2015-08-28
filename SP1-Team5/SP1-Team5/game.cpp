@@ -8,12 +8,14 @@
 #include "clock.h"
 #include "MazeCustom.h"
 #include "GameMenu.h"
+#include "sounds.h"
 
 extern bool g_quit;
 extern bool g_key;
 extern bool g_playing;
 extern int seconds;
 extern int minutes;
+extern bool newscore;
 
 bool g_switch = false;
 bool g_clear = false;
@@ -50,6 +52,10 @@ void level1()
 		store(minutes,seconds);
 		showscore();
 	}
+	if (newscore == false)
+	{
+		win();
+	}
 	cout << "Press spacebar to continue";
 	cont();
 }
@@ -73,6 +79,10 @@ void level2()
 		store(minutes,seconds);
 		showscore();
 	}
+	if (newscore == false)
+	{
+		win();
+	}
 	cout << "Press spacebar to continue";
 	cont();
 }
@@ -95,6 +105,10 @@ void level3()
 		//Calls the highscore function
 		store(minutes,seconds);
 		showscore();
+	}
+	if (newscore == false)
+	{
+		win();
 	}
 	cout << "Press spacebar to continue";
 	cont();
