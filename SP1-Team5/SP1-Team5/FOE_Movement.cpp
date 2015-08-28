@@ -8,148 +8,110 @@
 extern vector <string> g_size;
 extern vector <pos> hori;
 extern vector <pos> vert;
+extern vector <pos> roun;
 extern COORD g_player;
 extern bool g_quit;
 
-int step = 0;
-
-bool Oup = false;
-bool Odown = false;
-bool Oleft = false;
-bool Oright = false;
-
-
 //Circular moving FOE
-void FOEO()
+void FOEO(int c)
 {
-//{
-	//if (g_size[g_FOEO.Y-1][g_FOEO.X] == '0' && g_size[g_FOEO.Y+1][g_FOEO.X] == '1' && (g_size[g_FOEO.Y][g_FOEO.X+1] || g_size[g_FOEO.Y][g_FOEO.X-1]))
-	//{
-	//	
-	//	Oup = true;
-	//	Odown = false;
-	//	Oleft = false;
-	//	Oright = false;
-	//	if (g_size[g_FOEO.Y-1][g_FOEO.X] == '0' && up == true)
-	//	{
-	//		//move up
-	//		g_FOEO.Y--;
-	//		gotoXY(g_FOEO.X,g_FOEO.Y);
-	//		g_size[g_FOEO.Y][g_FOEO.X] = '^';
-	//		g_size[g_FOEO.Y+1][g_FOEO.X] = '0';
-	//	}
+	for(int i = 0; i < c; ++i)
+	{
+		if (g_size[roun[i].Y-1][roun[i].X+1] == '#' && g_size[roun[i].Y-1][roun[i].X] == '0')
+		{
+			roun[i].up = true;
+			roun[i].down = false;
+			roun[i].left = false;
+			roun[i].right = false;
+		}
+		else if(g_size[roun[i].Y+1][roun[i].X-1] == '#' && g_size[roun[i].Y+1][roun[i].X] == '0')
+		{
+			roun[i].down = true;
+			roun[i].up = false;
+			roun[i].left = false;
+			roun[i].right = false;
+		}
+		else if(g_size[roun[i].Y+1][roun[i].X+1] == '#' && g_size[roun[i].Y][roun[i].X+1] == '0')
+		{
+			roun[i].right = true;
+			roun[i].left = false;
+			roun[i].up = false;
+			roun[i].down = false;
+		}
+		else if(g_size[roun[i].Y-1][roun[i].X-1] == '#' && g_size[roun[i].Y][roun[i].X-1] == '0')
+		{
+			roun[i].left = true;
+			roun[i].right = false;
+			roun[i].up = false;
+			roun[i].down = false;
+		}
+		 
 
-	//}
-	//else if(g_size[g_FOEO.Y+1][g_FOEO.X] == '0' && g_size[g_FOEO.Y-1][g_FOEO.X] == '1' && (g_size[g_FOEO.Y][g_FOEO.X+1] || g_size[g_FOEO.Y][g_FOEO.X-1]))
-	//{
-	//	Odown = true;
-	//	Oup = false;
-	//	Oleft = false;
-	//	Oright = false;
-	//	if (g_size[g_FOEO.Y+1][g_FOEO.X] == '0' && down == true)
-	//	{
-	//		//move down
-	//		g_FOEO.Y++;
-	//		gotoXY(g_FOEO.X,g_FOEO.Y);
-	//		g_size[g_FOEO.Y][g_FOEO.X] = 'v';
-	//		g_size[g_FOEO.Y-1][g_FOEO.X] = '0';
-	//	}
-	//}
-	//else if(g_size[g_FOEO.Y][g_FOEO.X+1] == '0' && g_size[g_FOEO.Y][g_FOEO.X-1] == '1' && (g_size[g_FOEO.Y+1][g_FOEO.X] || g_size[g_FOEO.Y-1][g_FOEO.X]))
-	//{
-	//	Oright = true;
-	//	Oleft = false;
-	//	Oup = false;
-	//	Odown = false;
-	//	if (g_size[g_FOEO.Y][g_FOEO.X+1] == '0' && right == true)
-	//	{
-	//		//move right
-	//		g_FOEO.X++;
-	//		gotoXY(g_FOEO.X,g_FOEO.Y);
-	//		g_size[g_FOEO.Y][g_FOEO.X] = '>';
-	//		g_size[g_FOEO.Y][g_FOEO.X-1] = '0';
-	//	}
-	//}
-	//else if(g_size[g_FOEO.Y][g_FOEO.X-1] == '0' && g_size[g_FOEO.Y][g_FOEO.X+1] == '1' && (g_size[g_FOEO.Y+1][g_FOEO.X] || g_size[g_FOEO.Y-1][g_FOEO.X]))
-	//{
-	//	Oleft = true;
-	//	Oright = false;
-	//	Oup = false;
-	//	Odown = false;
-	//	if (g_size[g_FOEO.Y][g_FOEO.X-1] == '0' && left == true)
-	//	{
-	//		//move left
-	//		g_FOEO.X--;
-	//		gotoXY(g_FOEO.X,g_FOEO.Y);
-	//		g_size[g_FOEO.Y][g_FOEO.X] = '<';
-	//		g_size[g_FOEO.Y][g_FOEO.X+1] = '0';
-	//	}
-	//}
-	//if (g_size[g_FOEO.Y-1][g_FOEO.X] == '0' && Oup == true)
-	//{
-	//	move up
-	//	g_FOEO.Y--;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = '^';
-	//	g_size[g_FOEO.Y+1][g_FOEO.X] = '0';
-	//}
-	//else if (g_size[g_FOEO.Y+1][g_FOEO.X] == '0' && Odown == true)
-	//{
-	//	move down
-	//	g_FOEO.Y++;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = 'v';
-	//	g_size[g_FOEO.Y-1][g_FOEO.X] = '0';
-	//}
-	//else if (g_size[g_FOEO.Y][g_FOEO.X+1] == '0' && Oright == true)
-	//{
-	//	move right
-	//	g_FOEO.X++;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = '>';
-	//	g_size[g_FOEO.Y][g_FOEO.X-1] = '0';
-	//}
-	//else if (g_size[g_FOEO.Y][g_FOEO.X-1] == '0' && Oleft == true)
-	//{
-	//	move left
-	//	g_FOEO.X--;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = '<';
-	//	g_size[g_FOEO.Y][g_FOEO.X+1] = '0';
-	//}
-	//step += 1;
-	//if (step <= 2)
-	//{
-	//	g_FOEO.Y++;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = 'v';
-	//	g_size[g_FOEO.Y-1][g_FOEO.X] = '0';
-	//}
-	//else if (step > 2 && step <= 4)
-	//{
-	//	g_FOEO.X--;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = '<';
-	//	g_size[g_FOEO.Y][g_FOEO.X+1] = '0';
-	//}
-	//else if (step > 4 && step <= 6)
-	//{
-	//	g_FOEO.Y--;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = '^';
-	//	g_size[g_FOEO.Y+1][g_FOEO.X] = '0';
-	//}
-	//else if (step > 6 && step <= 8)
-	//{
-	//	g_FOEO.X++;
-	//	gotoXY(g_FOEO.X,g_FOEO.Y);
-	//	g_size[g_FOEO.Y][g_FOEO.X] = '>';
-	//	g_size[g_FOEO.Y][g_FOEO.X-1] = '0';
-	//	if (step == 8)
-	//	{
-	//		step = 0;
-	//	}
-	//}
+		if ((g_size[roun[i].Y-1][roun[i].X] == '0' || g_size[roun[i].Y-1][roun[i].X] == 'M')&& roun[i].up == true)
+		{
+			//move up
+			roun[i].Y--;
+			gotoXY(roun[i].X,roun[i].Y);
+			if(roun[i].mud == true)
+			{
+				g_size[roun[i].Y+1][roun[i].X] = 'M';
+				roun[i].mud = false;
+			}
+			else
+				g_size[roun[i].Y+1][roun[i].X] = '0';
+			if(g_size[roun[i].Y][roun[i].X] == 'M')
+				roun[i].mud = true;
+			g_size[roun[i].Y][roun[i].X] = '@';
+		}
+		else if ((g_size[roun[i].Y+1][roun[i].X] == '0' ||g_size[roun[i].Y+1][roun[i].X] == 'M') && roun[i].down == true)
+		{
+			//move down
+			roun[i].Y++;
+			gotoXY(roun[i].X,roun[i].Y);
+			if(roun[i].mud == true)
+			{
+				g_size[roun[i].Y-1][roun[i].X] = 'M';
+				roun[i].mud = false;
+			}
+			else
+				g_size[roun[i].Y-1][roun[i].X] = '0';
+			if(g_size[roun[i].Y][roun[i].X] == 'M')
+				roun[i].mud = true;
+			g_size[roun[i].Y][roun[i].X] = '@';
+		}
+		else if ((g_size[roun[i].Y][roun[i].X+1] == '0' || g_size[roun[i].Y][roun[i].X+1] == 'M') && roun[i].right == true)
+		{
+			//move right
+			roun[i].X++;
+			gotoXY(roun[i].X,roun[i].Y);
+			if(roun[i].mud == true)
+			{
+				g_size[roun[i].Y][roun[i].X-1] = 'M';
+				roun[i].mud = false;
+			}
+			else
+				g_size[roun[i].Y][roun[i].X-1] = '0';
+			if(g_size[roun[i].Y][roun[i].X] == 'M')
+				roun[i].mud = true;
+			g_size[roun[i].Y][roun[i].X] = '@';
+		}
+		else if ((g_size[roun[i].Y][roun[i].X-1] == '0' || g_size[roun[i].Y][roun[i].X-1] == 'M') && roun[i].left == true)
+		{
+			//move left
+			roun[i].X--;
+			gotoXY(roun[i].X,roun[i].Y);
+			if(roun[i].mud == true)
+			{
+				g_size[roun[i].Y][roun[i].X+1] = 'M';
+				roun[i].mud = false;
+			}
+			else
+				g_size[roun[i].Y][roun[i].X+1] = '0';
+			if(g_size[roun[i].Y][roun[i].X] == 'M')
+				roun[i].mud = true;
+			g_size[roun[i].Y][roun[i].X] = '@';
+		}
+	}
 }
 
 //Horizontal moving FOE

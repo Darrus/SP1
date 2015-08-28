@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "highscore.h"
 
-int seconds;
+int seconds = 0;
 int minutes = 0;
 clock_t start;
 
@@ -11,6 +11,8 @@ clock_t start;
 void clock_start()
 {
 	//Records current time
+	seconds = 0;
+	minutes = 0;
 	start = clock();
 }
 
@@ -49,6 +51,4 @@ int clock_end()
 		gotoXY (0,24);
 	}
 	return minutes,seconds;
-	seconds = 0;
-	minutes = 0;
 }

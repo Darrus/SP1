@@ -49,7 +49,7 @@ void store(int min, int sec)
 		ifstream coutfile;
 		coutfile.open("highscore1.txt");
 		coutfile.getline(highscoreC,5);
-		cout << highscoreC << endl;
+		//cout << highscoreC << endl;
 		coutfile.close();
 	}
 	else if(lvl2 == true)
@@ -58,7 +58,7 @@ void store(int min, int sec)
 		ifstream coutfile;
 		coutfile.open("highscore2.txt");
 		coutfile.getline(highscoreC,5);
-		cout << highscoreC << endl;
+		//cout << highscoreC << endl;
 		coutfile.close();
 	}
 	else if(lvl3 == true)
@@ -67,7 +67,7 @@ void store(int min, int sec)
 		ifstream coutfile;
 		coutfile.open("highscore3.txt");
 		coutfile.getline(highscoreC,5);
-		cout << highscoreC << endl;
+		//cout << highscoreC << endl;
 		coutfile.close();
 	}
 
@@ -97,22 +97,22 @@ void store(int min, int sec)
 	if (highminC < 10)
 	{
 		*highscoreC = '0';
-		*(highscore+1) = highminC+48;
+		*(highscoreC+1) = highminC+48;
 	}
 	else if (highminC >= 10)
 	{
-		*(highscore+1) = highminC % 10;
+		*(highscoreC+1) = highminC % 10;
 		*highscoreC = (highminC - highscoreC[1])+48;
 	}
 	if (highsecC < 10)
 	{
-		*(highscore+2) = '0';
-		*(highscore+3) = highsecC+48;
+		*(highscoreC+2) = '0';
+		*(highscoreC+3) = highsecC+48;
 	}
 	else if ( s >= 10)
 	{
-		*(highscore+3) = highsecC % 10;
-		*(highscore+2) = (highsecC - highscoreC[3])+48;
+		*(highscoreC+3) = highsecC % 10;
+		*(highscoreC+2) = (highsecC - highscoreC[3])+48;
 	}
 
 	//stores best highscore in texfile
@@ -149,13 +149,6 @@ void store(int min, int sec)
 		}
 		cinfile.close();
 	}
-	//prints out the current best highscore
-	gotoXY (52,20);
-	cout << "Best Highscore: ";
-	gotoXY (52,21);
-	cout << highscoreC[0] << highscoreC[1] <<" minutes " << highscoreC[2] << highscoreC[3] << " seconds";
-	gotoXY (0,24);
-
 }
 
 //Shows highscore
@@ -169,7 +162,6 @@ void showscore()
 		ifstream coutfile;
 		coutfile.open("highscore1.txt");
 		coutfile.getline(highscoreC,5);
-		cout << highscoreC << endl;
 		coutfile.close();
 		//prints out the current best highscore
 		gotoXY (52,20);
@@ -185,7 +177,6 @@ void showscore()
 		ifstream coutfile;
 		coutfile.open("highscore2.txt");
 		coutfile.getline(highscoreC,5);
-		cout << highscoreC << endl;
 		coutfile.close();
 		//prints out the current best highscore
 		gotoXY (52,20);
@@ -201,7 +192,6 @@ void showscore()
 		ifstream coutfile;
 		coutfile.open("highscore3.txt");
 		coutfile.getline(highscoreC,5);
-		cout << highscoreC << endl;
 		coutfile.close();
 		//prints out the current best highscore
 		gotoXY (52,20);

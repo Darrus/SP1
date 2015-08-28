@@ -56,7 +56,6 @@ void movement()
 		break;
 	case 27:
 		g_quit = true;
-		clock_end();
 		break;
 	case 'r':
 	case 'R':
@@ -70,37 +69,30 @@ void movement()
 void detect(int Y,int X)
 {
 	//Detection for FOE movements
-	/*switch(g_size[Y][X])
-	{
-	case 'M':
-		FOEH(counter.H);
-		FOEV(counter.V);
-		FOEH(counter.H);
-		FOEV(counter.V);
-		break;
-	case '1':
-		break;
-	default:
-		FOEH(counter.H);
-		FOEV(counter.V);
-		break;
-	}*/
-	//Detection for Player movements
 	switch(g_size[Y][X])
 	{
 	case 'M':
-		FOEH(counter.H);
-		FOEV(counter.V);
+		for(int i = 0; i < 2; ++i)
+		{
+			FOEH(counter.H);
+			FOEV(counter.V);
+			FOEO(counter.O);
+		}
 		muddy();
 		break;
 	case '1':
 		break;
+	case 'X':
+		break;
+	case '2':
+		break;
 	default:
 		FOEH(counter.H);
 		FOEV(counter.V);
+		FOEO(counter.O);
 		break;
 	}
-
+	//Detection for Player movements
 	switch(g_size[Y][X])
 	{
 	case '0': 
@@ -110,11 +102,9 @@ void detect(int Y,int X)
 	case 'M':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case 'x': 
-		g_size[Y][X] = '3';
+		g_size[Y][X] = 'X';
 		g_player.Y = Y;
 		g_player.X = X;
 		brokenfloor();

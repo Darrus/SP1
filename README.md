@@ -57,3 +57,6 @@ Updated UI for customised mode
 
 # lyx97
 More available save for customising maps (3 in total)
+
+# Darrus & Guang Zhe
+Fixed Reset feature, Highscore system, and continue button. Circle FOE now working.

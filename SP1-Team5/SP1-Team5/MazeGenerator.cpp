@@ -13,7 +13,7 @@ extern bool g_quit;
 char wall = 219;
 char door = 254;
 int h = 0;
-int play = 0;
+bool play = false;
 
 vector <string> g_size;
 
@@ -65,17 +65,25 @@ void UI()
 //Converts the text map into a string
 void mazestore(string map)
 {
+	//Resets everything
 	h = 0;
-	play = 0;
+	play = false;
+	hori.clear();
+	vert.clear();
+	roun.clear();
+	counter.H = 0;
+	counter.V = 0;
+	counter.O = 0;
 	g_size.clear(); 
+
+	//Gets the text map
 	ifstream fin;
 	string temp;
-	//Gets the text map
 	fin.open(map,ios::in);
 	while(!fin.eof())
 	{
 		getline(fin,temp);
-		//Converts into string
+		//Store into string
 		g_size.push_back(temp);
 		++h;
 	}
@@ -85,12 +93,8 @@ void mazestore(string map)
 //Generates the map based on text map
 void mazemapping()
 {
-	//Declaration of variables
+	//Resets point to 0,0
 	gotoXY(0,0);
-	int a = 0;
-	int b = 5;
-	counter.H = 0;
-	counter.V = 0;
 	//Reads the columns
 	for(size_t a = 0; a < g_size.size(); ++a)
 	{
@@ -115,13 +119,20 @@ void mazemapping()
 						}
 						else
 						{
-							setcolor(0x0f);cout << door;setcolor(7);
+							setcolor(0x0f);
+							cout << door;
+							setcolor(7);
 						}
 					break;
 				//Broken Floor system
 				case 'x': cout << '0';
 					break;
-				case '3': cout << 'O';
+				case 'X': cout << 'O';
+					break;
+				case '#':
+					setcolor(0x0f);
+					cout << wall;
+					setcolor(7);
 					break;
 				case '4': cout << "!";
 					break;
@@ -134,32 +145,37 @@ void mazemapping()
 				//Key
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
-				case 'O':
-					//holder.X = b;
-					//holder.Y = a;
-					//roun.push_back(holder);
-					//counter.O++;
+				case '@':
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						roun.push_back(holder);
+						counter.O++;
+					}
 					setcolor(12);
-					cout << 'O';
+					cout << '@';
 					setcolor(7);
 					break;
 				//Player spawn
 				case 'S':
 						cout << ' ';
 						g_size[a][b] = '0';
-						if(play == 0)
+						if(play == false)
 						{
 							g_player.X = b;
 							g_player.Y = a;
-							play++;
 						}
 					break;
 				//FOE right movement
 				case '>': 
-					holder.X = b;
-					holder.Y = a;
-					hori.push_back(holder);
-					counter.H++;
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						hori.push_back(holder);
+						counter.H++;
+					}
 					setcolor(12);
 					cout << '>';
 					setcolor(7);
@@ -171,10 +187,13 @@ void mazemapping()
 					break;
 				//FOE left movement
 				case '<': 
-					holder.X = b;
-					holder.Y = a;
-					hori.push_back(holder);
-					counter.H++;
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						hori.push_back(holder);
+						counter.H++;
+					}
 					setcolor(12);
 					cout << '<';
 					setcolor(7);
@@ -186,10 +205,13 @@ void mazemapping()
 					break;
 				//FOE upwards movement
 				case '^':
-					holder.X = b;
-					holder.Y = a;
-					vert.push_back(holder);
-					counter.V++;
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						vert.push_back(holder);
+						counter.V++;
+					}
 					setcolor(12);
 					cout << '^';
 					setcolor(7);
@@ -201,10 +223,13 @@ void mazemapping()
 					break;
 				//FOE downwards movement
 				case 'v':
-					holder.X = b;
-					holder.Y = a;
-					vert.push_back(holder);
-					counter.V++;
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						vert.push_back(holder);
+						counter.V++;
+					}
 					setcolor(12);
 					cout << 'v';
 					setcolor(7);
@@ -224,5 +249,6 @@ void mazemapping()
 		cout << endl;
 	}
 	gotoXY(0,23);
+	play = true;
 	player();
 }

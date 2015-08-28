@@ -12,9 +12,8 @@
 extern bool g_quit;
 extern bool g_key;
 extern bool g_playing;
-extern vector <pos> hori;
-extern vector <pos> vert;
-extern vector <pos> roun;
+extern int seconds;
+extern int minutes;
 
 bool g_switch = false;
 bool g_clear = false;
@@ -45,14 +44,14 @@ void level1()
 	}
 	clock_end();
 	showscore();
-	if(!g_quit)
+	//Calls the highscore function
+	if(g_clear == true)
 	{
-		//Calls the highscore function
 		store(minutes,seconds);
-		lvl1 = false;
-		cout << "Press spacebar to continue";
-		cont();
+		showscore();
 	}
+	cout << "Press spacebar to continue";
+	cont();
 }
 
 void level2()
@@ -68,13 +67,14 @@ void level2()
 	}
 	clock_end();
 	showscore();
-	if (!g_quit)
+	//Calls the highscore function
+	if(g_clear == true)
 	{
-		//Calls the highscore function
 		store(minutes,seconds);
-		lvl2 = false;
-		cont();
+		showscore();
 	}
+	cout << "Press spacebar to continue";
+	cont();
 }
 
 void level3()
@@ -90,13 +90,14 @@ void level3()
 	}
 	clock_end();
 	showscore();
-	if (!g_quit)
+	if (g_clear == true)
 	{
 		//Calls the highscore function
 		store(minutes,seconds);
-		lvl3 = false;
-		cont();
+		showscore();
 	}
+	cout << "Press spacebar to continue";
+	cont();
 }
 
 void custom1()
@@ -198,12 +199,13 @@ void reset()
 	cout << string(2000,' ');
 	g_key = false;
 	g_clear = false;
-	hori.clear();
-	vert.clear();
+	g_quit = false;
 	if(lvl1 == true)
 		level1();
 	else if(lvl2 == true)
 		level2();
+	else if(lvl3 == true)
+		level3();
 	else if(c1 == true)
 		custom1();
 	else if(c2 == true)
@@ -218,10 +220,30 @@ void cont()
 	case ' ':
 		gotoXY(0,0);
 		cout << string(2000,' ');
-		g_key = false;
-		g_clear = false;
-		hori.clear();
-		vert.clear();
+		
+		if(lvl1 == true)
+		{
+			lvl1 = false;
+			if(g_clear == true)
+			{
+				lvl2 = true;
+			}
+		}
+		else if(lvl2 == true)
+		{
+			lvl2 = false;
+			if(g_clear == true)
+			{
+				lvl3 = true;
+			}
+		}
+		else if(lvl3 == true)
+			lvl3 = false;
+		else if(c1 == true)
+			c1 = false;
+		else if(c2 == true)
+			c2 = false;
+		reset();
 		play();
 		break;
 	default:
