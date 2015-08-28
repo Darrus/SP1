@@ -87,14 +87,9 @@ void custom1()
 			UI();
 			movement();
 		}
-		if (g_switch == false && g_playing == false)
+		else if (g_playing == false)
 		{
 			customUI();
-			custommovement1();
-		}
-		else if (g_switch == true && g_playing == false)
-		{
-			customUI1();
 			custommovement1();
 		}
 	}
@@ -118,14 +113,9 @@ void custom2()
 			UI();
 			movement();
 		}
-		else if (g_switch == false)
+		else if (g_playing == false)
 		{
 			customUI();
-			custommovement2();
-		}
-		else if (g_switch == true)
-		{
-			customUI1();
 			custommovement2();
 		}
 	}
@@ -149,14 +139,9 @@ void custom3()
 			UI();
 			movement();
 		}
-		else if (g_switch == false)
+		else if (g_playing == false)
 		{
 			customUI();
-			custommovement3();
-		}
-		else if (g_switch == true)
-		{
-			customUI1();
 			custommovement3();
 		}
 	}

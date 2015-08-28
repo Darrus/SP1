@@ -92,6 +92,7 @@ void play()
 			custom();
 			break;
 		case Back:
+			g_playing = false;
 			cls();
 			gamemenu();
 			break;

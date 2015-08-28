@@ -104,7 +104,7 @@ void mazemapping()
 				case '0':cout << " "; 
 					break;
 				//1 is converted into walls
-				case '1':setcolor(0x0f);cout << wall;setcolor(7);
+				case '1':setcolor(0x0F);cout << wall;setcolor(7);
 					break;
 				//2 is converted into door
 				case '2':if(g_key == true)
@@ -115,18 +115,18 @@ void mazemapping()
 						}
 						else
 						{
-							setcolor(0x0f);cout << door;setcolor(7);
+							setcolor(0x0F);cout << door;setcolor(7);
 						}
 					break;
 				//Broken Floor system
-				case 'x': cout << '0';
+				case 'x':setcolor(0x0C); cout << 'O'; setcolor(7);
 					break;
-				case '3': cout << 'O';
+				case '3':setcolor(0x0C); cout << 'X'; setcolor(7);
 					break;
-				case '4': cout << "!";
+				case '4':setcolor(0x0A); cout << "!"; setcolor(7);
 					break;
 				//Key
-				case '!':setcolor(14);cout << "*";setcolor(7);
+				case '!':setcolor(0x0E);cout << "*";setcolor(7);
 					break;
 				case 'O':
 					//holder.X = b;
@@ -154,7 +154,7 @@ void mazemapping()
 					holder.Y = a;
 					hori.push_back(holder);
 					counter.H++;
-					setcolor(12);
+					setcolor(0x0C);
 					cout << '>';
 					setcolor(7);
 					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
@@ -171,7 +171,7 @@ void mazemapping()
 					holder.Y = a;
 					hori.push_back(holder);
 					counter.H++;
-					setcolor(12);
+					setcolor(0x0C);
 					cout << '<';
 					setcolor(7);
 					if((a == g_player.Y && b-1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
@@ -188,7 +188,7 @@ void mazemapping()
 					holder.Y = a;
 					vert.push_back(holder);
 					counter.V++;
-					setcolor(12);
+					setcolor(0x0C);
 					cout << '^';
 					setcolor(7);
 					if((a-1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
@@ -205,7 +205,7 @@ void mazemapping()
 					holder.Y = a;
 					vert.push_back(holder);
 					counter.V++;
-					setcolor(12);
+					setcolor(0x0C);
 					cout << 'v';
 					setcolor(7);
 					if((a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
