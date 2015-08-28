@@ -13,57 +13,29 @@ extern bool g_playing;
 char col[23] = {0};
 char row[49] = {0};
 
-// placing wall
 void placewall(int Y, int X)
 {
 	g_size[Y][X] = '1';
 }
 
-// placing door
 void placedoor (int Y, int X)
 {
 	g_size[Y][X] = '2';
 }
 
-// placing trap
 void placetrap (int Y, int X)
 {
 	g_size[Y][X] = 'x';
 }
 
-// placing key
 void placekey (int Y, int X)
 {
 	g_size[Y][X] = '!';
 }
 
-// summoning FOE that is going vertical up
-void placeFOEVU(int Y, int X)
-{
-	g_size[Y][X] = '^';
-}
-
-// summoning FOE that is going horizontal left
-void placeFOEHL(int Y, int X)
-{
-	g_size[Y][X] = '<';
-}
-
-// summoning FOE what is going vertical down
-void placeFOEVD(int Y, int X)
-{
-	g_size[Y][X] = 'v';
-}
-
-// summoning FOE that is going horizontal right
 void placeFOEHR (int Y, int X)
 {
 	g_size[Y][X] = '>';
-}
-
-void placeinvi (int Y, int X)
-{
-	g_size[Y][X] = '?';
 }
 
 void delplace (int Y, int X)
@@ -261,40 +233,20 @@ void custommovement1()
 	case 'Q':
 		delplace(g_player.Y, g_player.X);
 		break;
-	case 'e':
-	case 'E':
-		placewall(g_player.Y, g_player.X);
-		break;
-	case 'r':
-	case 'R':
-		placedoor(g_player.Y, g_player.X);
-		break;
-	case 'c':
-	case 'C':
-		placetrap(g_player.Y, g_player.X);
-		break;
-	case 'f':
-	case 'F':
-		placekey(g_player.Y, g_player.X);
-		break;
-	case 'x':
-	case 'X':
-		placeinvi(g_player.Y, g_player.X);
-		break;
-	case 'w':
 	case 'W':
-		placeFOEVU(g_player.Y, g_player.X);
-		break;
-	case 'a':
-	case 'A':
-		placeFOEHL(g_player.Y, g_player.X);
-		break;
-	case 's':
-	case 'S':
-		placeFOEVD(g_player.Y, g_player.X);
+	case 'w':
+		placewall(g_player.Y, g_player.X);
 		break;
 	case 'd':
 	case 'D':
+		placedoor(g_player.Y, g_player.X);
+		break;
+	case 'E':
+	case 'e':
+		placekey(g_player.Y, g_player.X);
+		break;
+	case 'a':
+	case 'A':
 		placeFOEHR(g_player.Y, g_player.X);
 		break;
 	case 'N':
@@ -387,39 +339,26 @@ void custommovement2()
 		break;
 	case 'q':
 	case 'Q':
-		delplace(g_player.Y, g_player.X);
+		delplace(g_player.Y, g_player.X); // deleting the block on the player
 		break;
-	case 'e':
-	case 'E':
-		placewall(g_player.Y, g_player.X);
-		break;
-	case 'r':
-	case 'R':
-		placedoor(g_player.Y, g_player.X);
-		break;
-	case 'f':
-	case 'F':
-		placekey(g_player.Y, g_player.X);
-		break;
-	case 'c':
-	case 'C':
-		placetrap(g_player.Y, g_player.X);
-		break;
-	case 'w':
 	case 'W':
-		placeFOEVU(g_player.Y, g_player.X);
-		break;
-	case 'a':
-	case 'A':
-		placeFOEHL(g_player.Y, g_player.X);
-		break;
-	case 's':
-	case 'S':
-		placeFOEVD(g_player.Y, g_player.X);
+	case 'w':
+		placewall(g_player.Y, g_player.X); // placing a wall on the player's location
 		break;
 	case 'd':
 	case 'D':
-		placeFOEHR(g_player.Y, g_player.X);
+		placedoor(g_player.Y, g_player.X); // placing a door on the player's location
+		break;
+	case 'E':
+	case 'e':
+		placekey(g_player.Y, g_player.X); // placing a key on the player's location
+		break;
+	case 'r':
+	case 'R':
+		placetrap(g_player.Y, g_player.X); // placing a trap on the player's location
+	case 'N':
+	case 'n':
+		refresh2(); // refreshing the map back to default
 		break;
 	case 'b':
 	case 'B':
@@ -508,40 +447,25 @@ void custommovement3()
 		break;
 	case 'q':
 	case 'Q':
-		delplace(g_player.Y, g_player.X);
+		delplace(g_player.Y, g_player.X); // deleting the block on the player
 		break;
-	case 'e':
-	case 'E':
-		placewall(g_player.Y, g_player.X);
-		break;
-	case 'r':
-	case 'R':
-		placedoor(g_player.Y, g_player.X);
-		break;
-	case 'f':
-	case 'F':
-		placekey(g_player.Y, g_player.X);
-		break;
-	case 'c':
-	case 'C':
-		placetrap(g_player.Y, g_player.X);
-		break;
-	case 'w':
 	case 'W':
-		placeFOEVU(g_player.Y, g_player.X);
-		break;
-	case 'a':
-	case 'A':
-		placeFOEHL(g_player.Y, g_player.X);
-		break;
-	case 's':
-	case 'S':
-		placeFOEVD(g_player.Y, g_player.X);
+	case 'w':
+		placewall(g_player.Y, g_player.X); // placing a wall on the player's location
 		break;
 	case 'd':
 	case 'D':
-		placeFOEHR(g_player.Y, g_player.X);
+		placedoor(g_player.Y, g_player.X); // placing a door on the player's location
 		break;
+	case 'E':
+	case 'e':
+		placekey(g_player.Y, g_player.X); // placing a key on the player's location
+		break;
+	case 'r':
+	case 'R':
+		placetrap(g_player.Y, g_player.X); // placing a trap on the player's location
+	case 'N':
+	case 'n':
 		refresh3(); // refreshing the map back to default
 		break;
 	case 'b':
@@ -567,17 +491,17 @@ void customUI()
 {
 	setcolor(0x2F);
 	gotoXY(52,2);
-	cout << "Press WASD to summon AOE";
+	cout << "Press W to place down walls";
 	gotoXY(52,3);
-	cout << "Press E to place down walls";
+	cout << "Press E to place down keys";
 	gotoXY(52,4);
-	cout << "Press R to place down doors";
+	cout << "Press D to place down doors";
 	gotoXY(52,5);
-	cout << "Press F to place down keys";
+	cout << "Press N to reset the map";
 	gotoXY(52,6);
-	cout << "Press C to place down traps";
+	cout << "Press B to save the map";
 	gotoXY(52, 7);
-	cout << "Press Q to delete blocks";
+	cout << "Press Q remove blocks";
 	gotoXY(52,8);
 	cout << "Press Z to switch modes";
 	gotoXY(52, 10);
@@ -596,27 +520,23 @@ void customUI1()
 {
 	setcolor(0x2F);
 	gotoXY(52,2);
-	cout << "Press WASD to summon AOE";
+	cout << "Press W to place down walls";
 	gotoXY(52,3);
-	cout << "Press E to place down walls";
+	cout << "Press E to place down keys";
 	gotoXY(52,4);
-	cout << "Press R to place down doors";
+	cout << "Press D to place down doors";
 	gotoXY(52,5);
-	cout << "Press F to place down keys";
+	cout << "Press N to reset the map";
 	gotoXY(52,6);
-	cout << "Press C to place down traps";
+	cout << "Press B to save the map";
 	gotoXY(52, 7);
-	cout << "Press Q to delete blocks";
+	cout << "Press Q remove blocks";
 	gotoXY(52,8);
 	cout << "Press Z to switch modes";
 	gotoXY(52, 10);
-	cout << "Press Esc to exit";
+	cout << "Press Esc to exit"  << endl;
 	gotoXY(52, 12);
-	cout << "Normal mode";
-	gotoXY(52, 14);
-	cout << "Note: Normal mode makes";
-	gotoXY(52, 15);
-	cout << "use of normal controls.";
+	cout << "Normal mode"  << endl;
 	setcolor(7);
 	gotoXY(0,24);
 }
