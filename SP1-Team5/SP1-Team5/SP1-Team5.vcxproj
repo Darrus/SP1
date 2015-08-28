@@ -54,6 +54,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -84,6 +85,7 @@
     <ClCompile Include="MazeCustom.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="sounds.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clock.h" />
@@ -96,6 +98,7 @@
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="sounds.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="custom1.txt" />

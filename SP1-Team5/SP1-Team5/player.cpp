@@ -5,6 +5,7 @@
 #include "clock.h"
 #include "game.h"
 #include "FOE_Movement.h"
+#include "sounds.h"
 
 extern count counter;
 extern bool g_clear;
@@ -90,6 +91,7 @@ void detect(int Y,int X)
 	case 'M':
 		FOEH(counter.H);
 		FOEV(counter.V);
+		muddy();
 		break;
 	case '1':
 		break;
@@ -115,12 +117,14 @@ void detect(int Y,int X)
 		g_size[Y][X] = '3';
 		g_player.Y = Y;
 		g_player.X = X;
+		brokenfloor();
 		break; 
 	case '!': 
 		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
 		g_key = true;
+		door1();
 		break;
 	case '<':
 		g_player.Y = Y;

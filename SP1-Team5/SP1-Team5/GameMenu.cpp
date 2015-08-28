@@ -2,6 +2,7 @@
 #include "game.h"
 #include "GameMenu.h"
 #include "functions.h"
+#include "sounds.h"
 
 state choice = Play;
 level number = One;
@@ -15,6 +16,7 @@ void gamemenu()
 	menu();
 	//Using enum with switch case, allows players to choose game modes.
 	input(choice);
+	menuselect();
 	switch (choice)
 	{
 		case Play:
@@ -40,6 +42,7 @@ void gamemenu()
 void title()
 {
 	//Hard-coded to print the game title
+	setcolor(0xE);
 	gotoXY(10,0);
 	cout << " ______     __    __     ______     ______     ______    ";
 	gotoXY(10,1);
@@ -51,6 +54,7 @@ void title()
 	gotoXY(10,4);
 	cout << "  \\/_/\\/_/   \\/_/  \\/_/   \\/_/\\/_/   \\/_____/   \\/_____/ "; 
 	gotoXY(10,8);
+	setcolor(7);
 }
 
 //Prints out the main menu options
@@ -76,6 +80,7 @@ void play()
 	levelmenu();
 	//Using enum with switch case, allows players to select levels.
 	levelselect(number);
+	menuselect();
 	switch (number)
 	{
 		case One:
@@ -94,13 +99,17 @@ void play()
 			cls();
 			custom();
 			break;
+		case Back:
+			cls();
+			back();
+			gamemenu();
+			break;
 		default:
 			error();
 			choice = MAX;
 			break;
 	}
 }
-
 
 //Gets input from user for main menu options
 void input(state & s)
@@ -110,15 +119,6 @@ void input(state & s)
 	cout << "Please enter your choice (1, 2 or 3 ONLY): ";
 	cin >> num;
 	s = static_cast<state>(num);
-}
-
-//Clears the screen 
-void cls()
-{
-	//Fills the entire screen with blank spaces, effectively clearing the screen
-	gotoXY(0,0);
-	cout << string(2000,' ');
-	gotoXY(0,0);
 }
 
 //Prints out the level select menu
@@ -135,6 +135,8 @@ void levelmenu()
 	gotoXY(10,12);
 	cout << "[4] Custom Level";
 	gotoXY(10,13);
+	cout << "[0] Back";
+	gotoXY(10,14);
 }
 
 //Gets input from user for level select
@@ -142,7 +144,7 @@ void levelselect(level& l)
 {
 	//Converts input to enum state
 	int n = 0;
-	cout << "Please enter your choice (1, 2 or 3 ONLY): ";
+	cout << "Please enter your choice (0, 1, 2, 3 or 4 ONLY): ";
 	cin >> n;
 	l = static_cast<level>(n);
 }
@@ -151,11 +153,11 @@ void levelselect(level& l)
 void error()
 {
 	//Hard-coded to print out the error message right under the input
-	gotoXY(10,13);
-	cout << "Oops! Seems like you did not follow the instruction.";
-	gotoXY(10,14);
-	cout << "The game will now close!";
 	gotoXY(10,15);
+	cout << "Oops! Seems like you did not follow the instruction.";
+	gotoXY(10,16);
+	cout << "The game will now close!";
+	gotoXY(10,17);
 }
 
 //Prints out a message when player quits the game
@@ -173,6 +175,7 @@ void custom()
 	title();
 	custommenu();
 	customselect(no);
+	menuselect();
 	switch (no)
 	{
 	case Save1:
@@ -187,6 +190,15 @@ void custom()
 		cls();
 		custom3();
 		break;
+	case Back1:
+		cls();
+		back();
+		gamemenu();
+		break;
+	default:
+		error();
+		choice = MAX;
+		break;
 	}
 }
 
@@ -200,13 +212,15 @@ void custommenu()
 	gotoXY(10,11);
 	cout << "[3] Save 3";
 	gotoXY(10,12);
+	cout << "[0] Back";
+	gotoXY(10,13);
 }
 
 void customselect (customenum& i)
 {
 	// converting
 	int j = 0;
-	cout << "Which save do you want? (1, 2 or 3 ONLY): ";
+	cout << "Which save do you want? (0, 1, 2 or 3 ONLY): ";
 	cin >> j;
 	i = static_cast<customenum>(j);
 }

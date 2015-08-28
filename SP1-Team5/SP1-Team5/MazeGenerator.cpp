@@ -3,6 +3,7 @@
 #include "functions.h"
 #include "player.h"
 #include "FOE_Movement.h"
+#include "sounds.h"
 
 //Declarations of variables
 extern bool g_key;
@@ -164,6 +165,7 @@ void mazemapping()
 					setcolor(7);
 					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						death();
 						g_quit = true;
 					}
 					break;
@@ -178,6 +180,7 @@ void mazemapping()
 					setcolor(7);
 					if((a == g_player.Y && b-1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						death();
 						g_quit = true;
 					}
 					break;
@@ -192,6 +195,7 @@ void mazemapping()
 					setcolor(7);
 					if((a-1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						death();
 						g_quit = true;
 					}
 					break;
@@ -206,6 +210,7 @@ void mazemapping()
 					setcolor(7);
 					if((a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						death();
 						g_quit = true;
 					}
 					break;

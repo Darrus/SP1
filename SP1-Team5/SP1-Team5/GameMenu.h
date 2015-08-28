@@ -11,7 +11,8 @@ enum state
 
 enum level
 {
-	One = 1,
+	Back = 0,
+	One,
 	Two,
 	Three,
 	Custom,
@@ -19,7 +20,8 @@ enum level
 
 enum customenum
 {
-	Save1 = 1,
+	Back1 = 0,
+	Save1,
 	Save2,
 	Save3,
 	END,
@@ -30,7 +32,6 @@ void title();
 void menu();
 void play();
 void input(state& s);
-void cls();
 void levelmenu();
 void levelselect(level& l);
 void error();

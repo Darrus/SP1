@@ -16,3 +16,16 @@ void setcolor(unsigned short color)
 	HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hcon,color);
 }
+
+void cls()
+{
+	//Fills the entire screen with blank spaces, effectively clearing the screen
+	gotoXY(0,0);
+	cout << string(2000,' ');
+	gotoXY(0,0);
+}
+
+void setConsoleSize(unsigned short ushX, unsigned short ushY)
+{
+    SMALL_RECT windowSize = {0, 0, ushX, ushY};
+}
