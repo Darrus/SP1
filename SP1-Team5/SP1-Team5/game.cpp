@@ -33,30 +33,32 @@ string m3 = "m3Copy.txt";
 string customs = "custom1.txt";
 string customs2 = "custom2.txt";
 string customs3 = "custom3.txt";
+
 void level1()
 {
 	lvl1 = true;
 	mazestore(m1);
 	clock_start();
+	showscore();
 	while(!g_quit && !g_clear)
 	{
 		mazemapping();
 		UI();
 		movement();
+		showscore();
 	}
 	clock_end();
-	showscore();
 	//Calls the highscore function
 	if(g_clear == true)
 	{
 		store(minutes,seconds);
 		showscore();
 	}
-	if (newscore == false)
+	if (newscore == false && g_quit == false)
 	{
 		win();
 	}
-	cout << "Press spacebar to continue";
+	cout << "Press spacebar to continue" << endl << "Press R to restart level";
 	cont();
 }
 
@@ -65,25 +67,26 @@ void level2()
 	lvl2 = true;
 	mazestore(m2);
 	clock_start();
+	showscore();
 	while(!g_quit && !g_clear)
 	{
+		showscore();
 		mazemapping();
 		UI();
 		movement();
 	}
 	clock_end();
-	showscore();
 	//Calls the highscore function
 	if(g_clear == true)
 	{
 		store(minutes,seconds);
 		showscore();
 	}
-	if (newscore == false)
+	if (newscore == false && g_quit == false)
 	{
 		win();
 	}
-	cout << "Press spacebar to continue";
+	cout << "Press spacebar to continue" << endl << "Press R to restart level";
 	cont();
 }
 
@@ -106,11 +109,11 @@ void level3()
 		store(minutes,seconds);
 		showscore();
 	}
-	if (newscore == false)
+	if (newscore == false && g_quit == false)
 	{
 		win();
 	}
-	cout << "Press spacebar to continue";
+	cout << "Press spacebar to continue" << endl << "Press R to restart level";
 	cont();
 }
 
@@ -194,8 +197,7 @@ void custom3()
 
 void reset()
 {
-	gotoXY(0,0);
-	cout << string(2000,' ');
+	cls();
 	g_key = false;
 	g_clear = false;
 	g_quit = false;
@@ -217,8 +219,7 @@ void cont()
 	switch(in)
 	{
 	case ' ':
-		gotoXY(0,0);
-		cout << string(2000,' ');
+		cls();
 		if(lvl1 == true)
 		{
 			lvl1 = false;
@@ -241,8 +242,11 @@ void cont()
 			c1 = false;
 		else if(c2 == true)
 			c2 = false;
-		reset();
 		play();
+		break;
+	case 'R':
+	case 'r':
+		reset();
 		break;
 	default:
 		cont();
