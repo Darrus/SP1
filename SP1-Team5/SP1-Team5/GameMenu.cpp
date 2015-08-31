@@ -182,15 +182,15 @@ void custom()
 	{
 	case Save1:
 		cls();
-		custom1();
+		custom(Save1);
 		break;
 	case Save2:
 		cls();
-		custom2();
+		custom(Save2);
 		break;
 	case Save3:
 		cls();
-		custom3();
+		custom(Save3);
 		break;
 	case Back1:
 		cls();

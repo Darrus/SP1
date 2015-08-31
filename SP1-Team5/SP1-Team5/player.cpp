@@ -12,9 +12,13 @@ extern bool g_clear;
 extern vector <string> g_size;
 extern bool lvl1;
 extern bool lvl2;
+extern bool lvl3;
 extern bool c1;
+extern bool c2;
+extern bool c3;
 
 bool g_key = false;
+bool g_key1 = false;
 bool g_quit = false;
 COORD g_player;
 
@@ -86,6 +90,10 @@ void detect(int Y,int X)
 		break;
 	case '2':
 		break;
+	case '3':
+		break;
+	case '#':
+		break;
 	default:
 		FOEH(counter.H);
 		FOEV(counter.V);
@@ -108,7 +116,14 @@ void detect(int Y,int X)
 		g_player.Y = Y;
 		g_player.X = X;
 		brokenfloor();
-		break; 
+		break;
+	case '$':
+		g_size[Y][X] = '0';
+		g_player.Y = Y;
+		g_player.X = X;
+		g_key1 = true;
+		gate();
+		break;
 	case '!': 
 		g_size[Y][X] = '0';
 		g_player.Y = Y;
@@ -140,6 +155,14 @@ void detect(int Y,int X)
 		if(lvl1 == true)
 			g_clear = true;
 		else if(lvl2 == true)
+			g_clear = true;
+		else if(lvl3 == true)
+			g_clear = true;
+		else if(c1 == true)
+			g_clear = true;
+		else if(c2 == true)
+			g_clear = true;
+		else if(c3 == true)
 			g_clear = true;
 		g_player.Y = Y;
 		g_player.X = X;

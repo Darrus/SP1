@@ -87,6 +87,10 @@ void detect(int Y,int X)
 		break;
 	case '2':
 		break;
+	case '3':
+		break;
+	case '#':
+		break;
 	default:
 		FOEH(counter.H);
 		FOEV(counter.V);

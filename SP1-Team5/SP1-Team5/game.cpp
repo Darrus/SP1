@@ -117,10 +117,24 @@ void level3()
 	cont();
 }
 
-void custom1()
+void custom(int sel)
 {
-	c1 = true;
-	mazestore(customs);
+	if(sel == 1)
+	{
+		c1 = true;
+		mazestore(customs);
+	}
+	else if(sel == 2)
+	{
+		c2 = true;
+		mazestore(customs2);
+	}
+	else if(sel == 3)
+	{
+		c3 = true;
+		mazestore(customs3);
+	}
+	
 	while(!g_quit && !g_clear)
 	{
 		mazemapping();
@@ -132,64 +146,12 @@ void custom1()
 		else if (g_playing == false)
 		{
 			customUI();
-			custommovement1();
+			custommovement();
 		}
 	}
 	if(!g_quit)
 	{
 		c1 = false;
-		cout << "Press spacebar to continue";
-		cont();
-	}
-}
-
-void custom2()
-{	
-	c2 = true;
-	mazestore(customs2);
-	while(!g_quit && !g_clear)
-	{
-		mazemapping();
-		if(g_playing == true)
-		{
-			UI();
-			movement();
-		}
-		else if (g_playing == false)
-		{
-			customUI();
-			custommovement2();
-		}
-	}
-	if(!g_quit)
-	{
-		c2 = false;
-		cout << "Press spacebar to continue";
-		cont();
-	}
-}
-
-void custom3()
-{	
-	c3 = true;
-	mazestore(customs3);
-	while(!g_quit && !g_clear)
-	{
-		mazemapping();
-		if(g_playing == true)
-		{
-			UI();
-			movement();
-		}
-		else if (g_playing == false)
-		{
-			customUI();
-			custommovement3();
-		}
-	}
-	if(!g_quit)
-	{
-		c3 = false;
 		cout << "Press spacebar to continue";
 		cont();
 	}
@@ -208,9 +170,9 @@ void reset()
 	else if(lvl3 == true)
 		level3();
 	else if(c1 == true)
-		custom1();
+		custom(1);
 	else if(c2 == true)
-		custom2();
+		custom(2);
 }
 
 void cont()

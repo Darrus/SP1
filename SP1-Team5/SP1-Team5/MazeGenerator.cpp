@@ -7,6 +7,7 @@
 
 //Declarations of variables
 extern bool g_key;
+extern bool g_key1;
 extern COORD g_player;
 extern bool g_quit;
 extern bool g_playing;
@@ -120,15 +121,29 @@ void mazemapping()
 						}
 						else
 						{
-							setcolor(0x0f);
+							setcolor(14);
 							cout << door;
 							setcolor(7);
 						}
 					break;
-				//Broken Floor system
-				case 'x': cout << '0';
+				// Gate
+				case '3':
+					if (g_key1 == true)
+					{
+						g_size[a][b] = '0';
+						cout << ' ';
+					}
+					else
+					{
+						setcolor (0x0B);
+						cout << door;
+						setcolor(7);
+					}
 					break;
-				case 'X': cout << 'O';
+				//Broken Floor system
+				case 'x': cout << 'O';
+					break;
+				case 'X': cout << 'X';
 					break;
 				case '#':
 					setcolor(0x0f);
@@ -146,6 +161,9 @@ void mazemapping()
 				//Key
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
+				//Key for gate
+				case '$':setcolor(0xB);cout << "*";setcolor(7);
+					break;
 				case '@':
 					if(g_once == false)
 					{
@@ -157,6 +175,13 @@ void mazemapping()
 					setcolor(12);
 					cout << '@';
 					setcolor(7);
+					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y && b-1 == g_player.X) || (a-1 == g_player.Y && b == g_player.X) || (a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X) )
+					{
+						if (g_playing == true)
+						{
+							g_quit = true;
+						}
+					}
 					break;
 				//Player spawn
 				case 'S':

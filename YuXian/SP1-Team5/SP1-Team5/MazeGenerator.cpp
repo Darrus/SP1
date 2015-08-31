@@ -175,6 +175,13 @@ void mazemapping()
 					setcolor(12);
 					cout << '@';
 					setcolor(7);
+					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y && b-1 == g_player.X) || (a-1 == g_player.Y && b == g_player.X) || (a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X) )
+					{
+						if (g_playing == true)
+						{
+							g_quit = true;
+						}
+					}
 					break;
 				//Player spawn
 				case 'S':
