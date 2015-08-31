@@ -86,15 +86,15 @@ void play()
 	{
 		case One:
 			cls();
-			level1();
+			levelselect(One);
 			break;
 		case Two:
 			cls();
-			level2();
+			levelselect(Two);
 			break;
 		case Three:
 			cls();
-			level3();
+			levelselect(Three);
 			break;
 		case Custom:
 			cls();

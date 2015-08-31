@@ -34,10 +34,23 @@ string customs = "custom1.txt";
 string customs2 = "custom2.txt";
 string customs3 = "custom3.txt";
 
-void level1()
+void levelselect(int sel)
 {
-	lvl1 = true;
-	mazestore(m1);
+	if(sel == 1)
+	{
+		lvl1 = true;
+		mazestore(m1);
+	}
+	else if(sel == 2)
+	{
+		lvl2 = true;
+		mazestore(m2);
+	}
+	else if(sel == 3)
+	{
+		lvl3 = true;
+		mazestore(m3);
+	}
 	clock_start();
 	showscore();
 	while(!g_quit && !g_clear)
@@ -51,61 +64,6 @@ void level1()
 	//Calls the highscore function
 	if(g_clear == true)
 	{
-		store(minutes,seconds);
-		showscore();
-	}
-	if (newscore == false && g_quit == false)
-	{
-		win();
-	}
-	cout << "Press spacebar to continue" << endl << "Press R to restart level";
-	cont();
-}
-
-void level2()
-{
-	lvl2 = true;
-	mazestore(m2);
-	clock_start();
-	showscore();
-	while(!g_quit && !g_clear)
-	{
-		showscore();
-		mazemapping();
-		UI();
-		movement();
-	}
-	clock_end();
-	//Calls the highscore function
-	if(g_clear == true)
-	{
-		store(minutes,seconds);
-		showscore();
-	}
-	if (newscore == false && g_quit == false)
-	{
-		win();
-	}
-	cout << "Press spacebar to continue" << endl << "Press R to restart level";
-	cont();
-}
-
-void level3()
-{
-	lvl3 = true;
-	mazestore(m3);
-	clock_start();
-	while(!g_quit && !g_clear)
-	{
-		mazemapping();
-		UI();
-		movement();
-	}
-	clock_end();
-	showscore();
-	if (g_clear == true)
-	{
-		//Calls the highscore function
 		store(minutes,seconds);
 		showscore();
 	}
@@ -164,11 +122,11 @@ void reset()
 	g_clear = false;
 	g_quit = false;
 	if(lvl1 == true)
-		level1();
+		level(1);
 	else if(lvl2 == true)
-		level2();
+		level(2);
 	else if(lvl3 == true)
-		level3();
+		level(3);
 	else if(c1 == true)
 		custom(1);
 	else if(c2 == true)
