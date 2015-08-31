@@ -9,11 +9,12 @@
 extern bool g_key;
 extern COORD g_player;
 extern bool g_quit;
+extern bool g_playing;
 
 char wall = 219;
 char door = 254;
 int h = 0;
-bool play = false;
+bool g_once = false;
 
 vector <string> g_size;
 
@@ -67,7 +68,7 @@ void mazestore(string map)
 {
 	//Resets everything
 	h = 0;
-	play = false;
+	g_once = false;
 	hori.clear();
 	vert.clear();
 	roun.clear();
@@ -146,7 +147,7 @@ void mazemapping()
 				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
 				case '@':
-					if(play == false)
+					if(g_once == false)
 					{
 						holder.X = b;
 						holder.Y = a;
@@ -161,7 +162,7 @@ void mazemapping()
 				case 'S':
 						cout << ' ';
 						g_size[a][b] = '0';
-						if(play == false)
+						if(g_once == false)
 						{
 							g_player.X = b;
 							g_player.Y = a;
@@ -169,7 +170,7 @@ void mazemapping()
 					break;
 				//FOE right movement
 				case '>': 
-					if(play == false)
+					if(g_once == false)
 					{
 						holder.X = b;
 						holder.Y = a;
@@ -181,13 +182,16 @@ void mazemapping()
 					setcolor(7);
 					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						death();
-						g_quit = true;
+						if(g_playing == true)
+						{
+							death();
+							g_quit = true;
+						}
 					}
 					break;
 				//FOE left movement
 				case '<': 
-					if(play == false)
+					if(g_once == false)
 					{
 						holder.X = b;
 						holder.Y = a;
@@ -199,13 +203,16 @@ void mazemapping()
 					setcolor(7);
 					if((a == g_player.Y && b-1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						death();
-						g_quit = true;
+						if(g_playing == true)
+						{
+							death();
+							g_quit = true;
+						}
 					}
 					break;
 				//FOE upwards movement
 				case '^':
-					if(play == false)
+					if(g_once == false)
 					{
 						holder.X = b;
 						holder.Y = a;
@@ -217,13 +224,16 @@ void mazemapping()
 					setcolor(7);
 					if((a-1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						death();
-						g_quit = true;
+						if(g_playing == true)
+						{
+							death();
+							g_quit = true;
+						}
 					}
 					break;
 				//FOE downwards movement
 				case 'v':
-					if(play == false)
+					if(g_once == false)
 					{
 						holder.X = b;
 						holder.Y = a;
@@ -235,8 +245,11 @@ void mazemapping()
 					setcolor(7);
 					if((a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
-						death();
-						g_quit = true;
+						if(g_playing == true)
+						{
+							death();
+							g_quit = true;
+						}
 					}
 					break;
 				//Invisible wall for FOE
@@ -249,6 +262,6 @@ void mazemapping()
 		cout << endl;
 	}
 	gotoXY(0,23);
-	play = true;
+	g_once = true;
 	player();
 }

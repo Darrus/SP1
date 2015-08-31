@@ -16,6 +16,7 @@ extern bool g_playing;
 extern int seconds;
 extern int minutes;
 extern bool newscore;
+extern bool g_once;
 
 bool g_switch = false;
 bool g_clear = false;
@@ -32,7 +33,6 @@ string m3 = "m3Copy.txt";
 string customs = "custom1.txt";
 string customs2 = "custom2.txt";
 string customs3 = "custom3.txt";
-
 void level1()
 {
 	lvl1 = true;
@@ -126,14 +126,9 @@ void custom1()
 			UI();
 			movement();
 		}
-		if (g_switch == false && g_playing == false)
+		else if (g_playing == false)
 		{
 			customUI();
-			custommovement1();
-		}
-		else if (g_switch == true && g_playing == false)
-		{
-			customUI1();
 			custommovement1();
 		}
 	}
@@ -152,19 +147,14 @@ void custom2()
 	while(!g_quit && !g_clear)
 	{
 		mazemapping();
-		if (g_playing == true)
+		if(g_playing == true)
 		{
 			UI();
 			movement();
 		}
-		else if (g_switch == false)
+		else if (g_playing == false)
 		{
 			customUI();
-			custommovement2();
-		}
-		else if (g_switch == true)
-		{
-			customUI1();
 			custommovement2();
 		}
 	}
@@ -183,19 +173,14 @@ void custom3()
 	while(!g_quit && !g_clear)
 	{
 		mazemapping();
-		if (g_playing == true)
+		if(g_playing == true)
 		{
 			UI();
 			movement();
 		}
-		else if (g_switch == false)
+		else if (g_playing == false)
 		{
 			customUI();
-			custommovement3();
-		}
-		else if (g_switch == true)
-		{
-			customUI1();
 			custommovement3();
 		}
 	}
@@ -234,7 +219,6 @@ void cont()
 	case ' ':
 		gotoXY(0,0);
 		cout << string(2000,' ');
-		
 		if(lvl1 == true)
 		{
 			lvl1 = false;
