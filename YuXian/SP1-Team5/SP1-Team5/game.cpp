@@ -8,23 +8,26 @@
 #include "clock.h"
 #include "MazeCustom.h"
 #include "GameMenu.h"
+#include "sounds.h"
 
 extern bool g_quit;
 extern bool g_key;
 extern bool g_playing;
-extern vector <pos> hori;
-extern vector <pos> vert;
-extern vector <pos> roun;
+extern int seconds;
+extern int minutes;
+extern bool newscore;
 
 bool g_switch = false;
 bool g_clear = false;
 bool lvl1 = false;
 bool lvl2 = false;
+bool lvl3 = false;
 bool c1 = false;
 bool c2 = false;
 bool c3 = false;
 string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";
+string m3 = "m3Copy.txt";
 
 string customs1 = "custom1.txt";
 string customs2 = "custom2.txt";
@@ -43,14 +46,18 @@ void level1()
 	}
 	clock_end();
 	showscore();
-	if(!g_quit)
+	//Calls the highscore function
+	if(g_clear == true)
 	{
-		//Calls the highscore function
 		store(minutes,seconds);
-		lvl1 = false;
-		cout << "Press spacebar to continue";
-		cont();
+		showscore();
 	}
+	if (newscore == false)
+	{
+		win();
+	}
+	cout << "Press spacebar to continue";
+	cont();
 }
 
 void level2()
@@ -66,13 +73,45 @@ void level2()
 	}
 	clock_end();
 	showscore();
-	if (!g_quit)
+	//Calls the highscore function
+	if(g_clear == true)
+	{
+		store(minutes,seconds);
+		showscore();
+	}
+	if (newscore == false)
+	{
+		win();
+	}
+	cout << "Press spacebar to continue";
+	cont();
+}
+
+void level3()
+{
+	lvl3 = true;
+	mazestore(m3);
+	clock_start();
+	while(!g_quit && !g_clear)
+	{
+		mazemapping();
+		UI();
+		movement();
+	}
+	clock_end();
+	showscore();
+	if (g_clear == true)
 	{
 		//Calls the highscore function
 		store(minutes,seconds);
-		lvl2 = false;
-		cont();
+		showscore();
 	}
+	if (newscore == false)
+	{
+		win();
+	}
+	cout << "Press spacebar to continue";
+	cont();
 }
 
 void custom1()
@@ -90,7 +129,7 @@ void custom1()
 		else if (g_playing == false)
 		{
 			customUI();
-			custommovement1();
+			custommovement();
 		}
 	}
 	if(!g_quit)
@@ -116,7 +155,7 @@ void custom2()
 		else if (g_playing == false)
 		{
 			customUI();
-			custommovement2();
+			custommovement();
 		}
 	}
 	if(!g_quit)
@@ -142,7 +181,7 @@ void custom3()
 		else if (g_playing == false)
 		{
 			customUI();
-			custommovement3();
+			custommovement();
 		}
 	}
 	if(!g_quit)
@@ -159,12 +198,13 @@ void reset()
 	cout << string(2000,' ');
 	g_key = false;
 	g_clear = false;
-	hori.clear();
-	vert.clear();
+	g_quit = false;
 	if(lvl1 == true)
 		level1();
 	else if(lvl2 == true)
 		level2();
+	else if(lvl3 == true)
+		level3();
 	else if(c1 == true)
 		custom1();
 	else if(c2 == true)
@@ -179,10 +219,30 @@ void cont()
 	case ' ':
 		gotoXY(0,0);
 		cout << string(2000,' ');
-		g_key = false;
-		g_clear = false;
-		hori.clear();
-		vert.clear();
+		
+		if(lvl1 == true)
+		{
+			lvl1 = false;
+			if(g_clear == true)
+			{
+				lvl2 = true;
+			}
+		}
+		else if(lvl2 == true)
+		{
+			lvl2 = false;
+			if(g_clear == true)
+			{
+				lvl3 = true;
+			}
+		}
+		else if(lvl3 == true)
+			lvl3 = false;
+		else if(c1 == true)
+			c1 = false;
+		else if(c2 == true)
+			c2 = false;
+		reset();
 		play();
 		break;
 	default:

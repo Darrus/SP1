@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <string>
 #include <vector>
+#include <MMSystem.h>
 
 
 using std::cout;

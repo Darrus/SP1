@@ -17,7 +17,6 @@ void setcolor(unsigned short color)
 	SetConsoleTextAttribute(hcon,color);
 }
 
-//Clears the screen 
 void cls()
 {
 	//Fills the entire screen with blank spaces, effectively clearing the screen

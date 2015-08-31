@@ -3,9 +3,11 @@
 #include "functions.h"
 #include "player.h"
 #include "FOE_Movement.h"
+#include "sounds.h"
 
 //Declarations of variables
 extern bool g_key;
+extern bool g_key1;
 extern COORD g_player;
 extern bool g_quit;
 extern bool g_playing;
@@ -13,7 +15,7 @@ extern bool g_playing;
 char wall = 219;
 char door = 254;
 int h = 0;
-int play = 0;
+bool play = false;
 
 vector <string> g_size;
 
@@ -65,17 +67,25 @@ void UI()
 //Converts the text map into a string
 void mazestore(string map)
 {
+	//Resets everything
 	h = 0;
-	play = 0;
+	play = false;
+	hori.clear();
+	vert.clear();
+	roun.clear();
+	counter.H = 0;
+	counter.V = 0;
+	counter.O = 0;
 	g_size.clear(); 
+
+	//Gets the text map
 	ifstream fin;
 	string temp;
-	//Gets the text map
 	fin.open(map,ios::in);
 	while(!fin.eof())
 	{
 		getline(fin,temp);
-		//Converts into string
+		//Store into string
 		g_size.push_back(temp);
 		++h;
 	}
@@ -85,12 +95,8 @@ void mazestore(string map)
 //Generates the map based on text map
 void mazemapping()
 {
-	//Declaration of variables
+	//Resets point to 0,0
 	gotoXY(0,0);
-	int a = 0;
-	int b = 5;
-	counter.H = 0;
-	counter.V = 0;
 	//Reads the columns
 	for(size_t a = 0; a < g_size.size(); ++a)
 	{
@@ -104,7 +110,7 @@ void mazemapping()
 				case '0':cout << " "; 
 					break;
 				//1 is converted into walls
-				case '1':setcolor(0x0F);cout << wall;setcolor(7);
+				case '1':setcolor(0x0f);cout << wall;setcolor(7);
 					break;
 				//2 is converted into door
 				case '2':if(g_key == true)
@@ -115,46 +121,81 @@ void mazemapping()
 						}
 						else
 						{
-							setcolor(0x0F);cout << door;setcolor(7);
+							setcolor(0x0E);
+							cout << door;
+							setcolor(7);
 						}
 					break;
+				// gate
+				case '3':
+					if (g_key1 == true)
+					{
+						g_size[a][b] = '0';
+						cout << ' ';
+					}
+					else
+					{
+						setcolor (0x0B);
+						cout << door;
+						setcolor(7);
+					}
+					break;
 				//Broken Floor system
-				case 'x':setcolor(0x0C); cout << 'O'; setcolor(7);
+				case 'x': cout << 'O';
 					break;
-				case '3':setcolor(0x0C); cout << 'X'; setcolor(7);
+				case 'X': cout << 'X';
 					break;
-				case '4':setcolor(0x0A); cout << "!"; setcolor(7);
+				case '#':
+					setcolor(0x0f);
+					cout << wall;
+					setcolor(7);
+					break;
+				case '4': cout << "!";
+					break;
+				//Muddy Floor
+				case 'M':
+					setcolor(4);
+					cout << wall;
+					setcolor(7);
 					break;
 				//Key
-				case '!':setcolor(0x0E);cout << "*";setcolor(7);
+				case '!':setcolor(14);cout << "*";setcolor(7);
 					break;
-				case 'O':
-					//holder.X = b;
-					//holder.Y = a;
-					//roun.push_back(holder);
-					//counter.O++;
+				// key 2
+				case '$':setcolor(0xB);cout << "*";setcolor(7);
+					break;
+				case '@':
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						roun.push_back(holder);
+						counter.O++;
+					}
 					setcolor(12);
-					cout << 'O';
+					cout << '@';
 					setcolor(7);
 					break;
 				//Player spawn
 				case 'S':
 						cout << ' ';
 						g_size[a][b] = '0';
-						if(play == 0)
+						if(play == false)
 						{
 							g_player.X = b;
 							g_player.Y = a;
-							play++;
 						}
 					break;
 				//FOE right movement
 				case '>': 
-					holder.X = b;
-					holder.Y = a;
-					hori.push_back(holder);
-					counter.H++;
-					setcolor(0x0C);
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						hori.push_back(holder);
+						counter.H++;
+					}
+					setcolor(12);
 					cout << '>';
 					setcolor(7);
 					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
@@ -167,11 +208,14 @@ void mazemapping()
 					break;
 				//FOE left movement
 				case '<': 
-					holder.X = b;
-					holder.Y = a;
-					hori.push_back(holder);
-					counter.H++;
-					setcolor(0x0C);
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						hori.push_back(holder);
+						counter.H++;
+					}
+					setcolor(12);
 					cout << '<';
 					setcolor(7);
 					if((a == g_player.Y && b-1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
@@ -184,11 +228,14 @@ void mazemapping()
 					break;
 				//FOE upwards movement
 				case '^':
-					holder.X = b;
-					holder.Y = a;
-					vert.push_back(holder);
-					counter.V++;
-					setcolor(0x0C);
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						vert.push_back(holder);
+						counter.V++;
+					}
+					setcolor(12);
 					cout << '^';
 					setcolor(7);
 					if((a-1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
@@ -201,11 +248,14 @@ void mazemapping()
 					break;
 				//FOE downwards movement
 				case 'v':
-					holder.X = b;
-					holder.Y = a;
-					vert.push_back(holder);
-					counter.V++;
-					setcolor(0x0C);
+					if(play == false)
+					{
+						holder.X = b;
+						holder.Y = a;
+						vert.push_back(holder);
+						counter.V++;
+					}
+					setcolor(12);
 					cout << 'v';
 					setcolor(7);
 					if((a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
@@ -226,5 +276,6 @@ void mazemapping()
 		cout << endl;
 	}
 	gotoXY(0,23);
+	play = true;
 	player();
 }

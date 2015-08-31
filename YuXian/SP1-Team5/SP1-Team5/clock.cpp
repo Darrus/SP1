@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "highscore.h"
 
-int seconds;
+int seconds = 0;
 int minutes = 0;
 clock_t start;
 
@@ -11,6 +11,8 @@ clock_t start;
 void clock_start()
 {
 	//Records current time
+	seconds = 0;
+	minutes = 0;
 	start = clock();
 }
 
@@ -26,29 +28,27 @@ int clock_end()
 	}
 	if (minutes == 0 && seconds <60)
 	{
-		gotoXY (54,15);
+		gotoXY (54,17);
 		cout <<"Time taken: "; 
-		gotoXY (54,16);
+		gotoXY (54,18);
 		cout << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}
 	else if (minutes > 0 && minutes <= 1)
 	{
-		gotoXY (54,15);
+		gotoXY (54,17);
 		cout <<"Time taken: "; 
-		gotoXY (54,16);
+		gotoXY (54,18);
 		cout << minutes << " minute " << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}
 	else if (minutes > 1)
 	{
-		gotoXY (54,15);
+		gotoXY (54,17);
 		cout <<"Time taken: "; 
-		gotoXY (54,16);
+		gotoXY (54,18);
 		cout << minutes << " minutes " << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}
 	return minutes,seconds;
-	seconds = 0;
-	minutes = 0;
 }

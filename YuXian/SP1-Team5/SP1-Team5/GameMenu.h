@@ -6,39 +6,38 @@ enum state
 	Play = 1,
 	Create,
 	Quit,
-	MAX_STATE,
+	MAX,
 };
 
 enum level
 {
-	One = 1,
+	Back = 0,
+	One,
 	Two,
+	Three,
 	Custom,
-	Back,
-	MAX_LEVEL,
 };
 
 enum customenum
 {
-	Save1 = 1,
+	Back1 = 0,
+	Save1,
 	Save2,
 	Save3,
-	Back1,
-	MAX_CUSTOM,
+	END,
 };
 
 void gamemenu();
 void title();
 void menu();
 void play();
-void custom();
 void input(state& s);
-void cls();
 void levelmenu();
-void custommenu();
 void levelselect(level& l);
-void customselect(customenum& i);
 void error();
 void quit();
+void custom();
+void custommenu();
+void customselect(customenum& i);
 
 #endif

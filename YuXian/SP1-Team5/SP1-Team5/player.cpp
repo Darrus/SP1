@@ -5,6 +5,7 @@
 #include "clock.h"
 #include "game.h"
 #include "FOE_Movement.h"
+#include "sounds.h"
 
 extern count counter;
 extern bool g_clear;
@@ -14,6 +15,7 @@ extern bool lvl2;
 extern bool c1;
 
 bool g_key = false;
+bool g_key1 = false;
 bool g_quit = false;
 COORD g_player;
 
@@ -55,7 +57,6 @@ void movement()
 		break;
 	case 27:
 		g_quit = true;
-		clock_end();
 		break;
 	case 'r':
 	case 'R':
@@ -68,65 +69,85 @@ void movement()
 
 void detect(int Y,int X)
 {
+	//Detection for FOE movements
+	switch(g_size[Y][X])
+	{
+	case 'M':
+		for(int i = 0; i < 2; ++i)
+		{
+			FOEH(counter.H);
+			FOEV(counter.V);
+			FOEO(counter.O);
+		}
+		muddy();
+		break;
+	case '1':
+		break;
+	case 'X':
+		break;
+	case '2':
+		break;
+	default:
+		FOEH(counter.H);
+		FOEV(counter.V);
+		FOEO(counter.O);
+		break;
+	}
+	//Detection for Player movements
 	switch(g_size[Y][X])
 	{
 	case '0': 
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
-	case 'x': 
-		g_size[Y][X] = '3';
+	case 'M':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
+		break;
+	case 'x': 
+		g_size[Y][X] = 'X';
+		g_player.Y = Y;
+		g_player.X = X;
+		brokenfloor();
 		break; 
 	case '!': 
 		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		g_key = true;
+		door1();
+		break;
+	case '$':
+		g_size[Y][X] = '0';
+		g_player.Y = Y;
+		g_player.X = X;
+		g_key1 = true;
+		gate();
 		break;
 	case '<':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '>':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '^':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case 'v':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '?':
 		g_player.Y = Y;
 		g_player.X = X;
-		FOEH(counter.H);
-		FOEV(counter.V);
 		break;
 	case '4': 
 		if(lvl1 == true)
 			g_clear = true;
 		else if(lvl2 == true)
-			g_clear = true;
-		else if(c1 == true)
 			g_clear = true;
 		g_player.Y = Y;
 		g_player.X = X;
