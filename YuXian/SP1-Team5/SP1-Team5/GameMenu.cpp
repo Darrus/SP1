@@ -9,7 +9,7 @@ level number = One;
 bool g_playing = false;
 customenum no = Save1;
 
-void gamemenu()
+void gamemenu(void)
 {
 	//Construct the title screen
 	title();
@@ -40,7 +40,7 @@ void gamemenu()
 }
 
 //Prints out the title of the game
-void title()
+void title(void)
 {
 	//Hard-coded to print the game title
 	setcolor(0xE);
@@ -59,7 +59,7 @@ void title()
 }
 
 //Prints out the main menu options
-void menu()
+void menu(void)
 {
 	//Hard-coded to print main menu options, the numbers corresponds to the functionality
 	cout << "Please select a choice";
@@ -73,7 +73,7 @@ void menu()
 }
 
 //Function for case Play
-void play()
+void play(void)
 {
 	g_playing = true;
 	cls();
@@ -86,15 +86,15 @@ void play()
 	{
 		case One:
 			cls();
-			level1();
+			levelselect(One);
 			break;
 		case Two:
 			cls();
-			level2();
+			levelselect(Two);
 			break;
 		case Three:
 			cls();
-			level3();
+			levelselect(Three);
 			break;
 		case Custom:
 			cls();
@@ -124,7 +124,7 @@ void input(state & s)
 }
 
 //Prints out the level select menu
-void levelmenu()
+void levelmenu(void)
 {
 	//Hard-coded to print level select options, the numbers corresponds to the functionality
 	cout << "LEVEL SELECT";
@@ -152,7 +152,7 @@ void levelselect(level& l)
 }
 
 //Prints out an error message for main menu
-void error()
+void error(void)
 {
 	//Hard-coded to print out the error message right under the input
 	gotoXY(10,15);
@@ -164,7 +164,7 @@ void error()
 }
 
 //Prints out a message when player quits the game
-void quit()
+void quit(void)
 {
 	//Hard-coded to print out the message when players quit the game
 	gotoXY(10,13);
@@ -172,7 +172,7 @@ void quit()
 	gotoXY(10,14);
 }
 
-void custom()
+void custom(void)
 {
 	cls();
 	title();
@@ -183,15 +183,15 @@ void custom()
 	{
 	case Save1:
 		cls();
-		custom1();
+		custom(Save1);
 		break;
 	case Save2:
 		cls();
-		custom2();
+		custom(Save2);
 		break;
 	case Save3:
 		cls();
-		custom3();
+		custom(Save3);
 		break;
 	case Back1:
 		cls();
@@ -205,7 +205,7 @@ void custom()
 	}
 }
 
-void custommenu()
+void custommenu(void)
 {
 	cout << "SAVE SELECT";
 	gotoXY(10,9);
@@ -221,7 +221,7 @@ void custommenu()
 
 void customselect (customenum& i)
 {
-	// converting
+	// converting user input to enum
 	int j = 0;
 	cout << "Which save do you want? (0, 1, 2 or 3 ONLY): ";
 	cin >> j;

@@ -21,7 +21,7 @@ void cls()
 {
 	//Fills the entire screen with blank spaces, effectively clearing the screen
 	gotoXY(0,0);
-	cout << string(2000,' ');
+	cout << string(3000,' ');
 	gotoXY(0,0);
 }
 

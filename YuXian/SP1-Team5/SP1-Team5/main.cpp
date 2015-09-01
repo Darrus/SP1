@@ -1,7 +1,6 @@
 #include "GameMenu.h"
 #include <Windows.h>
 #include "functions.h"
-#include "game.h"
 
 //Links everything together and runs the game
 void main()
@@ -10,3 +9,4 @@ void main()
 	setConsoleSize(79 , 25);
 	gamemenu();
 }
+

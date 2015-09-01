@@ -1,13 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-void level1();
-void level2();
-void level3();
+void levelselect(int sel);
 void reset();
 void cont();
-void custom1();
-void custom2();
-void custom3();
+void custom(int sel);
 
 #endif

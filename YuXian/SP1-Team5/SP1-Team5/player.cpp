@@ -12,7 +12,10 @@ extern bool g_clear;
 extern vector <string> g_size;
 extern bool lvl1;
 extern bool lvl2;
+extern bool lvl3;
 extern bool c1;
+extern bool c2;
+extern bool c3;
 
 bool g_key = false;
 bool g_key1 = false;
@@ -101,10 +104,13 @@ void detect(int Y,int X)
 	switch(g_size[Y][X])
 	{
 	case '0': 
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
 	case 'M':
+	case 'S':
+	case '<':
+	case '>':
+	case '^':
+	case 'V':
+	case '?':
 		g_player.Y = Y;
 		g_player.X = X;
 		break;
@@ -113,13 +119,6 @@ void detect(int Y,int X)
 		g_player.Y = Y;
 		g_player.X = X;
 		brokenfloor();
-		break; 
-	case '!': 
-		g_size[Y][X] = '0';
-		g_player.Y = Y;
-		g_player.X = X;
-		g_key = true;
-		door1();
 		break;
 	case '$':
 		g_size[Y][X] = '0';
@@ -128,30 +127,24 @@ void detect(int Y,int X)
 		g_key1 = true;
 		gate();
 		break;
-	case '<':
+	case '!': 
+		g_size[Y][X] = '0';
 		g_player.Y = Y;
 		g_player.X = X;
-		break;
-	case '>':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
-	case '^':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
-	case 'v':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
-	case '?':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
+		g_key = true;
+		door1();
 	case '4': 
 		if(lvl1 == true)
 			g_clear = true;
 		else if(lvl2 == true)
+			g_clear = true;
+		else if(lvl3 == true)
+			g_clear = true;
+		else if(c1 == true)
+			g_clear = true;
+		else if(c2 == true)
+			g_clear = true;
+		else if(c3 == true)
 			g_clear = true;
 		g_player.Y = Y;
 		g_player.X = X;
