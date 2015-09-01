@@ -32,34 +32,39 @@ void UI()
 {
 	//Hard-coded every thing on the UI
 	setcolor(0x2F);
-	gotoXY(54,2);
+	gotoXY(54, 1);
 	cout << "Find the key to ";
-	gotoXY(54,3);
+	gotoXY(54, 2);
 	cout << "unlock the door!";
-	gotoXY(52,5);
+	gotoXY(52, 4);
 	cout << "-Use the arrow keys to move";
-	gotoXY(52,6);
+	gotoXY(52, 5);
 	cout << "-Press R to reset";
-	gotoXY(52,7);
+	gotoXY(52, 6);
 	cout << "-Press Esc to exit";
-	gotoXY(54, 9);
+	gotoXY(54, 8);
 	setcolor(0x0A);
 	cout << "Player = Green " << (char)1  << endl;
-	gotoXY(54, 10);
+	gotoXY(54, 9);
 	setcolor(0x0C);
 	cout << "FOE = Red ^v<>" << endl;
+	gotoXY(54, 10);
+	cout << "Obiting FOE = Red @" << endl;
 	gotoXY(54, 11);
-	setcolor(0x0C);
-	cout << "Unstable Floors = Red 0" << endl;
+	setcolor(0x07);
+	cout << "Unstable Floors = Red O" << endl;
 	gotoXY(54, 12);
-	setcolor(0x0C);
-	cout << "Broken Floors = Red O" << endl;
+	cout << "Broken Floors = Red X" << endl;
 	gotoXY(54, 13);
 	setcolor(0x0E);
-	cout << "Keys = Yellow *" << endl;
+	cout << "Keys (door) = Yellow *" << endl;
 	gotoXY(54, 14);
-	setcolor(0x0F);
-	cout << "Door = White " << door << endl;
+	cout << "Door = Yellow " << door << endl;
+	gotoXY(54, 15);
+	setcolor(0x0B);
+	cout << "Keys (gate) = Aqua *" << endl;
+	gotoXY(54, 16);
+	cout << "Gate = Aqua " << door << endl;
 	setcolor(7);
 	gotoXY(0,23);
 }
@@ -185,6 +190,14 @@ void mazemapping()
 					break;
 				//Player spawn
 				case 'S':
+					if (g_playing == false)
+					{
+						setcolor(0x0A);
+						cout << 'S';
+						g_size[a][b] = 'S';
+					}
+					else
+					{
 						cout << ' ';
 						g_size[a][b] = '0';
 						if(g_once == false)
@@ -192,9 +205,10 @@ void mazemapping()
 							g_player.X = b;
 							g_player.Y = a;
 						}
+					}
 					break;
 				//FOE right movement
-				case '>': 
+				case '>':
 					if(g_once == false)
 					{
 						holder.X = b;
@@ -278,7 +292,16 @@ void mazemapping()
 					}
 					break;
 				//Invisible wall for FOE
-				case '?':cout << " ";
+				case '?':
+					if (g_playing == false)
+					{
+						cout << '?';
+						g_size[a][b] = '?';
+					}
+					else
+					{
+						cout << " ";
+					}
 					break;
 				case '\n': cout << endl;
 					break;

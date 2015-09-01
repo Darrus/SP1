@@ -20,7 +20,7 @@ enum level
 
 enum customenum
 {
-	Back1 = 0,
+	Back1,
 	Save1,
 	Save2,
 	Save3,

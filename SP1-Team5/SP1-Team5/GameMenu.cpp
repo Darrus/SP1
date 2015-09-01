@@ -82,33 +82,36 @@ void play()
 	//Using enum with switch case, allows players to select levels.
 	levelselect(number);
 	menuselect();
-	switch (number)
+	while(g_playing == true)
 	{
-		case One:
-			cls();
-			levelselect(One);
-			break;
-		case Two:
-			cls();
-			levelselect(Two);
-			break;
-		case Three:
-			cls();
-			levelselect(Three);
-			break;
-		case Custom:
-			cls();
-			custom();
-			break;
-		case Back:
-			cls();
-			back();
-			gamemenu();
-			break;
-		default:
-			error();
-			choice = MAX;
-			break;
+		switch (number)
+		{
+			case One:
+				cls();
+				levelselect(One);
+				break;
+			case Two:
+				cls();
+				levelselect(Two);
+				break;
+			case Three:
+				cls();
+				levelselect(Three);
+				break;
+			case Custom:
+				cls();
+				custom();
+				break;
+			case Back:
+				cls();
+				back();
+				g_playing = false;
+				gamemenu();
+				break;
+			default:
+				error();
+				break;
+		}
 	}
 }
 
@@ -182,24 +185,24 @@ void custom()
 	{
 	case Save1:
 		cls();
-		custom(Save1);
+		customlevel(Save1);
 		break;
 	case Save2:
 		cls();
-		custom(Save2);
+		customlevel(Save2);
 		break;
 	case Save3:
 		cls();
-		custom(Save3);
+		customlevel(Save3);
 		break;
 	case Back1:
 		cls();
-		back();
+		g_playing = false;
 		gamemenu();
 		break;
 	default:
 		error();
-		choice = MAX;
+		no = END;
 		break;
 	}
 }

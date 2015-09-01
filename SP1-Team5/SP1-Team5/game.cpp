@@ -10,13 +10,15 @@
 #include "GameMenu.h"
 #include "sounds.h"
 
+extern COORD g_player;
 extern bool g_quit;
 extern bool g_key;
 extern bool g_playing;
-extern int seconds;
-extern int minutes;
 extern bool newscore;
 extern bool g_once;
+extern int seconds;
+extern int minutes;
+
 
 bool g_switch = false;
 bool g_clear = false;
@@ -73,10 +75,13 @@ void levelselect(int sel)
 	}
 	cout << "Press spacebar to continue" << endl << "Press R to restart level";
 	cont();
+	play();
 }
 
-void custom(int sel)
+void customlevel(int sel)
 {
+	g_player.X = 0;
+	g_player.Y = 0;
 	if(sel == 1)
 	{
 		c1 = true;
@@ -107,11 +112,17 @@ void custom(int sel)
 			custommovement();
 		}
 	}
-	if(!g_quit)
+
+	cout << "Press spacebar to continue" << endl;
+	if(g_playing == true)
 	{
-		c1 = false;
-		cout << "Press spacebar to continue";
 		cont();
+		play();
+	}
+	else
+	{
+		cont();
+		gamemenu();
 	}
 }
 
@@ -128,9 +139,11 @@ void reset()
 	else if(lvl3 == true)
 		level(3);
 	else if(c1 == true)
-		custom(1);
+		customlevel(1);
 	else if(c2 == true)
-		custom(2);
+		customlevel(2);
+	else if(c3 == true)
+		customlevel(3);
 }
 
 void cont()
@@ -143,18 +156,10 @@ void cont()
 		if(lvl1 == true)
 		{
 			lvl1 = false;
-			if(g_clear == true)
-			{
-				lvl2 = true;
-			}
 		}
 		else if(lvl2 == true)
 		{
 			lvl2 = false;
-			if(g_clear == true)
-			{
-				lvl3 = true;
-			}
 		}
 		else if(lvl3 == true)
 			lvl3 = false;
@@ -162,7 +167,9 @@ void cont()
 			c1 = false;
 		else if(c2 == true)
 			c2 = false;
-		play();
+		else if(c3 == true)
+			c3 = false;
+		reset();
 		break;
 	case 'R':
 	case 'r':
