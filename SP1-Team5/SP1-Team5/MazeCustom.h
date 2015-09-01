@@ -3,7 +3,7 @@
 
 void custommovement(void);
 void customUI(void);
-void save(void)
+void save(void);
 void refresh(void);
 
 #endif

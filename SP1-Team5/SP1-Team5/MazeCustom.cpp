@@ -33,41 +33,19 @@ void refresh(void)
 void save(void) 
 {
 	ofstream save;
-	if (c1 = true)
-	{
+	if (c1 == true)
 		save.open("custom1.txt");
-		for(size_t i = 0; i < g_size.size()-1; ++i)
-		{
-			for(size_t j = 0; j < g_size[i].size(); ++j)
-			{
-				save << g_size[i][j];
-			}
-			save << endl;
-		}
-	}
-	else if (c2 = true)
-	{
+	else if (c2 == true)
 		save.open("custom2.txt");
-		for(size_t i = 0; i < g_size.size()-1; ++i)
-		{
-			for(size_t j = 0; j < g_size[i].size(); ++j)
-			{
-				save << g_size[i][j];
-			}
-			save << endl;
-		}
-	}
-	else if (c3 = true)
-	{
+	else if (c3 == true)
 		save.open("custom3.txt");
-		for(size_t i = 0; i < g_size.size()-1; ++i)
+	for(size_t i = 0; i < g_size.size()-1; ++i)
+	{
+		for(size_t j = 0; j < g_size[i].size(); ++j)
 		{
-			for(size_t j = 0; j < g_size[i].size(); ++j)
-			{
-				save << g_size[i][j];
-			}
-			save << endl;
+			save << g_size[i][j];
 		}
+		save << endl;
 	}
 	save.close();
 }

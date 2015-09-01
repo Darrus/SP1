@@ -13,9 +13,11 @@
 extern COORD g_player;
 extern bool g_quit;
 extern bool g_key;
+extern bool g_key1;
 extern bool g_playing;
 extern bool newscore;
 extern bool g_once;
+extern bool g_reset;
 extern int seconds;
 extern int minutes;
 
@@ -53,9 +55,10 @@ void levelselect(int sel)
 		lvl3 = true;
 		mazestore(m3);
 	}
+
 	clock_start();
 	showscore();
-	while(!g_quit && !g_clear)
+	while(!g_quit && !g_clear && !g_reset)
 	{
 		mazemapping();
 		UI();
@@ -63,6 +66,7 @@ void levelselect(int sel)
 		showscore();
 	}
 	clock_end();
+
 	//Calls the highscore function
 	if(g_clear == true)
 	{
@@ -73,9 +77,18 @@ void levelselect(int sel)
 	{
 		win();
 	}
+
 	cout << "Press spacebar to continue" << endl << "Press R to restart level";
-	cont();
-	play();
+	if(g_reset == true)
+	{
+		g_reset = false;
+		reset();
+	}
+	else
+	{
+		cont();
+		play();
+	}
 }
 
 void customlevel(int sel)
@@ -98,7 +111,7 @@ void customlevel(int sel)
 		mazestore(customs3);
 	}
 	
-	while(!g_quit && !g_clear)
+	while(!g_quit && !g_clear && !g_reset)
 	{
 		mazemapping();
 		if(g_playing == true)
@@ -116,8 +129,16 @@ void customlevel(int sel)
 	cout << "Press spacebar to continue" << endl;
 	if(g_playing == true)
 	{
-		cont();
-		play();
+		if(g_reset == true)
+		{
+			g_reset = false;
+			reset();
+		}
+		else
+		{
+			cont();
+			play();
+		}
 	}
 	else
 	{
@@ -130,14 +151,15 @@ void reset(void)
 {
 	cls();
 	g_key = false;
+	g_key1 = false;
 	g_clear = false;
 	g_quit = false;
 	if(lvl1 == true)
-		level(1);
+		levelselect(1);
 	else if(lvl2 == true)
-		level(2);
+		levelselect(2);
 	else if(lvl3 == true)
-		level(3);
+		levelselect(3);
 	else if(c1 == true)
 		customlevel(1);
 	else if(c2 == true)
@@ -154,13 +176,9 @@ void cont(void)
 	case ' ':
 		cls();
 		if(lvl1 == true)
-		{
 			lvl1 = false;
-		}
 		else if(lvl2 == true)
-		{
 			lvl2 = false;
-		}
 		else if(lvl3 == true)
 			lvl3 = false;
 		else if(c1 == true)
