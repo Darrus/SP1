@@ -14,7 +14,7 @@ extern bool c2;
 extern bool c3;
 
 // refreshing the text file back to default
-void refresh()
+void refresh(void)
 {
 	ofstream refresh;
 	for(size_t i = 0; i < g_size.size()-2; ++i)
@@ -30,7 +30,7 @@ void refresh()
 }
 
 // saving the edited txt file
-void save() 
+void save(void) 
 {
 	ofstream save;
 	if (c1 = true)
@@ -73,7 +73,7 @@ void save()
 }
 
 // movement for custom map
-void custommovement()
+void custommovement(void)
 {
 	if(g_playing == true)
 	{
@@ -271,7 +271,7 @@ void custommovement()
 	}
 }
 
-void customUI()
+void customUI(void)
 {
 	// hard coded UI as instructions for player
 	setcolor(0x2F);

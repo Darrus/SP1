@@ -3,7 +3,7 @@
 #include "functions.h"
 
 //Links everything together and runs the game
-void main()
+void main(void)
 {
 	SetConsoleTitle(L"aMAZE");
 	setConsoleSize(79 , 25);

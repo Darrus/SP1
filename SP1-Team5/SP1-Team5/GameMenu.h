@@ -27,17 +27,17 @@ enum customenum
 	END,
 };
 
-void gamemenu();
-void title();
-void menu();
-void play();
+void gamemenu(void);
+void title(void);
+void menu(void);
+void play(void);
 void input(state& s);
-void levelmenu();
+void levelmenu(void);
 void levelselect(level& l);
-void error();
-void quit();
-void custom();
-void custommenu();
+void error(void);
+void quit(void);
+void custom(void);
+void custommenu(void);
 void customselect(customenum& i);
 
 #endif

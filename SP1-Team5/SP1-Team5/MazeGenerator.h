@@ -3,8 +3,8 @@
 #include "header.h"
 
 void mazestore(string map);
-void mazemapping();
-void UI();
+void mazemapping(void);
+void UI(void);
 
 struct pos
 {

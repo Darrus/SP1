@@ -28,7 +28,7 @@ vector <pos> roun;
 pos holder;
 
 //Prints out the UI on the right
-void UI()
+void UI(void)
 {
 	//Hard-coded every thing on the UI
 	setcolor(0x2F);
@@ -98,7 +98,7 @@ void mazestore(string map)
 }
 
 //Generates the map based on text map
-void mazemapping()
+void mazemapping(void)
 {
 	//Resets point to 0,0
 	gotoXY(0,0);

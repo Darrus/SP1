@@ -2,8 +2,8 @@
 #define GAME_H
 
 void levelselect(int sel);
-void reset();
-void cont();
+void reset(void);
+void cont(void);
 void customlevel(int sel);
 
 #endif

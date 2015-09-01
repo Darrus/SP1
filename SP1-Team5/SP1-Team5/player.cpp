@@ -22,14 +22,14 @@ bool g_key1 = false;
 bool g_quit = false;
 COORD g_player;
 
-void player()
+void player(void)
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),g_player);
 	setcolor(0x0A);
 	cout << (char)1;
 }
 
-void movement()
+void movement(void)
 {
 	int ch = _getch();
 	switch(ch)

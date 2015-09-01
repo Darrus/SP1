@@ -162,7 +162,7 @@ void store(int min, int sec)
 }
 
 //Shows highscore
-void showscore()
+void showscore(void)
 {
 	char highscoreC[5] = {0};
 	if(lvl1 == true)

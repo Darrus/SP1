@@ -126,7 +126,7 @@ void customlevel(int sel)
 	}
 }
 
-void reset()
+void reset(void)
 {
 	cls();
 	g_key = false;
@@ -146,7 +146,7 @@ void reset()
 		customlevel(3);
 }
 
-void cont()
+void cont(void)
 {
 	char in = _getch();
 	switch(in)
