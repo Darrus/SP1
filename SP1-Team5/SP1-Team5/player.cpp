@@ -41,13 +41,13 @@ void movement()
 		}
 		break;
 	case 80:
-		if(g_player.Y+1 < 23)
+		if(g_player.Y+1 < 24)
 		{
 			detect(g_player.Y+1,g_player.X); //Down movement
 		}
 		break;
 	case 77:
-		if(g_player.X+1 < 60)
+		if(g_player.X+1 < 50)
 		{
 			detect(g_player.Y,g_player.X+1); //Right movement
 		}
@@ -85,13 +85,9 @@ void detect(int Y,int X)
 		muddy();
 		break;
 	case '1':
-		break;
 	case 'X':
-		break;
 	case '2':
-		break;
 	case '3':
-		break;
 	case '#':
 		break;
 	default:
@@ -104,10 +100,13 @@ void detect(int Y,int X)
 	switch(g_size[Y][X])
 	{
 	case '0': 
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
 	case 'M':
+	case 'S':
+	case '<':
+	case '>':
+	case '^':
+	case 'V':
+	case '?':
 		g_player.Y = Y;
 		g_player.X = X;
 		break;
@@ -130,27 +129,6 @@ void detect(int Y,int X)
 		g_player.X = X;
 		g_key = true;
 		door1();
-		break;
-	case '<':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
-	case '>':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
-	case '^':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
-	case 'v':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
-	case '?':
-		g_player.Y = Y;
-		g_player.X = X;
-		break;
 	case '4': 
 		if(lvl1 == true)
 			g_clear = true;

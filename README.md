@@ -60,3 +60,12 @@ More available save for customising maps (3 in total)
 
 # Darrus & Guang Zhe
 Fixed Reset feature, Highscore system, and continue button. Circle FOE now working.
+
+# lyx97
+Added FOE,Spawn and walls to maze custom
+
+# lyx97
+Change UI settings
+
+# Darrus
+Merged everything together
