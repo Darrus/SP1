@@ -6,9 +6,16 @@
 #include "sounds.h"
 
 /**
-* By Goh Zhen Yuan and Chuan Guang Zhe
-*
-*
+*	Goh Zhen Yuan & Chuan Guang Zhe & Lee Yu Xian
+*	This .cpp contains function:
+*	UI() 18/8/2015 Lee Yu Xian
+	Prints out the User Interface for the game.
+
+*	mazestore(string map) 18/8/2015 Chuan Guang Zhe
+	Gets the .txt file and store into a g_size.
+
+*	mazemapping() 21/8/2015 Goh Zheng Yuan
+	Converts each character in g_size so that it will cout the map on the screen.
 */
 
 //Declarations of variables
@@ -18,24 +25,21 @@ extern COORD g_player;
 extern bool g_quit;
 extern bool g_playing;
 
-char wall = 219;
-char door = 254;
-int h = 0;
-bool g_once = false;
+char wall = 219; //ASCII value for wall
+char door = 254; //ASCII value for door
+bool g_once = false; //Check if the map is generated for the first time
+vector <string> g_size; //Array for storing the map
+count counter; //Counter to count how many horizontal,vertical and orbiting FOE
 
-vector <string> g_size;
+//To store each FOE current location and which direction it is facing
+vector <pos> hori; //Horizontal
+vector <pos> vert; //Vertical
+vector <pos> roun; //Orbit or Round
 
-count counter;
-
-//Vector strings for FOE position
-vector <pos> hori;
-vector <pos> vert;
-vector <pos> roun;
-
-pos holder;
+pos holder; //A temporary holder to hold the positions of the FOE so that it is able to push into it's proper vector.
 
 //Prints out the UI on the right
-void UI(void)
+void UI()
 {
 	//Hard-coded every thing on the UI
 	setcolor(0x2F);
@@ -105,7 +109,7 @@ void mazestore(string map)
 }
 
 //Generates the map based on text map
-void mazemapping(void)
+void mazemapping()
 {
 	//Resets point to 0,0
 	gotoXY(0,0);
@@ -118,28 +122,29 @@ void mazemapping(void)
 			//Switch case based on what is on the map
 			switch(g_size[a][b])
 			{
-				//0 is converted into space
-				case '0':cout << " "; 
+				case '0': //Empty space
+					cout << " "; 
 					break;
-				//1 is converted into walls
-				case '1':setcolor(0x0f);cout << wall;setcolor(7);
+				case '1': //Wall
+					setcolor(0x0f);cout << wall;setcolor(7);
 					break;
-				//2 is converted into door
-				case '2':if(g_key == true)
-						{
-							//Opens the door if the player have a key
-							g_size[a][b] = '4';
-							cout << ' ';
-						}
-						else
-						{
-							setcolor(14);
-							cout << door;
-							setcolor(7);
-						}
+				case '2': //Door
+					//Opens the door if the player have a key
+					if(g_key == true)
+					{
+						g_size[a][b] = '4';
+						cout << ' ';
+					}
+					else
+					{
+						setcolor(14);
+						cout << door;
+						setcolor(7);
+					}
 					break;
-				// Gate
-				case '3':
+				
+				case '3': //Gate
+					//Opens the gate if the player have a key
 					if (g_key1 == true)
 					{
 						g_size[a][b] = '0';
@@ -152,31 +157,35 @@ void mazemapping(void)
 						setcolor(7);
 					}
 					break;
-				//Broken Floor system
-				case 'x': cout << 'O';
+				case 'x': //Unstable floor
+					cout << 'O';
 					break;
-				case 'X': cout << 'X';
+				case 'X': //Broken floor
+					cout << 'X';
 					break;
-				case '#':
+				case '#': //Wall for orbiting FOE to orbit around
 					setcolor(0x0f);
 					cout << wall;
 					setcolor(7);
 					break;
-				case '4': cout << "!";
+				case '4': //Exit
+					cout << "!";
 					break;
-				//Muddy Floor
-				case 'M':
+				case 'M': //Muddy Floor
 					setcolor(4);
 					cout << wall;
 					setcolor(7);
 					break;
-				//Key
-				case '!':setcolor(14);cout << "*";setcolor(7);
+		
+				case '!': //Key
+					setcolor(14);cout << "*";setcolor(7);
 					break;
-				//Key for gate
-				case '$':setcolor(0xB);cout << "*";setcolor(7);
+				
+				case '$': //Key for gate
+					setcolor(0xB);cout << "*";setcolor(7);
 					break;
-				case '@':
+				case '@': //Orbiting FOE
+					//If the map is being loaded the first time, to store positions of FOE
 					if(g_once == false)
 					{
 						holder.X = b;
@@ -187,8 +196,10 @@ void mazemapping(void)
 					setcolor(12);
 					cout << '@';
 					setcolor(7);
+					//Checks if the FOE is beside the player
 					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y && b-1 == g_player.X) || (a-1 == g_player.Y && b == g_player.X) || (a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X) )
 					{
+						//Check if the player is currently playing
 						if (g_playing == true)
 						{
 							death();
@@ -196,8 +207,8 @@ void mazemapping(void)
 						}
 					}
 					break;
-				//Player spawn
-				case 'S':
+				case 'S': //Player Spawn
+					//Check if the game is currently playing or not
 					if (g_playing == false)
 					{
 						setcolor(0x0A);
@@ -215,8 +226,8 @@ void mazemapping(void)
 						}
 					}
 					break;
-				//FOE right movement
-				case '>':
+				case '>': //FOE right movement
+					//If the map is being loaded the first time, to store positions of FOE
 					if(g_once == false)
 					{
 						holder.X = b;
@@ -227,8 +238,10 @@ void mazemapping(void)
 					setcolor(12);
 					cout << '>';
 					setcolor(7);
+					//Checks if the player is in front of the FOE
 					if((a == g_player.Y && b+1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						//Check if the player is currently playing
 						if(g_playing == true)
 						{
 							death();
@@ -236,8 +249,8 @@ void mazemapping(void)
 						}
 					}
 					break;
-				//FOE left movement
-				case '<': 
+				case '<': //FOE left movement
+					//If the map is being loaded the first time, to store positions of FOE
 					if(g_once == false)
 					{
 						holder.X = b;
@@ -248,8 +261,10 @@ void mazemapping(void)
 					setcolor(12);
 					cout << '<';
 					setcolor(7);
+					//Checks if the player is in front of the FOE
 					if((a == g_player.Y && b-1 == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						//Check if the player is currently playing
 						if(g_playing == true)
 						{
 							death();
@@ -257,8 +272,8 @@ void mazemapping(void)
 						}
 					}
 					break;
-				//FOE upwards movement
-				case '^':
+				case '^': //FOE upwards movement
+					//If the map is being loaded the first time, to store positions of FOE
 					if(g_once == false)
 					{
 						holder.X = b;
@@ -269,8 +284,10 @@ void mazemapping(void)
 					setcolor(12);
 					cout << '^';
 					setcolor(7);
+					//Checks if the player is in front of the FOE
 					if((a-1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						//Check if the player is currently playing
 						if(g_playing == true)
 						{
 							death();
@@ -278,8 +295,8 @@ void mazemapping(void)
 						}
 					}
 					break;
-				//FOE downwards movement
-				case 'v':
+				case 'v': //FOE downwards movement
+					//If the map is being loaded the first time, to store positions of FOE
 					if(g_once == false)
 					{
 						holder.X = b;
@@ -290,8 +307,10 @@ void mazemapping(void)
 					setcolor(12);
 					cout << 'v';
 					setcolor(7);
+					//Checks if the player is in front of the FOE
 					if((a+1 == g_player.Y && b == g_player.X) || (a == g_player.Y  && b == g_player.X))
 					{
+						//Check if the player is currently playing
 						if(g_playing == true)
 						{
 							death();
@@ -299,8 +318,7 @@ void mazemapping(void)
 						}
 					}
 					break;
-				//Invisible wall for FOE
-				case '?':
+				case '?': //A invisible wall that the FOE is unable to pass through but players are able to
 					if (g_playing == false)
 					{
 						cout << '?';
@@ -318,6 +336,6 @@ void mazemapping(void)
 		cout << endl;
 	}
 	gotoXY(0,23);
-	g_once = true;
-	player();
+	g_once = true; //Map has been run once, set to true
+	player(); //Prints out player positions
 }

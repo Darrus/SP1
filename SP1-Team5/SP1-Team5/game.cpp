@@ -21,20 +21,38 @@ extern bool g_reset;
 extern int seconds;
 extern int minutes;
 
-bool g_clear = false;
-bool lvl1 = false;
-bool lvl2 = false;
-bool lvl3 = false;
-bool c1 = false;
-bool c2 = false;
-bool c3 = false;
-string m1 = "m1OriginalCreation.txt";
-string m2 = "m2ModifiedWintermaulMaze.txt";
-string m3 = "m3Copy.txt";
+bool g_clear = false; //Check if player has cleared the level
 
-string customs = "custom1.txt";
-string customs2 = "custom2.txt";
-string customs3 = "custom3.txt";
+bool lvl1 = false; //Check if level 1 is being run
+bool lvl2 = false; //Check if level 2 is being run
+bool lvl3 = false; //Check if level 3 is being run
+
+bool c1 = false; //Check if custom level 1 is being run
+bool c2 = false; //Check if custom level 2 is being run
+bool c3 = false; //Check if custom level 3 is being run
+
+string m1 = "m1OriginalCreation.txt"; //String to hold name of .txt file
+string m2 = "m2ModifiedWintermaulMaze.txt"; //String to hold name of .txt file
+string m3 = "m3Copy.txt"; //String to hold name of .txt file
+
+string customs = "custom1.txt"; //String to hold name of .txt file
+string customs2 = "custom2.txt"; //String to hold name of .txt file
+string customs3 = "custom3.txt"; //String to hold name of .txt file
+
+/*
+*	Goh Zheng Yuan & Lee Yu Xian
+*	This .cpp contains function:
+*	chooselevel(int sel) 21/8/2015 Goh Zheng Yuan
+	Selects appropriate level and keep running till player cleared the level or press escape/reset
+
+*	customlevel(int sel) Lee Yu Xian
+	
+*	reset() 21/8/2015 Goh Zheng Yuan
+	Resets every boolean and check if player is still in level
+
+*	cont() 21/8/2015 Goh Zheng Yuan
+	Gets input spacebar, check which level is running now and turn it off.
+*/
 
 void chooselevel(int sel)
 {
@@ -144,7 +162,7 @@ void customlevel(int sel)
 	}
 }
 
-void reset(void)
+void reset()
 {
 	cls();
 	g_key = false;
@@ -165,7 +183,7 @@ void reset(void)
 		customlevel(3);
 }
 
-void cont(void)
+void cont()
 {
 	char in = _getch();
 	switch(in)

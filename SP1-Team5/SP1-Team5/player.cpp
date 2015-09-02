@@ -17,49 +17,62 @@ extern bool c1;
 extern bool c2;
 extern bool c3;
 
-bool g_key = false;
-bool g_key1 = false;
+bool g_key = false; //Key for door
+bool g_key1 = false; //Key for gate
 bool g_quit = false;
 bool g_reset = false;
-COORD g_player;
+COORD g_player; //X and Y position of the player
 
-void player(void)
+/*
+*	Goh Zheng Yuan 
+*	This .cpp contains function:
+*	player() 18/8/2015
+	cout the position of the player.
+
+*	movement() 18/8/2015
+	Get keyboard inputs and run the function detect().
+
+*	detect() 19/8/2015
+	Checks what type of floor the player is about to step on.
+*/
+
+void player()
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),g_player);
 	setcolor(0x0A);
 	cout << (char)1;
 }
 
-void movement(void)
+void movement()
 {
 	int ch = _getch();
 	switch(ch)
 	{
-	case 72:
+	case 72: //Arrow Key Up
 		if(g_player.Y-1 >= 0)
 		{
-			detect(g_player.Y-1,g_player.X); //Top movement
+			detect(g_player.Y-1,g_player.X);
 		}
 		break;
-	case 80:
+	case 80: //Arrow Key Down
 		if(g_player.Y+1 < 23)
 		{
-			detect(g_player.Y+1,g_player.X); //Down movement
+			detect(g_player.Y+1,g_player.X);
 		}
 		break;
-	case 77:
+	case 77: //Arrow Key Right
 		if(g_player.X+1 < 50)
 		{
-			detect(g_player.Y,g_player.X+1); //Right movement
+			detect(g_player.Y,g_player.X+1);
 		}
 		break;
-	case 75:
+	case 75: //Arrow key Left
 		if(g_player.X-1 >= 0)
 		{
-			detect(g_player.Y,g_player.X-1); //Left movement
+			detect(g_player.Y,g_player.X-1);
 		}
 		break;
-	case 27:
+	case 27: //Esc key
 		g_quit = true;
 		break;
 	case 'r':
@@ -74,6 +87,7 @@ void movement(void)
 void detect(int Y,int X)
 {
 	//Detection for FOE movements
+	//If player is running into the wall, FOE will not move.
 	switch(g_size[Y][X])
 	{
 	case 'M':
@@ -112,10 +126,10 @@ void detect(int Y,int X)
 		g_player.Y = Y;
 		g_player.X = X;
 		break;
-	case 'x': 
-		g_size[Y][X] = 'X';
+	case 'x':
 		g_player.Y = Y;
 		g_player.X = X;
+		g_size[Y][X] = 'X';
 		brokenfloor();
 		break;
 	case '$':
@@ -133,18 +147,7 @@ void detect(int Y,int X)
 		door1();
 		break;
 	case '4': 
-		if(lvl1 == true)
-			g_clear = true;
-		else if(lvl2 == true)
-			g_clear = true;
-		else if(lvl3 == true)
-			g_clear = true;
-		else if(c1 == true)
-			g_clear = true;
-		else if(c2 == true)
-			g_clear = true;
-		else if(c3 == true)
-			g_clear = true;
+		g_clear = true;
 		g_player.Y = Y;
 		g_player.X = X;
 		break;
