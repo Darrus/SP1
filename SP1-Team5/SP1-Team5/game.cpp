@@ -21,8 +21,6 @@ extern bool g_reset;
 extern int seconds;
 extern int minutes;
 
-
-bool g_switch = false;
 bool g_clear = false;
 bool lvl1 = false;
 bool lvl2 = false;
@@ -34,7 +32,7 @@ string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";
 string m3 = "m3Copy.txt";
 
-string customs = "custom1.txt";
+string customs1 = "custom1.txt";
 string customs2 = "custom2.txt";
 string customs3 = "custom3.txt";
 
@@ -97,7 +95,7 @@ void customlevel(int sel)
 	if(sel == 1)
 	{
 		c1 = true;
-		mazestore(customs);
+		mazestore(customs1);
 	}
 	else if(sel == 2)
 	{
@@ -124,7 +122,7 @@ void customlevel(int sel)
 			custommovement();
 		}
 	}
-
+	gotoXY(1, 25);
 	cout << "Press spacebar to continue" << endl;
 	if(g_playing == true)
 	{
