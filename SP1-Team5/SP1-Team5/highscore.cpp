@@ -16,28 +16,30 @@ void store(int min, int sec)
 {
 	int highscore[4] = {0};
 	char highscoreC[5] = {0};
-	int m = min;
-	int s = sec;
 	int i = 0;
 
 	//convert time taken to your highscore
-	if ( m < 10)
+	if ( min < 10)
 	{
-		*(highscore+1) = m;
+		//If minute is only 1 digit
+		*(highscore+1) = min;
 	}
-	else if (m >= 10)
+	else if (min >= 10)
 	{
-		*(highscore+1) = m % 10;
-		*highscore = m - *(highscore+1);
+		//If minute is 2 digit
+		*(highscore+1) = min % 10;
+		*highscore = (min - *(highscore+1)) /10;
 	}
-	if (s < 10)
+	if (sec < 10)
 	{
-		*(highscore+3) = s;
+		//If second is only 1 digit
+		*(highscore+3) = sec;
 	}
-	else if ( s >= 10)
+	else if ( sec >= 10)
 	{
-		*(highscore+3) = s % 10;
-		*(highscore+2) = s - *(highscore+3);
+		//If second is 2 digit
+		*(highscore+3) = sec % 10;
+		*(highscore+2) = (sec - *(highscore+3)) /10;
 	}
 	
 	//value of what highscore u achieved
@@ -83,8 +85,10 @@ void store(int min, int sec)
 		newhighscore();
 		highminC = highmin;
 		highsecC = highsec;
-		gotoXY(0,23);
+		gotoXY(25,26);
+		setcolor(0xE);
 		cout << "You have achieved a new highscore!";
+		setcolor(7);
 		newscore = true;
 	}
 	else if(highmin == highminC)
@@ -93,8 +97,10 @@ void store(int min, int sec)
 		{
 			newhighscore();
 			highsecC = highsec;
-			gotoXY(0,23);
+			gotoXY(25,26);
+			setcolor(0xE);
 			cout << "You have achieved a new highscore!";
+			setcolor(7);
 			newscore = true;
 		}
 		else if (highsec == highsecC)
@@ -112,17 +118,19 @@ void store(int min, int sec)
 	else if (highminC >= 10)
 	{
 		*(highscoreC+1) = highminC % 10;
-		*highscoreC = (highminC - highscoreC[1])+48;
+		*highscoreC = (highminC - highscoreC[1]) /10 + 48;
+		*(highscoreC+1) += 48;
 	}
 	if (highsecC < 10)
 	{
 		*(highscoreC+2) = '0';
 		*(highscoreC+3) = highsecC+48;
 	}
-	else if ( s >= 10)
+	else if ( sec >= 10)
 	{
 		*(highscoreC+3) = highsecC % 10;
-		*(highscoreC+2) = (highsecC - highscoreC[3])+48;
+		*(highscoreC+2) = (highsecC - highscoreC[3]) /10 + 48;
+		*(highscoreC+3) += 48;
 	}
 
 	//stores best highscore in texfile
@@ -174,9 +182,9 @@ void showscore(void)
 		coutfile.getline(highscoreC,5);
 		coutfile.close();
 		//prints out the current best highscore
-		gotoXY (52,20);
+		gotoXY (54,20);
 		cout << "Best Highscore: ";
-		gotoXY (52,21);
+		gotoXY (54,21);
 		cout << highscoreC[0] << highscoreC[1] <<" minutes " << highscoreC[2] << highscoreC[3] << " seconds";
 		gotoXY (0,24);
 	}
@@ -189,9 +197,9 @@ void showscore(void)
 		coutfile.getline(highscoreC,5);
 		coutfile.close();
 		//prints out the current best highscore
-		gotoXY (52,20);
+		gotoXY (54,20);
 		cout << "Best Highscore: ";
-		gotoXY (52,21);
+		gotoXY (54,21);
 		cout << highscoreC[0] << highscoreC[1] <<" minutes " << highscoreC[2] << highscoreC[3] << " seconds";
 		gotoXY (0,24);
 	}
@@ -204,9 +212,9 @@ void showscore(void)
 		coutfile.getline(highscoreC,5);
 		coutfile.close();
 		//prints out the current best highscore
-		gotoXY (52,20);
+		gotoXY (54,20);
 		cout << "Best Highscore: ";
-		gotoXY (52,21);
+		gotoXY (54,21);
 		cout << highscoreC[0] << highscoreC[1] <<" minutes " << highscoreC[2] << highscoreC[3] << " seconds";
 		gotoXY (0,24);
 	}

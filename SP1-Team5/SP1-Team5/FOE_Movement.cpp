@@ -119,13 +119,12 @@ void FOEH(int c)
 {
 	for(int a = 0; a < c; ++a)
 	{
-		
-		if (g_size[hori[a].Y][hori[a].X-1] == '1' || g_size[hori[a].Y][hori[a].X-1] == 'x' || g_size[hori[a].Y][hori[a].X-1] == '?')
+		if (g_size[hori[a].Y][hori[a].X-1] == '1' || g_size[hori[a].Y][hori[a].X-1] == 'x' || g_size[hori[a].Y][hori[a].X-1] == '?' || g_size[hori[a].Y][hori[a].X-1] == '#' || hori[a].X == 0)
 		{
 			hori[a].right = true;
 			hori[a].left = false;
 		}
-		else if(g_size[hori[a].Y][hori[a].X+1] == '1' || g_size[hori[a].Y][hori[a].X+1] == 'x' || g_size[hori[a].Y][hori[a].X+1] == '?')
+		else if(g_size[hori[a].Y][hori[a].X+1] == '1' || g_size[hori[a].Y][hori[a].X+1] == 'x' || g_size[hori[a].Y][hori[a].X+1] == '?' || g_size[hori[a].Y][hori[a].X+1] == '#' || hori[a].X == 49)
 		{
 			hori[a].left = true;
 			hori[a].right = false;
@@ -170,35 +169,56 @@ void FOEV(int c)
 {
 	for(int a = 0; a < c; ++a)
 	{
-		if (g_size[vert[a].Y+1][vert[a].X] == '1' || g_size[vert[a].Y+1][vert[a].X] == 'x')
-		{
-			vert[a].up = true;
-			vert[a].down = false;
-		}
-		else if(g_size[vert[a].Y-1][vert[a].X] == '1' || g_size[vert[a].Y-1][vert[a].X] == 'x')
+		if(vert[a].Y == 0)
 		{
 			vert[a].down = true;
 			vert[a].up = false;
 		}
-		else
+		else if(g_size[vert[a].Y-1][vert[a].X] == '1' || g_size[vert[a].Y-1][vert[a].X] == 'x' || g_size[vert[a].Y-1][vert[a].X] == '#' || g_size[vert[a].Y-1][vert[a].X] == '?')
 		{
 			vert[a].down = true;
+			vert[a].up = false;
 		}
-		if ((g_size[vert[a].Y-1][vert[a].X] == '0' || g_size[vert[a].Y-1][vert[a].X] == 'M') && vert[a].up == true)
+		else if (g_size[vert[a].Y+1][vert[a].X] == '1' || g_size[vert[a].Y+1][vert[a].X] == 'x' || g_size[vert[a].Y+1][vert[a].X] == '#' || g_size[vert[a].Y+1][vert[a].X] == '?' || vert[a].Y == 22)
 		{
-			//move up
-			vert[a].Y--;
-			gotoXY(vert[a].X,vert[a].Y);
-			g_size[vert[a].Y][vert[a].X] = '^';
-			g_size[vert[a].Y+1][vert[a].X] = '0';
+			vert[a].up = true;
+			vert[a].down = false;
+		}
+		
+		if(vert[a].up == true)
+		{
+			if (g_size[vert[a].Y-1][vert[a].X] == '0' || g_size[vert[a].Y-1][vert[a].X] == 'M')
+			{
+				//move up
+				vert[a].Y--;
+				gotoXY(vert[a].X,vert[a].Y);
+				if(vert[a].mud == true)
+				{
+					g_size[vert[a].Y+1][vert[a].X] = 'M';
+					vert[a].mud = false;
+				}
+				else
+					g_size[vert[a].Y+1][vert[a].X] = '0';
+				if(g_size[vert[a].Y][vert[a].X] == 'M')
+					vert[a].mud = true;
+				g_size[vert[a].Y][vert[a].X] = '^';
+			}
 		}
 		else if ((g_size[vert[a].Y+1][vert[a].X] == '0' || g_size[vert[a].Y+1][vert[a].X] == 'M') && vert[a].down == true)
 		{
 			//move down
 			vert[a].Y++;
 			gotoXY(vert[a].X,vert[a].Y);
+			if(vert[a].mud == true)
+				{
+					g_size[vert[a].Y-1][vert[a].X] = 'M';
+					vert[a].mud = false;
+				}
+				else
+					g_size[vert[a].Y-1][vert[a].X] = '0';
+				if(g_size[vert[a].Y][vert[a].X] == 'M')
+					vert[a].mud = true;
 			g_size[vert[a].Y][vert[a].X] = 'v';
-			g_size[vert[a].Y-1][vert[a].X] = '0';
 		}
 	}
 }

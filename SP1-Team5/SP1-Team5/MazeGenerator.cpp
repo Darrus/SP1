@@ -52,9 +52,9 @@ void UI(void)
 	cout << "Obiting FOE = Red @" << endl;
 	gotoXY(54, 11);
 	setcolor(0x07);
-	cout << "Unstable Floors = Grey O" << endl;
+	cout << "Unstable Floors = Red O" << endl;
 	gotoXY(54, 12);
-	cout << "Broken Floors = Grey X" << endl;
+	cout << "Broken Floors = Red X" << endl;
 	gotoXY(54, 13);
 	setcolor(0x0E);
 	cout << "Keys (door) = Yellow *" << endl;
@@ -151,17 +151,9 @@ void mazemapping(void)
 				case 'X': cout << 'X';
 					break;
 				case '#':
-					if (g_playing == true)
-					{
-						setcolor(0x0f);
-						cout << wall;
-						setcolor(7);
-					}
-					else
-					{
-						setcolor(7);
-						cout << wall;
-					}
+					setcolor(0x0f);
+					cout << wall;
+					setcolor(7);
 					break;
 				case '4': cout << "!";
 					break;
@@ -192,6 +184,7 @@ void mazemapping(void)
 					{
 						if (g_playing == true)
 						{
+							death();
 							g_quit = true;
 						}
 					}

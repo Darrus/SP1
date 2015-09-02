@@ -16,11 +16,22 @@ extern bool c3;
 void refresh(void)
 {
 	ofstream refresh;
-	for(size_t i = 0; i < g_size.size()-2; ++i)
+	for(size_t i = 0; i < g_size.size(); ++i)
 	{
-		for(size_t j = 0; j < g_size[i].size()-1; ++j)
+		for(size_t j = 0; j < g_size[i].size(); ++j)
 		{
-			g_size[i][j] = '0';
+			if(i == 0 || i == g_size.size()-2)
+			{
+				g_size[i][j] = '1';
+			}
+			else if(j == 0 || j == g_size[i].size()-1)
+			{
+				g_size[i][j] = '1';
+			}
+			else
+			{
+				g_size[i][j] = '0';
+			}
 			refresh << g_size[i][j];
 		}
 		refresh << endl;
@@ -58,25 +69,25 @@ void custommovement(void)
 	case 72: // ascii code for up arrow key
 		if(g_player.Y-1 >= 0)
 		{
-			g_player.Y--; // going up
+			g_player.Y--; // going up in custom mode
 		}
 		break;
 	case 80: // ascii code for down arrow key
 		if(g_player.Y+1 < 23)
 		{
-			g_player.Y++; // going down
+			g_player.Y++; // going down in custom mode
 		} 
 		break; 
 	case 77: // ascii code for right arrow key
 		if(g_player.X+1 < 50)
 		{
-			g_player.X++; // going right
+			g_player.X++; // going right in custom mode
 		}
 		break;
 	case 75: // ascii code for left arrow key
 		if(g_player.X-1 >= 0)
 		{
-			g_player.X--; // going left
+			g_player.X--; // going left in custom mode
 		}
 		break;
 	case 27: // ascii code for escape key

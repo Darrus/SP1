@@ -42,7 +42,7 @@ void movement(void)
 		}
 		break;
 	case 80:
-		if(g_player.Y+1 < 24)
+		if(g_player.Y+1 < 23)
 		{
 			detect(g_player.Y+1,g_player.X); //Down movement
 		}
