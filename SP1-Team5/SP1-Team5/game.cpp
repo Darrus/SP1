@@ -67,18 +67,6 @@ void levelselect(int sel)
 	}
 	clock_end();
 
-	//Calls the highscore function
-	if(g_clear == true)
-	{
-		store(minutes,seconds);
-		showscore();
-	}
-	if (newscore == false && g_quit == false)
-	{
-		win();
-	}
-
-	cout << "Press spacebar to continue" << endl << "Press R to restart level";
 	if(g_reset == true)
 	{
 		g_reset = false;
@@ -86,6 +74,17 @@ void levelselect(int sel)
 	}
 	else
 	{
+		//Calls the highscore function
+		cout << "Press spacebar to continue" << endl << "Press R to restart level";
+		if(g_clear == true)
+		{
+			store(minutes,seconds);
+			showscore();
+		}
+		if (newscore == false && g_quit == false)
+		{
+			win();
+	}
 		cont();
 		play();
 	}
