@@ -5,9 +5,11 @@
 #include "game.h"
 #include "sounds.h"
 
+//Refers to booleans in game.cpp
 extern bool lvl1;
 extern bool lvl2;
 extern bool lvl3;
+
 bool newscore = false;
 
 
@@ -79,9 +81,11 @@ void store(int min, int sec)
 	int highminC = ((highscoreC[0]-48)*10) + (highscoreC[1]-48);
 	int highsecC = ((highscoreC[2]-48)*10) + (highscoreC[3]-48);
 
-	//replace highscore
+	//Compares player score and high score
 	if(highmin < highminC)
 	{
+		//If player score minutes is lesser than high score minutes
+		//If player score is better than high score, player score is saved as high score
 		newhighscore();
 		highminC = highmin;
 		highsecC = highsec;
@@ -93,8 +97,11 @@ void store(int min, int sec)
 	}
 	else if(highmin == highminC)
 	{
+		//If player score minutes is same as highscore minutes
 		if(highsec < highsecC)
 		{
+
+			//If player score is better than high score, player score is saved as high score
 			newhighscore();
 			highsecC = highsec;
 			gotoXY(25,26);
@@ -105,29 +112,35 @@ void store(int min, int sec)
 		}
 		else if (highsec == highsecC)
 		{
+			//If player score is same as highscore, it will not save play score and retains the high score
 			newscore = false;
 		}
 	}
 	
 	//convert highminC and highsecC to highscoreC 
+	//+48 is needed because highscoreC is a char array, unlike highscore which is a interger array
 	if (highminC < 10)
 	{
+		//If minute is only 1 digit
 		*highscoreC = '0';
 		*(highscoreC+1) = highminC+48;
 	}
 	else if (highminC >= 10)
 	{
+		//If minute is 2 digit
 		*(highscoreC+1) = highminC % 10;
 		*highscoreC = (highminC - highscoreC[1]) /10 + 48;
 		*(highscoreC+1) += 48;
 	}
 	if (highsecC < 10)
 	{
+		//If second is only 1 digit
 		*(highscoreC+2) = '0';
 		*(highscoreC+3) = highsecC+48;
 	}
 	else if ( sec >= 10)
 	{
+		//If second is 2 digit
 		*(highscoreC+3) = highsecC % 10;
 		*(highscoreC+2) = (highsecC - highscoreC[3]) /10 + 48;
 		*(highscoreC+3) += 48;

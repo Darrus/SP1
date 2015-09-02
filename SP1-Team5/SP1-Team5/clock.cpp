@@ -3,6 +3,7 @@
 #include "functions.h"
 #include "highscore.h"
 
+//Declarations of variables
 int seconds = 0;
 int minutes = 0;
 clock_t start;
@@ -10,7 +11,7 @@ clock_t start;
 //Starts the clock
 void clock_start(void)
 {
-	//Records current time
+	//Resets and Records current time
 	seconds = 0;
 	minutes = 0;
 	start = clock();

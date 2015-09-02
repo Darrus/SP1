@@ -21,6 +21,7 @@ vector <string> g_size;
 
 count counter;
 
+//Vector strings for FOE position
 vector <pos> hori;
 vector <pos> vert;
 vector <pos> roun;

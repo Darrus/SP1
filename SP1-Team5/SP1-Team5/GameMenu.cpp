@@ -9,6 +9,7 @@ level number = One;
 bool g_playing = false;
 customenum no = Save1;
 
+//Prints out the main menu
 void gamemenu(void)
 {
 	//Construct the title screen
@@ -20,14 +21,16 @@ void gamemenu(void)
 	switch (choice)
 	{
 		case Play:
-			//Switches menu to level select if players chose to play the game
+			//Switches menu to level select
 			play();
 			break;
 		case Create:
+			//Switches to save slot select 
 			cls();
 			custom();
 			break;
 		case Quit:
+			//Quits the game
 			choice = MAX;
 			quit();
 			break;
@@ -87,28 +90,34 @@ void play(void)
 		switch (number)
 		{
 			case One:
+				//Starts level 1
 				cls();
 				levelselect(One);
 				break;
 			case Two:
+				//Starts level 2
 				cls();
 				levelselect(Two);
 				break;
 			case Three:
+				//Starts level 3
 				cls();
 				levelselect(Three);
 				break;
 			case Custom:
+				//Switches to save select
 				cls();
 				custom();
 				break;
 			case Back:
+				//Returns to main menu
 				cls();
 				back();
 				g_playing = false;
 				gamemenu();
 				break;
 			default:
+				//If players entered a non specified number, the program will end
 				error();
 				break;
 		}
@@ -163,6 +172,8 @@ void error(void)
 	cout << "The game will now close!";
 	gotoXY(10,17);
 	errorsound();
+	//Ends the program
+	g_playing = false;
 }
 
 //Prints out a message when player quits the game
@@ -179,28 +190,34 @@ void custom(void)
 	cls();
 	title();
 	custommenu();
+	//Using enum with switch case, allows players to select save.
 	customselect(no);
 	menuselect();
 	switch (no)
 	{
 	case Save1:
+		//Starts save 1
 		cls();
 		customlevel(Save1);
 		break;
 	case Save2:
+		//Starts save 2
 		cls();
 		customlevel(Save2);
 		break;
 	case Save3:
+		//Starts save 3
 		cls();
 		customlevel(Save3);
 		break;
 	case Back1:
+		//Return to main menu
 		cls();
 		g_playing = false;
 		gamemenu();
 		break;
 	default:
+		//If players entered a non specified number, the program will end
 		error();
 		no = END;
 		break;
