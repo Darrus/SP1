@@ -17,7 +17,7 @@ void setcolor(unsigned short color)
 	SetConsoleTextAttribute(hcon,color);
 }
 
-void cls()
+void cls(void)
 {
 	//Fills the entire screen with blank spaces, effectively clearing the screen
 	gotoXY(0,0);

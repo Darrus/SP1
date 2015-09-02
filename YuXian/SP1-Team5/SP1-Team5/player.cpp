@@ -20,16 +20,17 @@ extern bool c3;
 bool g_key = false;
 bool g_key1 = false;
 bool g_quit = false;
+bool g_reset = false;
 COORD g_player;
 
-void player()
+void player(void)
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),g_player);
 	setcolor(0x0A);
 	cout << (char)1;
 }
 
-void movement()
+void movement(void)
 {
 	int ch = _getch();
 	switch(ch)
@@ -47,7 +48,7 @@ void movement()
 		}
 		break;
 	case 77:
-		if(g_player.X+1 < 60)
+		if(g_player.X+1 < 50)
 		{
 			detect(g_player.Y,g_player.X+1); //Right movement
 		}
@@ -63,7 +64,7 @@ void movement()
 		break;
 	case 'r':
 	case 'R':
-		reset();
+		g_reset = true;
 		break;
 	default: movement();
 		break;
@@ -85,13 +86,9 @@ void detect(int Y,int X)
 		muddy();
 		break;
 	case '1':
-		break;
 	case 'X':
-		break;
 	case '2':
-		break;
 	case '3':
-		break;
 	case '#':
 		break;
 	default:
@@ -100,6 +97,7 @@ void detect(int Y,int X)
 		FOEO(counter.O);
 		break;
 	}
+
 	//Detection for Player movements
 	switch(g_size[Y][X])
 	{
@@ -133,6 +131,7 @@ void detect(int Y,int X)
 		g_player.X = X;
 		g_key = true;
 		door1();
+		break;
 	case '4': 
 		if(lvl1 == true)
 			g_clear = true;

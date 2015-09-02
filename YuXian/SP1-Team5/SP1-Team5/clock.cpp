@@ -8,7 +8,7 @@ int minutes = 0;
 clock_t start;
 
 //Starts the clock
-void clock_start()
+void clock_start(void)
 {
 	//Records current time
 	seconds = 0;
@@ -16,7 +16,7 @@ void clock_start()
 	start = clock();
 }
 
-int clock_end()
+int clock_end(void)
 {
 	//Current time - previous current time is converted into seconds
 	seconds = (clock() - start ) / (int) CLOCKS_PER_SEC ;

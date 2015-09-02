@@ -10,15 +10,17 @@
 #include "GameMenu.h"
 #include "sounds.h"
 
+extern COORD g_player;
 extern bool g_quit;
 extern bool g_key;
+extern bool g_key1;
 extern bool g_playing;
-extern int seconds;
-extern int minutes;
 extern bool newscore;
 extern bool g_once;
+extern bool g_reset;
+extern int seconds;
+extern int minutes;
 
-bool g_switch = false;
 bool g_clear = false;
 bool lvl1 = false;
 bool lvl2 = false;
@@ -30,7 +32,7 @@ string m1 = "m1OriginalCreation.txt";
 string m2 = "m2ModifiedWintermaulMaze.txt";
 string m3 = "m3Copy.txt";
 
-string customs = "custom1.txt";
+string customs1 = "custom1.txt";
 string customs2 = "custom2.txt";
 string customs3 = "custom3.txt";
 
@@ -51,9 +53,10 @@ void levelselect(int sel)
 		lvl3 = true;
 		mazestore(m3);
 	}
+
 	clock_start();
 	showscore();
-	while(!g_quit && !g_clear)
+	while(!g_quit && !g_clear && !g_reset)
 	{
 		mazemapping();
 		UI();
@@ -61,26 +64,38 @@ void levelselect(int sel)
 		showscore();
 	}
 	clock_end();
-	//Calls the highscore function
-	if(g_clear == true)
+
+	if(g_reset == true)
 	{
-		store(minutes,seconds);
-		showscore();
+		g_reset = false;
+		reset();
 	}
-	if (newscore == false && g_quit == false)
+	else
 	{
-		win();
+		//Calls the highscore function
+		cout << "Press spacebar to continue" << endl << "Press R to restart level";
+		if(g_clear == true)
+		{
+			store(minutes,seconds);
+			showscore();
+		}
+		if (newscore == false && g_quit == false)
+		{
+			win();
 	}
-	cout << "Press spacebar to continue" << endl << "Press R to restart level";
-	cont();
+		cont();
+		play();
+	}
 }
 
-void custom(int sel)
+void customlevel(int sel)
 {
+	g_player.X = 0;
+	g_player.Y = 0;
 	if(sel == 1)
 	{
 		c1 = true;
-		mazestore(customs);
+		mazestore(customs1);
 	}
 	else if(sel == 2)
 	{
@@ -93,7 +108,7 @@ void custom(int sel)
 		mazestore(customs3);
 	}
 	
-	while(!g_quit && !g_clear)
+	while(!g_quit && !g_clear && !g_reset)
 	{
 		mazemapping();
 		if(g_playing == true)
@@ -107,11 +122,25 @@ void custom(int sel)
 			custommovement();
 		}
 	}
-	if(!g_quit)
+	gotoXY(1, 25);
+	cout << "Press spacebar to continue" << endl;
+	if(g_playing == true)
 	{
-		c1 = false;
-		cout << "Press spacebar to continue";
+		if(g_reset == true)
+		{
+			g_reset = false;
+			reset();
+		}
+		else
+		{
+			cont();
+			play();
+		}
+	}
+	else
+	{
 		cont();
+		gamemenu();
 	}
 }
 
@@ -119,18 +148,21 @@ void reset(void)
 {
 	cls();
 	g_key = false;
+	g_key1 = false;
 	g_clear = false;
 	g_quit = false;
 	if(lvl1 == true)
-		level(1);
+		levelselect(1);
 	else if(lvl2 == true)
-		level(2);
+		levelselect(2);
 	else if(lvl3 == true)
-		level(3);
+		levelselect(3);
 	else if(c1 == true)
-		custom(1);
+		customlevel(1);
 	else if(c2 == true)
-		custom(2);
+		customlevel(2);
+	else if(c3 == true)
+		customlevel(3);
 }
 
 void cont(void)
@@ -141,28 +173,18 @@ void cont(void)
 	case ' ':
 		cls();
 		if(lvl1 == true)
-		{
 			lvl1 = false;
-			if(g_clear == true)
-			{
-				lvl2 = true;
-			}
-		}
 		else if(lvl2 == true)
-		{
 			lvl2 = false;
-			if(g_clear == true)
-			{
-				lvl3 = true;
-			}
-		}
 		else if(lvl3 == true)
 			lvl3 = false;
 		else if(c1 == true)
 			c1 = false;
 		else if(c2 == true)
 			c2 = false;
-		play();
+		else if(c3 == true)
+			c3 = false;
+		reset();
 		break;
 	case 'R':
 	case 'r':

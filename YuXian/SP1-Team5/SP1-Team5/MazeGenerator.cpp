@@ -28,7 +28,7 @@ vector <pos> roun;
 pos holder;
 
 //Prints out the UI on the right
-void UI()
+void UI(void)
 {
 	//Hard-coded every thing on the UI
 	setcolor(0x2F);
@@ -52,9 +52,9 @@ void UI()
 	cout << "Obiting FOE = Red @" << endl;
 	gotoXY(54, 11);
 	setcolor(0x07);
-	cout << "Unstable Floors = Red O" << endl;
+	cout << "Unstable Floors = Grey O" << endl;
 	gotoXY(54, 12);
-	cout << "Broken Floors = Red X" << endl;
+	cout << "Broken Floors = Grey X" << endl;
 	gotoXY(54, 13);
 	setcolor(0x0E);
 	cout << "Keys (door) = Yellow *" << endl;
@@ -98,7 +98,7 @@ void mazestore(string map)
 }
 
 //Generates the map based on text map
-void mazemapping()
+void mazemapping(void)
 {
 	//Resets point to 0,0
 	gotoXY(0,0);
@@ -112,7 +112,16 @@ void mazemapping()
 			switch(g_size[a][b])
 			{
 				//0 is converted into space
-				case '0':cout << " "; 
+				case '0':
+					if (g_playing == true)
+					{
+						cout << " "; 
+					}
+					else
+					{
+						setcolor(0x80);
+						cout << " ";
+					}
 					break;
 				//1 is converted into walls
 				case '1':setcolor(0x0f);cout << wall;setcolor(7);
@@ -151,9 +160,17 @@ void mazemapping()
 				case 'X': cout << 'X';
 					break;
 				case '#':
-					setcolor(0x0f);
-					cout << wall;
-					setcolor(7);
+					if (g_playing == true)
+					{
+						setcolor(0x0f);
+						cout << wall;
+						setcolor(7);
+					}
+					else
+					{
+						setcolor(7);
+						cout << wall;
+					}
 					break;
 				case '4': cout << "!";
 					break;
