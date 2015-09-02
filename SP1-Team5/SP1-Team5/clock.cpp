@@ -3,6 +3,12 @@
 #include "functions.h"
 #include "highscore.h"
 
+/**
+*	By Chuan Guang Zhe 21/8/2015
+*	This cpp file contains the functions needed to calculate time taken for the stage to be clear / player loses.
+*	This cpp file is mainly used for highscore.cpp
+*/
+
 //Declarations of variables
 int seconds = 0;
 int minutes = 0;

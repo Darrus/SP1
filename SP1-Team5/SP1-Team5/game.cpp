@@ -36,7 +36,7 @@ string customs = "custom1.txt";
 string customs2 = "custom2.txt";
 string customs3 = "custom3.txt";
 
-void levelselect(int sel)
+void chooselevel(int sel)
 {
 	if(sel == 1)
 	{
@@ -152,11 +152,11 @@ void reset(void)
 	g_clear = false;
 	g_quit = false;
 	if(lvl1 == true)
-		levelselect(1);
+		chooselevel(1);
 	else if(lvl2 == true)
-		levelselect(2);
+		chooselevel(2);
 	else if(lvl3 == true)
-		levelselect(3);
+		chooselevel(3);
 	else if(c1 == true)
 		customlevel(1);
 	else if(c2 == true)

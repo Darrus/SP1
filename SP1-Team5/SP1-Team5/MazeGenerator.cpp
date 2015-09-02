@@ -5,6 +5,12 @@
 #include "FOE_Movement.h"
 #include "sounds.h"
 
+/**
+* By Goh Zhen Yuan and Chuan Guang Zhe
+*
+*
+*/
+
 //Declarations of variables
 extern bool g_key;
 extern bool g_key1;

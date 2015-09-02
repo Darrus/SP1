@@ -6,7 +6,7 @@ void gate(void);
 void brokenfloor(void);
 void muddy(void);
 void menuselect(void);
-void back(void);
+void backsound(void);
 void errorsound(void);
 void death(void);
 void win(void);

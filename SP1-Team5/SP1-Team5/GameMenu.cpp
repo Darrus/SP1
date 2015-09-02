@@ -4,13 +4,20 @@
 #include "functions.h"
 #include "sounds.h"
 
+/**
+*	By Chuan Guang Zhe 21/8/2015
+*	This cpp file contains the functions needed to create the game menu, level select menu, and custom save select menu.
+*	Each menu allows the player to select modes / levels / saves which corresponds to other cpp files.
+*/
+
+//Declaration of variables
 state choice = Play;
 level number = One;
-bool g_playing = false;
 customenum no = Save1;
+bool g_playing = false;
 
 //Prints out the main menu
-void gamemenu(void)
+void gamemenu()
 {
 	//Construct the title screen
 	title();
@@ -43,8 +50,9 @@ void gamemenu(void)
 }
 
 //Prints out the title of the game
-void title(void)
+void title()
 {
+	cls();
 	//Hard-coded to print the game title
 	setcolor(0xE);
 	gotoXY(10,0);
@@ -62,7 +70,7 @@ void title(void)
 }
 
 //Prints out the main menu options
-void menu(void)
+void menu()
 {
 	//Hard-coded to print main menu options, the numbers corresponds to the functionality
 	cout << "Please select a choice";
@@ -76,10 +84,9 @@ void menu(void)
 }
 
 //Function for case Play
-void play(void)
+void play()
 {
 	g_playing = true;
-	cls();
 	title();
 	levelmenu();
 	//Using enum with switch case, allows players to select levels.
@@ -89,20 +96,12 @@ void play(void)
 	{
 		switch (number)
 		{
+			//Starts level 1 / level 2 / level 3
 			case One:
-				//Starts level 1
-				cls();
-				levelselect(One);
-				break;
 			case Two:
-				//Starts level 2
-				cls();
-				levelselect(Two);
-				break;
 			case Three:
-				//Starts level 3
 				cls();
-				levelselect(Three);
+				chooselevel(number);
 				break;
 			case Custom:
 				//Switches to save select
@@ -110,11 +109,7 @@ void play(void)
 				custom();
 				break;
 			case Back:
-				//Returns to main menu
-				cls();
 				back();
-				g_playing = false;
-				gamemenu();
 				break;
 			default:
 				//If players entered a non specified number, the program will end
@@ -135,7 +130,7 @@ void input(state & s)
 }
 
 //Prints out the level select menu
-void levelmenu(void)
+void levelmenu()
 {
 	//Hard-coded to print level select options, the numbers corresponds to the functionality
 	cout << "LEVEL SELECT";
@@ -176,8 +171,17 @@ void error(void)
 	g_playing = false;
 }
 
+//Return to main menu
+void back()
+{
+	cls();
+	backsound();
+	g_playing = false;
+	gamemenu();
+}
+
 //Prints out a message when player quits the game
-void quit(void)
+void quit()
 {
 	//Hard-coded to print out the message when players quit the game
 	gotoXY(10,13);
@@ -185,9 +189,14 @@ void quit(void)
 	gotoXY(10,14);
 }
 
-void custom(void)
+/**
+*	By Lee Yu Xian 25/8/2015
+*	Functions that creates custom save select menu and corresponds to custom maze maker
+*/
+
+//Function for case custom
+void custom()
 {
-	cls();
 	title();
 	custommenu();
 	//Using enum with switch case, allows players to select save.
@@ -195,36 +204,26 @@ void custom(void)
 	menuselect();
 	switch (no)
 	{
-	case Save1:
-		//Starts save 1
-		cls();
-		customlevel(Save1);
-		break;
-	case Save2:
-		//Starts save 2
-		cls();
-		customlevel(Save2);
-		break;
-	case Save3:
-		//Starts save 3
-		cls();
-		customlevel(Save3);
-		break;
-	case Back1:
-		//Return to main menu
-		cls();
-		g_playing = false;
-		gamemenu();
-		break;
-	default:
-		//If players entered a non specified number, the program will end
-		error();
-		no = END;
-		break;
+		//Starts save1 / save2 / save3
+		case Save1:
+		case Save2:
+		case Save3:
+			cls();
+			customlevel(no);
+			break;
+		case Back1:
+			back();
+			break;
+		default:
+			//If players entered a non specified number, the program will end
+			error();
+			no = END;
+			break;
 	}
 }
 
-void custommenu(void)
+//Prints out the custom save select menu
+void custommenu()
 {
 	cout << "SAVE SELECT";
 	gotoXY(10,9);
@@ -238,6 +237,7 @@ void custommenu(void)
 	gotoXY(10,13);
 }
 
+//Gets input from user for save select
 void customselect (customenum& i)
 {
 	// converting

@@ -5,11 +5,20 @@
 #include "game.h"
 #include "sounds.h"
 
+/**
+*	By Chuan Guang Zhe 21/8/2015
+*	This cpp file contains 2 function, store compares the player score with the highscore from textfile and stores the better one
+*	as highscore. showscore shows the highscore by reading the textfiles.
+*	This cpp file uses highscore1.txt , highscore2.txt and highscore3.txt.
+*	store gets its parameter input from clock.cpp
+*/
+
 //Refers to booleans in game.cpp
 extern bool lvl1;
 extern bool lvl2;
 extern bool lvl3;
 
+//Declaration of variable
 bool newscore = false;
 
 
@@ -55,7 +64,6 @@ void store(int min, int sec)
 		ifstream coutfile;
 		coutfile.open("highscore1.txt");
 		coutfile.getline(highscoreC,5);
-		//cout << highscoreC << endl;
 		coutfile.close();
 	}
 	else if(lvl2 == true)
@@ -64,7 +72,6 @@ void store(int min, int sec)
 		ifstream coutfile;
 		coutfile.open("highscore2.txt");
 		coutfile.getline(highscoreC,5);
-		//cout << highscoreC << endl;
 		coutfile.close();
 	}
 	else if(lvl3 == true)
@@ -73,7 +80,6 @@ void store(int min, int sec)
 		ifstream coutfile;
 		coutfile.open("highscore3.txt");
 		coutfile.getline(highscoreC,5);
-		//cout << highscoreC << endl;
 		coutfile.close();
 	}
 

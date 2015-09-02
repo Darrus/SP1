@@ -34,6 +34,7 @@ void play(void);
 void input(state& s);
 void levelmenu(void);
 void levelselect(level& l);
+void back(void);
 void error(void);
 void quit(void);
 void custom(void);

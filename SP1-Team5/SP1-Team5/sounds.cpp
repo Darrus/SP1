@@ -1,6 +1,11 @@
 #include "sounds.h"
 #include "header.h"
 
+/**
+*	By Chuan Guang Zhe 28/8/2015
+*	This cpp file contains functions that plays sound effects which is used in other cpp files.
+*/
+
 //Door sound
 void door1(void)
 {
@@ -32,7 +37,7 @@ void menuselect(void)
 }
 
 //Menu "back" sound
-void back(void)
+void backsound(void)
 {
 	PlaySound(TEXT("back"), NULL, SND_FILENAME|SND_ASYNC);
 }
