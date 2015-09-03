@@ -84,7 +84,6 @@ void UI()
 void mazestore(string map)
 {
 	//Resets everything
-	h = 0;
 	g_once = false;
 	hori.clear();
 	vert.clear();
@@ -103,7 +102,6 @@ void mazestore(string map)
 		getline(fin,temp);
 		//Store into string
 		g_size.push_back(temp);
-		++h;
 	}
 	fin.close();
 }

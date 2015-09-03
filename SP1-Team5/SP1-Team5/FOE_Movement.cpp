@@ -30,7 +30,7 @@ void FOEO(int c)
 {
 	for(int i = 0; i < c; ++i)
 	{
-		// Check the four corners of the FOE for the special wall, and assign a direction to it.
+		// Check the four corners of the FOE for a special wall, and assign a direction to it.
 		if ((g_size[roun[i].Y-1][roun[i].X+1] == '#' || g_size[roun[i].Y-1][roun[i].X+1] == '?') && g_size[roun[i].Y-1][roun[i].X] == '0')
 		{
 			roun[i].up = true;
@@ -53,6 +53,34 @@ void FOEO(int c)
 			roun[i].down = false;
 		}
 		else if((g_size[roun[i].Y-1][roun[i].X-1] == '#' || g_size[roun[i].Y-1][roun[i].X-1] == '?') && g_size[roun[i].Y][roun[i].X-1] == '0')
+		{
+			roun[i].left = true;
+			roun[i].right = false;
+			roun[i].up = false;
+			roun[i].down = false;
+		}
+		else if(g_size[roun[i].Y][roun[i].X-1] == '#')
+		{
+			roun[i].left = false;
+			roun[i].right = false;
+			roun[i].up = false;
+			roun[i].down = true;
+		}
+		else if(g_size[roun[i].Y][roun[i].X+1] == '#')
+		{
+			roun[i].left = false;
+			roun[i].right = false;
+			roun[i].up = true;
+			roun[i].down = false;
+		}
+		else if(g_size[roun[i].Y+1][roun[i].X] == '#')
+		{
+			roun[i].left = false;
+			roun[i].right = true;
+			roun[i].up = false;
+			roun[i].down = false;
+		}
+		else if(g_size[roun[i].Y-1][roun[i].X] == '#')
 		{
 			roun[i].left = true;
 			roun[i].right = false;
