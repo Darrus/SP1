@@ -4,6 +4,24 @@
 #include "player.h"
 #include "MazeCustom.h"
 
+/**
+*	By Lee Yu Xian
+*	This .cpp contains function:
+*	refresh() 25/8/2015 Lee Yu Xian
+	Refreshes the text document file back to default (blank).
+
+*	save() 25/8/2015 Lee Yu Xian
+	Saves the edits done by the player.
+
+*	custommovement() 25/8/2015 Lee Yu Xian
+	Getting inputs of keyboard from player and move accordingly.
+
+*	customUI() 25/8/2015 Lee Yu Xian
+	Custom UI in the customising mode, displaying instructions for player.
+
+*/
+
+//Declarations of variables
 extern vector <string> g_size;
 extern COORD g_player;
 extern bool g_quit;
@@ -146,11 +164,11 @@ void custommovement(void)
 		break;
 	case 'x':
 	case 'X':
-		g_size[g_player.Y][g_player.X] = '@'; // placing down obiting FOE
+		g_size[g_player.Y][g_player.X] = '@'; // placing down orbiting FOE
 		break;
 	case 'c':
 	case 'C':
-		g_size[g_player.Y][g_player.X] = '#'; // placing down wall for obiting FOE to obit around
+		g_size[g_player.Y][g_player.X] = '#'; // placing down wall for orbiting FOE to orbit around
 		break;
 	case 'N':
 	case 'n':

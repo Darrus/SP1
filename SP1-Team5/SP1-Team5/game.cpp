@@ -35,7 +35,7 @@ string m1 = "m1OriginalCreation.txt"; //String to hold name of .txt file
 string m2 = "m2ModifiedWintermaulMaze.txt"; //String to hold name of .txt file
 string m3 = "m3Copy.txt"; //String to hold name of .txt file
 
-string customs = "custom1.txt"; //String to hold name of .txt file
+string customs1 = "custom1.txt"; //String to hold name of .txt file
 string customs2 = "custom2.txt"; //String to hold name of .txt file
 string customs3 = "custom3.txt"; //String to hold name of .txt file
 
@@ -46,6 +46,7 @@ string customs3 = "custom3.txt"; //String to hold name of .txt file
 	Selects appropriate level and keep running till player cleared the level or press escape/reset
 
 *	customlevel(int sel) Lee Yu Xian
+	Allows player to select which save to edit or play
 	
 *	reset() 21/8/2015 Goh Zheng Yuan
 	Resets every boolean and check if player is still in level
@@ -113,7 +114,7 @@ void customlevel(int sel)
 	if(sel == 1)
 	{
 		c1 = true;
-		mazestore(customs);
+		mazestore(customs1);
 	}
 	else if(sel == 2)
 	{

@@ -162,9 +162,17 @@ void mazemapping()
 					cout << 'X';
 					break;
 				case '#': //Wall for orbiting FOE to orbit around
-					setcolor(0x0f);
-					cout << wall;
-					setcolor(7);
+					if (g_playing == true)
+					{
+						setcolor(0x0f);
+						cout << wall;
+						setcolor(7);
+					}
+					else
+					{
+						setcolor(0x07);
+						cout << wall;
+					}
 					break;
 				case '4': //Exit
 					cout << "!";
