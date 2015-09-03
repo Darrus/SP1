@@ -7,8 +7,11 @@ void main(void)
 {
 	//Console title : aMAZE
 	SetConsoleTitle(L"aMAZE");
+
 	//Set console size
-	setConsoleSize(80 , 123);
+	HWND wh = GetConsoleWindow();
+	MoveWindow(wh, 450, 250, 1000, 450, TRUE);
+
 	gamemenu();
 }
 

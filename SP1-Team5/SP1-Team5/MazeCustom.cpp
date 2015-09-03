@@ -201,9 +201,9 @@ void customUI(void)
 	gotoXY(51, 7);
 	cout << "Press 4 for door";
 	gotoXY(51, 8);
-	cout << "Press E for traps";
+	cout << "Press E for unstable floor";
 	gotoXY(51, 9);
-	cout << "Press R for mud";
+	cout << "Press R for muddy floor";
 	gotoXY(51, 10);
 	cout << "Press F for invisiable wall";
 	gotoXY(51, 11);

@@ -141,7 +141,7 @@ void customlevel(int sel)
 			custommovement();
 		}
 	}
-
+	gotoXY(1, 25);
 	cout << "Press spacebar to continue" << endl;
 	if(g_playing == true)
 	{

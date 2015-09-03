@@ -1,5 +1,6 @@
 #include "header.h"
 #include "functions.h"
+#include <Windows.h>
 
 /**
 *	By Lee Yu Xian
@@ -15,9 +16,6 @@
 
 *	cls()
 	From the SP framework, refreshes the screen.
-
-*	setConsoleSize(unsigned short ushX, unsigned short ushY)
-	From the SP framework, setting the console size.
 
 */
 
@@ -43,9 +41,4 @@ void cls(void)
 	gotoXY(0,0);
 	cout << string(3000,' ');
 	gotoXY(0,0);
-}
-
-void setConsoleSize(unsigned short ushX, unsigned short ushY)
-{
-    SMALL_RECT windowSize = {0, 0, ushX, ushY};
 }
