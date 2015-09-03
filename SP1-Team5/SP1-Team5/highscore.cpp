@@ -6,11 +6,17 @@
 #include "sounds.h"
 
 /**
-*	By Chuan Guang Zhe 21/8/2015
-*	This cpp file contains 2 function, store compares the player score with the highscore from textfile and stores the better one
+*	Chuan Guang Zhe 21/8/2015
+*	This cpp file contains 2 function, store compares the player score with the highscore from textfile and stores the faster one
 *	as highscore. showscore shows the highscore by reading the textfiles.
 *	This cpp file uses highscore1.txt , highscore2.txt and highscore3.txt.
 *	store gets its parameter input from clock.cpp
+*
+*	store(int min,int sec)
+*	Compares player score with highscore and stores the faster one
+*
+*	showscore()
+*	shows the highscore
 */
 
 //Refers to booleans in game.cpp
@@ -20,7 +26,6 @@ extern bool lvl3;
 
 //Declaration of variable
 bool newscore = false;
-
 
 //Stores highscore 
 void store(int min, int sec)

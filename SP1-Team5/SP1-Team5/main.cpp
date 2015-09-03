@@ -5,8 +5,10 @@
 //Links everything together and runs the game
 void main(void)
 {
+	//Console title : aMAZE
 	SetConsoleTitle(L"aMAZE");
-	setConsoleSize(79 , 25);
+	//Set console size
+	setConsoleSize(80 , 123);
 	gamemenu();
 }
 

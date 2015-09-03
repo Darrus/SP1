@@ -7,16 +7,16 @@
 /**
 *	By Lee Yu Xian
 *	This .cpp contains function:
-*	refresh() 25/8/2015 Lee Yu Xian
+*	refresh() 25/8/2015
 	Refreshes the text document file back to default (blank).
 
-*	save() 25/8/2015 Lee Yu Xian
+*	save() 25/8/2015 
 	Saves the edits done by the player.
 
-*	custommovement() 25/8/2015 Lee Yu Xian
+*	custommovement() 25/8/2015
 	Getting inputs of keyboard from player and move accordingly.
 
-*	customUI() 25/8/2015 Lee Yu Xian
+*	customUI() 25/8/2015 
 	Custom UI in the customising mode, displaying instructions for player.
 
 */
@@ -209,9 +209,9 @@ void customUI(void)
 	gotoXY(51, 11);
 	cout << "(Player can pass, FOE can't)";
 	gotoXY(51, 12);
-	cout << "Press X for obiting FOE";
+	cout << "Press X for orbiting FOE";
 	gotoXY(51, 13);
-	cout << "Press C for obiting FOE wall";
+	cout << "Press C for orbiting FOE wall";
 	gotoXY(51, 15);
 	cout << "Press V to set start point";
 	gotoXY(51, 16);

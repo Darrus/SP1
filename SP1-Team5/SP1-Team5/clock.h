@@ -2,6 +2,6 @@
 #define CLOCK_H
 
 void clock_start(void);
-int clock_end(void);
+void clock_end(void);
 
 #endif 

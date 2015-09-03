@@ -2,7 +2,7 @@
 #include "header.h"
 
 /**
-*	By Chuan Guang Zhe 28/8/2015
+*	Chuan Guang Zhe 28/8/2015
 *	This cpp file contains functions that plays sound effects which is used in other cpp files.
 */
 

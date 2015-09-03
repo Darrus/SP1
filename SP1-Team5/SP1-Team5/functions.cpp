@@ -1,6 +1,26 @@
 #include "header.h"
 #include "functions.h"
 
+/**
+*	By Lee Yu Xian
+*	This .cpp contains function:
+*	gotoXY(COORD c) 
+	From the SP framework, relocates cursor to desired location.
+
+*	gotoXY(int x, int y)
+	From the SP framework, relocates cursor to desired location.
+	
+*	setcolor(unsigned short color)
+	From the SP framework, sets color.
+
+*	cls()
+	From the SP framework, refreshes the screen.
+
+*	setConsoleSize(unsigned short ushX, unsigned short ushY)
+	From the SP framework, setting the console size.
+
+*/
+
 void gotoXY(COORD c)
 {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);

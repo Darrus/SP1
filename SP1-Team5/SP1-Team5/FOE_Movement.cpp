@@ -13,7 +13,7 @@ extern COORD g_player;
 extern bool g_quit;
 
 /*
-*	Goh Zheng Yuan
+*	Goh Zheng Yuan & Chuan Guang Zhe
 *	This .cpp contains function:
 *	FOEO() 28/8/2015
 	Check what type of floor the Orbiting FOE is about to step on.

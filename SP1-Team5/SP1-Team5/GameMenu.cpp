@@ -5,9 +5,22 @@
 #include "sounds.h"
 
 /**
-*	By Chuan Guang Zhe 21/8/2015
+*	Chuan Guang Zhe 21/8/2015
 *	This cpp file contains the functions needed to create the game menu, level select menu, and custom save select menu.
 *	Each menu allows the player to select modes / levels / saves which corresponds to other cpp files.
+*	gamemenu()
+*	title()
+*	menu()
+*	play()
+*	input(state& l)
+*	error()
+*	back()
+*	quit()
+*	
+*	Lee Yu Xian 25/8/2015
+*	custom()
+*	custommenu()
+*	customselect(customenum& i)
 */
 
 //Declaration of variables
@@ -188,11 +201,6 @@ void quit()
 	cout <<"Thanks for playing the game!";
 	gotoXY(10,14);
 }
-
-/**
-*	By Lee Yu Xian 25/8/2015
-*	Functions that creates custom save select menu and corresponds to custom maze maker
-*/
 
 //Function for case custom
 void custom()

@@ -4,9 +4,15 @@
 #include "highscore.h"
 
 /**
-*	By Chuan Guang Zhe 21/8/2015
+*	Chuan Guang Zhe
 *	This cpp file contains the functions needed to calculate time taken for the stage to be clear / player loses.
 *	This cpp file is mainly used for highscore.cpp
+*	
+*	clock_start() 21/8/2015
+*	Starts the clock
+*
+*	clock_end() 21/8/2015
+*	Ends the clock and returns
 */
 
 //Declarations of variables
@@ -23,7 +29,8 @@ void clock_start(void)
 	start = clock();
 }
 
-int clock_end(void)
+//Ends the clock
+void clock_end(void)
 {
 	//Current time - previous current time is converted into seconds
 	seconds = (clock() - start ) / (int) CLOCKS_PER_SEC ;
@@ -57,5 +64,4 @@ int clock_end(void)
 		cout << minutes << " minutes " << seconds <<" seconds"<< endl;
 		gotoXY (0,24);
 	}
-	return minutes,seconds;
 }
