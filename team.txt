@@ -1,0 +1,29 @@
+Goh Zheng Yuan		150377B
+Lee Yu Xian		155118A
+Chuan Guang Zhe		152104G
+
+Goh Zheng Yuan
+- Player
+  - Movement
+  - Detection
+  - Controls
+- Maze generator
+- FOE detection
+- Reset
+
+Lee Yu Xian
+- Maze Customiser
+  - Movement in customiser
+  - Detection in customiser
+  - Player controls in customiser
+- Key and door/gate
+- User Interface
+- Unstable and broken floor
+
+Chuan Guang Zhe
+- Maze Designer
+- High-score system
+- Game menu
+- FOE movement
+- Muddy floor
+- Sounds
